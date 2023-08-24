@@ -1,0 +1,129 @@
+@import '../../styles/variables.scss';
+
+.navigation {
+  margin: 0 0;
+  box-sizing: border-box;
+
+  &__box {
+    display: none;
+  }
+
+  &__list {
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    list-style: none;
+    max-width: 600px;
+  }
+
+  &__box-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  &__arrow {
+    transition: transform 0.5s ease;
+
+    &_active {
+      transform: rotate(180deg);
+      transition: transform 0.5s ease;
+    }
+  }
+}
+
+.link-menu {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: $color-white;
+  font-size: 16px;
+  line-height: 32px;
+  white-space: nowrap;
+
+  &:hover {
+    color: $color-primary;
+
+    path {
+      stroke: $color-primary;
+    }
+  }
+
+  &:last-of-type(5) {
+    margin-right: 0;
+  }
+
+  &_active {
+    color: $color-primary;
+
+    path {
+      stroke: $color-primary;
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint-lg) {
+  .navigation {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+
+    &__list {
+      margin: 0;
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint-md) {
+  .navigation {
+    position: relative;
+    z-index: 22;
+    min-width: calc(320px - 10%);
+    display: none;
+
+    &_type {
+      &_header {
+        display: none;
+      }
+
+      &_menu {
+        display: block;
+      }
+    }
+
+    &__box {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &__list {
+      margin-left: 0;
+      margin-right: 0;
+
+      &_type_popup {
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        border-top: 1px solid #8b8b8b;
+        padding: 16px 0;
+        max-width: 100%;
+      }
+    }
+
+    &__arrow {
+      display: none;
+    }
+  }
+
+  .link-menu {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 167.7%;
+  }
+}

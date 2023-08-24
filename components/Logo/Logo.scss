@@ -1,0 +1,59 @@
+@import '../../styles/variables.scss';
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 165px;
+
+  &_type_menu {
+    display: none;
+  }
+
+  &__img {
+    width: 152px;
+    height: 72px;
+    cursor: pointer;
+
+    &_type_menu {
+      width: 68px;
+      height: 32px;
+    }
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint-lg) {
+  .logo {
+    &__img {
+      &_type_header {
+        width: 100px;
+        height: 52px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint-md) {
+  .logo {
+    &__img {
+      width: 68px;
+      height: 32px;
+    }
+
+    &_type_footer {
+      width: 147px;
+      height: 65px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &_type_menu {
+      display: flex;
+    }
+  }
+}

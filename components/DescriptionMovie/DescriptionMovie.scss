@@ -1,0 +1,47 @@
+@import '../../styles/variables.scss';
+
+.description-movie {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;   
+    background: $background;
+    border: 1px solid #2B2B2B;
+    box-shadow: $box-shadow;
+    backdrop-filter: blur(20px);
+    border-radius: 5px;
+    height: fit-content;
+
+    &__title {
+        margin: 0 0 20px 0;
+        font-weight: 500;
+        font-size: 22px;
+        line-height: 26px;
+    }
+
+    &__info {
+        margin: 0;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 21px;
+    }
+}
+
+@media screen and (max-width: $breakpoint-lg) {
+    .description-movie {
+        &__title {
+            font-size: 16px;
+            line-height: 19px;
+        }
+        &__info {            
+            font-size: 14px;
+            line-height: 20px;
+        }
+    }
+}
+
+@media screen and (max-width: $breakpoint-md) {
+    .description-movie {
+        padding: 10px;
+    }
+}

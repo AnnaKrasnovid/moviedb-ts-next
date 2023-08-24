@@ -1,0 +1,37 @@
+@import '../../styles/variables.scss';
+
+.about-us {
+  padding: 60px 0 120px;
+
+  &__container {
+    padding: 20px;
+    margin: 0;
+    background: $background;
+    border: 1px solid #2B2B2B;
+    box-shadow: $box-shadow;
+    backdrop-filter: blur(20px);
+    border-radius: 5px;
+  }
+
+  &__text {
+    margin: 15px 0 0;
+    font-size: 18px;
+    line-height: 21px;
+    font-weight: 400;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint-md) {
+  .about-us {
+    padding: 30px 0 60px;
+
+    &__text {
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+}
