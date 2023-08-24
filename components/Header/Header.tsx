@@ -3,7 +3,7 @@ import Navigation from '../Navigation/Navigation';
 import SearchForm from '../SearchForm/SearchForm';
 import ButtonBurger from '../../UI/ButtonBurger/ButtonBurger';
 
-// import './Header.scss';
+import styles from './Header.module.scss';
 
 interface HeaderInt {
   onOpenMenu: () => void,
@@ -12,10 +12,10 @@ interface HeaderInt {
 
 function Header({ onOpenMenu, onClosePopup }: HeaderInt) {
   return (
-    <header className="header">
-      <div className="header__wrapper">
+    <header className={styles['header']}>
+      <div className={styles['header__wrapper']}>
         <Logo type='header' />
-        <div className="header__box">
+        <div className={styles['header__box']}>
           <ButtonBurger callback={onOpenMenu} />
           <Navigation type='header' onClosePopup={onClosePopup} />
         </div>

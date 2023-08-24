@@ -1,4 +1,4 @@
-// import './DescriptionMovieItem.scss';
+import styles from './DescriptionMovieItem.module.scss';
 
 interface DescriptionMovieItemInt {
     title: string,
@@ -7,9 +7,9 @@ interface DescriptionMovieItemInt {
 
 function DescriptionMovieItem({ title, info }: DescriptionMovieItemInt) {
     return (
-        <li className='description-item'>
-            <p className='description-item__heading'>{title}</p>
-            <p className='description-item__info'>{info}</p>
+        <li className={styles['description-item']}>
+            <p className={styles['description-item__heading']}>{title}</p>
+            <p className={styles['description-item__info']}>{info}</p>
         </li>
     );
 }

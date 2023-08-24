@@ -1,12 +1,9 @@
-// import { useLocation } from 'react-router-dom';
-// import { NavLink } from 'react-router-dom';
 import Link from 'next/link';
 
 import { useRouter } from 'next/router';
 import { MenuItemInt } from '../../settings/interfaces';
 
-// import './Submenu.scss';
-
+import styles from './Submenu.module.scss';
 interface SubmenuInt {
   item: MenuItemInt,
   isActiveSubmenu: boolean,
@@ -14,18 +11,18 @@ interface SubmenuInt {
 
 function Submenu({ item, isActiveSubmenu }: SubmenuInt) {
    const { pathname } = useRouter();
-
+    
   return (
     <div
-      className={`menu ${isActiveSubmenu ? 'menu_opened' : ''}`}
+      className={`${styles['menu']} ${isActiveSubmenu ? styles['menu_opened'] : ''}`}
     >
-      <ul className='menu__list' >
+      <ul className={styles['menu__list']}>
         {item.submenu && item.submenu.map((i) => {
           return (
-            <li className='menu__genre' key={i.id}>
+            <li className={styles['menu__genre']} key={i.id}>
               <Link
                 href={`${item.path}/${i.path}`}
-                className={pathname === `${item.path}/${i.path}` ? 'menu__link menu__link_active' : 'menu__link'}
+                className={`${styles['menu__link']} ${pathname === `${item.path}/${i.path}` ? styles['menu__link_active'] : ''}`}
               >
                 {i.title}
               </Link>

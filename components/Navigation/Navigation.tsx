@@ -8,7 +8,7 @@ import Submenu from '../Submenu/Submenu';
 import { menu } from '../../settings/menuList';
 import { MenuItemInt } from '../../settings/interfaces';
 
-// import './Navigation.scss';
+ import styles from './Navigation.module.scss';
 
 type NavigationTypes = 'header' | 'menu';
 
@@ -29,11 +29,11 @@ function Navigation({ type, onClosePopup }: NavigationInt) {
   const getMenuList = (item: MenuItemInt) => {
     if (item.submenu) {
       return (
-        <li className='navigation__box-link' key={item.id} onMouseOver={openSubmenu} onMouseOut={closeSubmenu}>
+        <li className={styles['navigation__box-link']} key={item.id} onMouseOver={openSubmenu} onMouseOut={closeSubmenu}>
           <Link href={item.path} className={''} onClick={onClosePopup}>
             {item.title}
             {item.submenu && (
-              <svg className={isActiveSubmenu ? 'navigation__arrow navigation__arrow_active' : 'navigation__arrow'}
+              <svg className={`${styles['navigation__arrow']} ${isActiveSubmenu ? `${styles['navigation__arrow_active']} ` : ''}`}
                 width="22" height="22" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18.5 9L12.5 15L6.5 9" stroke="#fff" strokeWidth="2" />
               </svg>
@@ -44,7 +44,7 @@ function Navigation({ type, onClosePopup }: NavigationInt) {
       );
     } else {
       return (
-        <li className='navigation__box-link' key={item.id} >
+        <li className={styles['navigation__box-link']} key={item.id} >
           <Link href={item.path} className={''} onClick={onClosePopup}>
             {item.title}
           </Link>
@@ -54,8 +54,8 @@ function Navigation({ type, onClosePopup }: NavigationInt) {
   };
 
   return (
-    <nav className={`navigation navigation_type_${type}`}>
-      <ul className='navigation__list navigation__list_type_popup' >
+    <nav className={`${styles['navigation']} ${styles[`navigation_type_${type}`]}`} >
+      <ul className={`${styles['navigation__list']} ${styles['navigation__list_type_popup']}`} >
         {menu.map(item => getMenuList(item))}
       </ul>
     </nav>

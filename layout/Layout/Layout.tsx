@@ -4,7 +4,7 @@ import Footer from '../../components/Footer/Footer';
 
 import { ModalsContext } from '../../context/ModalsContext';
 
-// import './Layout.css';
+ import styles from './Layout.module.css';
 
 interface LayoutInt {
   children: JSX.Element,
@@ -19,8 +19,8 @@ function Layout({ children }: LayoutInt) {
         onOpenMenu={openMenu}
         onClosePopup={closePopup}
       />
-      <div className='main'>
-        <main className='main-page'>
+      <div className={styles['main']}>
+        <main className={styles['main-page']}>
           {children}
         </main>
       </div>

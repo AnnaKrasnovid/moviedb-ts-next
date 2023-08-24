@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import './SearchForm.scss';
+import styles from './SearchForm.module.scss';
 
 function SearchForm() {
   const [isActiveSearchClass, setIsActiveSearchClass] = useState(false);
@@ -23,28 +23,28 @@ function SearchForm() {
 
   return (
     <form
-      className='search'
+      className={styles['search']}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onFocus={handleOnFocusInput}
       onBlur={handleOnBlurInput}
       noValidate>
       <div>
-        <div className={`search__box ${isActiveSearchClass || isActiveInput ? 'search__box_active' : ''}`}>
+        <div className={`${styles['search__box']} ${isActiveSearchClass || isActiveInput ? styles['search__box_active'] : ''}`}>
           <input
             id='search'
             name='search'
-            className='search__input'
+            className={styles['search__input']}
             type='text'
             placeholder='Поиск'
             minLength={1}
             autoComplete='off'
           /*value={values.search || ''}*/
           />
-          <span className={`search__icon ${isActiveInput ? 'search__icon_active' : ''}`} ></span>
+          <span className={`${styles['search__icon']} ${isActiveInput ? styles['search__icon_active' ]: ''}`} ></span>
         </div>
 
-        <span id='search-input-error' className='search__error'> </span>
+        <span id='search-input-error' className={styles['search__error']}> </span>
       </div>
     </form>
   );

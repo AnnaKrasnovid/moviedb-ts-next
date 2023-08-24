@@ -1,11 +1,10 @@
-// import '@/styles/globals.css'
 import { useState } from 'react';
-
-
 import type { AppProps } from 'next/app';
 
 import { ModalsContext } from '../context/ModalsContext';
 
+import 'normalize.css';
+import '../styles/index.scss';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isOpenPopupMenu, setIsOpenPopupMenu] = useState(false);

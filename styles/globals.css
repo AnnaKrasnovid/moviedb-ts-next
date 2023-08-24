@@ -1,4 +1,6 @@
-@import './variables.scss';
+/* @import './swiper.scss'; */
+/* @import './fonts.scss'; */
+/* @import './variables.scss'; */
 
 * {
   box-sizing: border-box;
@@ -18,7 +20,7 @@ a {
   text-decoration: none;
 }
 
-#root {
+body {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,7 +33,7 @@ a {
   min-width: 320px;
   font-family: 'Roboto', Arial, sans-serif;
   font-weight: 400;
-  color: $color-white;
+  /* color: $color-white; */
   box-sizing: border-box;
   position: relative;
   min-height: 100vh;
@@ -48,14 +50,14 @@ a {
 }
 
 .main {
-  max-width:$container-max-width;
+  /* max-width:$container-max-width; */
   width: 100%;
   min-height: 650px;
   padding-bottom: 100px;
 }
 
 .link {
-  color: $color-white;
+  /* color: $color-white; */
 }
 
 .hide-scroll {
@@ -63,8 +65,8 @@ a {
   padding-right: 17px;
 }
 
-@media screen and (max-width: $breakpoint-sm) {
-  #root {
+/* @media screen and (max-width: $breakpoint-sm) {
+  body {
     background-image: linear-gradient(rgba(24, 26, 25, 0.7), rgba(24, 26, 25, 0.5)), url(../images/bg-modile.png);
   }
-}
+} */

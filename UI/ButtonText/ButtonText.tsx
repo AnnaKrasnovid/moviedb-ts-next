@@ -1,10 +1,10 @@
 import { ButtonInt } from '../../settings/interfaces';
 
-// import './ButtonText.scss';
+import styles from './ButtonText.module.scss';
 
 function ButtonText({ type = 'button', text = '', callback }: ButtonInt) {
     return (
-        <button type={type} onClick={callback} className='button-text hover'>{text}</button>
+        <button type={type} onClick={callback} className={`${styles['button-text']} hover`}>{text}</button>
     );
 };
 

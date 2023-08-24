@@ -28,8 +28,6 @@ export default function Home() {
       </Head>
       <div className='page'>
         <Layout >
-
-
           <main>
             {/* <Lead /> */}
             {/*<Compilation title='Сериалы' moviesList={mov}/>

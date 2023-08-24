@@ -1,10 +1,10 @@
 import { ButtonInt } from '../../settings/interfaces';
 
-// import './ButtonBurger.scss';
+import styles from './ButtonBurger.module.scss';
 
 function ButtonBurger({ type = 'button', callback }: ButtonInt) {
     return (
-        <button className='button-burger' onClick={callback} type={type}/>
+        <button className={styles['button-burger']} onClick={callback} type={type}/>
     );
 };
 
