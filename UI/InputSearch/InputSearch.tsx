@@ -24,6 +24,7 @@ function InputSearch() {
     function handleOnBlurInput() {
         setIsActiveInput(false);
     }
+    
     return (
         <div
             className='input-box'
