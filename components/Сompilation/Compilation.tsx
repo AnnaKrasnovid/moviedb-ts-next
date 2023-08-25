@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
 import Link from 'next/link';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,7 +9,7 @@ import MovieCard from '../MovieCard/MovieCard';
 import { routes } from '../../settings/routes';
 import {useWindowWidth} from '../../hooks/useWindowWidth';
 
-// import './Compilation.scss';
+import styles from './Compilation.module.scss';
 
 interface CompilationInt {
   title: string,
@@ -40,9 +39,9 @@ function Compilation({ title, moviesList }: CompilationInt) {
   }, [windowWidth]);
 
   return (
-    <section className='compilation'>
-      <h2 className='compilation__title'>{title}</h2>
-      <div className='compilation__movies'>
+    <section className={styles['compilation']}>
+      <h2 className={styles['compilation__title']}>{title}</h2>
+      <div className={styles['compilation__movies']}>
         <Swiper
           slidesPerView={slides}
           spaceBetween={20}

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-// import './ScrollBar.scss';
+import styles from './ScrollBar.module.scss';
 
 export interface ScrollBarInt {
     children: ReactNode,
@@ -8,7 +8,7 @@ export interface ScrollBarInt {
 
 function ScrollBar({ children }:ScrollBarInt) {
     return (
-        <div className='scroll' >
+        <div className={styles['scroll']} >
             {children}
         </div>
     );

@@ -21,6 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
 const modalsContextProps= {
   closePopup: closePopup,
   openMenu: openMenu,
+  isOpenPopupMenu:isOpenPopupMenu
 }
 
   return (

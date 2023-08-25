@@ -1,12 +1,13 @@
-
-
+import Layout from '../layout/Layout/Layout';
 import MoviesList from '../components/MoviesList/MoviesList';
 
 import { mov } from '../assets/mockData/movies';
 
 function MoviesPage() {
     return (
-        <MoviesList list={mov} />
+        <Layout>
+            <MoviesList list={mov} />
+        </Layout>
     );
 }
 

@@ -1,13 +1,13 @@
 import { aboutUs } from '../../assets/appData/aboutUs';
 
-// import './AboutMovieDB.scss';
+import styles from  './AboutMovieDB.module.scss';
 
 function AboutMovieDB() {
   return (
-    <section className='about-us' aria-label='О сайте MovieDB'>
-      <ul className='about-us__container'>
+    <section className={styles['about-us']} aria-label='О сайте MovieDB'>
+      <ul className={styles['about-us__container']}>
         {aboutUs.map((item, index) => (
-          <li key={index} className='about-us__text'>{item}</li>
+          <li key={index} className={styles['about-us__text']}>{item}</li>
         ))}
       </ul>
     </section>

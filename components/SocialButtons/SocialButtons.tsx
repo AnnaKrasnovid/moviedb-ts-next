@@ -1,28 +1,29 @@
-// import { Link } from 'react-router-dom';
+import Link from 'next/link';
+import Image from 'next/image';
 
 import Facebook from '../../images/facebook.svg';
 import Instagram from '../../images/instagram.svg';
 import Twitter from '../../images/twitter.svg';
-// import './SocialButtons.scss';
+
+import styles from './SocialButtons.module.scss';
 
 type SocialButtonsTypes = 'footer' | 'menu';
-
 interface SocialButtonsInt {
   type: SocialButtonsTypes
 }
 
 function SocialButtons({ type='footer' }:SocialButtonsInt) {
   return (
-    <div className={`social-buttons social-buttons_type_${type}`}>
-      {/* <Link className='social-buttons__link' to='#' target='_blank'>
-        <img className='social-buttons__icon' src={Facebook} alt='Facebook' />
+    <div className={`${styles['social-buttons']} ${styles[`social-buttons_type_${type}`]}`}>
+      <Link className={styles['social-buttons__link']} href='#' target='_blank'>
+        <Image className={styles['social-buttons__icon']} src={Facebook} alt='Facebook' />
       </Link>
-      <Link className='social-buttons__link' to='#' target='_blank'>
-        <img className='social-buttons__icon' src={Instagram} alt='Instagram' />
+      <Link className={styles['social-buttons__link']} href='#' target='_blank'>
+        <Image className={styles['social-buttons__icon']} src={Instagram} alt='Instagram' />
       </Link>
-      <Link className='social-buttons__link' to='#' target='_blank'>
-        <img className='social-buttons__icon' src={Twitter} alt='Twitter' />
-      </Link> */}
+      <Link className={styles['social-buttons__link']} href='#' target='_blank'>
+        <Image className={styles['social-buttons__icon']} src={Twitter} alt='Twitter' />
+      </Link>
     </div>
   );
 }

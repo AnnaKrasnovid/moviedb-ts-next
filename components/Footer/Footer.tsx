@@ -25,7 +25,7 @@ function Footer() {
       <div className={styles['footer__box-info']}>
         <p className={styles['footer__info']}>Все права защищены MovieDB.ru {date.getFullYear()}</p>
         <SocialButtons type='footer' />
-        <Link className={`${styles['footer__info']} ${'footer__info_type_link'}`} href='#' target='_blank'>Политика конфиденциальности</Link>
+        <Link className={`${styles['footer__info']} ${styles['footer__info_type_link']}`} href='#' target='_blank'>Политика конфиденциальности</Link>
       </div>
     </footer>
   );
