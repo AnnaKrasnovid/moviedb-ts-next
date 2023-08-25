@@ -4,6 +4,7 @@ import Navigation from '../Navigation/Navigation';
 import SocialButtons from '../SocialButtons/SocialButtons';
 import ScrollBar from '../../UI/ScrollBar/ScrollBar';
 import Logo from '../Logo/Logo';
+import ButtonClose from '../../UI/ButtonClose/ButtonClose';
 
 import {useWindowWidth} from '../../hooks/useWindowWidth';
 import { hideScroll } from '../../tools/utils';
@@ -32,7 +33,7 @@ function MenuMobile({ onClosePopup, isOpenPopupMenu }: MenuMobileInt) {
     <div className={`${styles['menu-mobile']} ${isOpenPopupMenu ? styles['menu-mobile_opened'] : ''}`} >
       <div className={styles['menu-mobile__box']}>
         <Logo type='menu' />
-        <button className={styles['menu-mobile__button-close']} onClick={onClosePopup} type="button" />
+        <ButtonClose callback={onClosePopup}/>        
       </div>
       <div className={styles['menu-mobile__box-nav']}>
         <ScrollBar>

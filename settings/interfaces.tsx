@@ -15,9 +15,12 @@ export interface MovieInt {
 
 type ButtonTypes = 'button' | 'submit';
 export interface ButtonInt {
-    type?: ButtonTypes,
-    text?: string,
+    type?: ButtonTypes,    
     callback: () => void
+}
+
+export interface ButtonTextInt extends ButtonInt {
+    text?: string,
 }
 
 export interface SubmenuItemInt {

@@ -1,0 +1,53 @@
+@import '../../styles/variables.scss';
+
+.arrow {
+    transition: transform 0.5s ease;
+
+    &_active {
+        transform: rotate(180deg);
+        transition: transform 0.5s ease;
+    }
+}
+
+.link-menu {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: $color-white;
+    font-size: 16px;
+    line-height: 32px;
+    white-space: nowrap;
+
+    &:hover {
+        color: $color-primary;
+
+        path {
+            stroke: $color-primary;
+        }
+    }
+
+    &:last-of-type(5) {
+        margin-right: 0;
+    }
+
+    &_active {
+        color: $color-primary;
+
+        path {
+            stroke: $color-primary;
+        }
+    }
+}
+
+@media screen and (max-width: $breakpoint-md) {
+    .arrow {
+        display: none;
+    }
+
+    .link-menu {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 167.7%;
+    }
+}

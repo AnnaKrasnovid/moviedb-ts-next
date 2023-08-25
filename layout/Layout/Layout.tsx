@@ -19,6 +19,8 @@ function Layout({ children }: LayoutInt) {
   return (
     <>
       <Head>
+        <meta lang='ru' />
+        <meta charSet="UTF-8" />
         <title>MovieDB</title>
         <meta name="description" content="Сайт для поиска фильмов" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
