@@ -8,7 +8,7 @@ import Submenu from '../Submenu/Submenu';
 import { menu } from '../../settings/menuList';
 import { MenuItemInt } from '../../settings/interfaces';
 
- import styles from './Navigation.module.scss';
+import styles from './Navigation.module.scss';
 
 type NavigationTypes = 'header' | 'menu';
 
@@ -19,18 +19,18 @@ interface NavigationInt {
 
 function Navigation({ type, onClosePopup }: NavigationInt) {
   const [isActiveSubmenu, setIsActiveSubmenu] = useState(false);
-  const setActive = ({ isActive }: any) => isActive ? 'link-menu link-menu_active' : 'link-menu';
   const { pathname } = useRouter();
-  // const isActive = exact ? pathname === href : pathname.startsWith(href);
 
   const closeSubmenu = () => setIsActiveSubmenu(false);
   const openSubmenu = () => setIsActiveSubmenu(true);
 
   const getMenuList = (item: MenuItemInt) => {
+    const isActiveLink = pathname === item.path;
+
     if (item.submenu) {
       return (
         <li className={styles['navigation__box-link']} key={item.id} onMouseOver={openSubmenu} onMouseOut={closeSubmenu}>
-          <Link href={item.path} className={''} onClick={onClosePopup}>
+          <Link href={item.path} className={`${styles['link-menu']} ${isActiveLink ? styles['link-menu_active'] : ''}`} onClick={onClosePopup}>
             {item.title}
             {item.submenu && (
               <svg className={`${styles['navigation__arrow']} ${isActiveSubmenu ? `${styles['navigation__arrow_active']} ` : ''}`}
@@ -45,7 +45,7 @@ function Navigation({ type, onClosePopup }: NavigationInt) {
     } else {
       return (
         <li className={styles['navigation__box-link']} key={item.id} >
-          <Link href={item.path} className={''} onClick={onClosePopup}>
+          <Link href={item.path} className={`${styles['link-menu']} ${isActiveLink ? styles['link-menu_active'] : ''}`} onClick={onClosePopup}>
             {item.title}
           </Link>
         </li>

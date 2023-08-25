@@ -1,6 +1,6 @@
 /* @import './swiper.scss'; */
 /* @import './fonts.scss'; */
-/* @import './variables.scss'; */
+ @import './variables.scss'; 
 
 * {
   box-sizing: border-box;
@@ -20,7 +20,7 @@ a {
   text-decoration: none;
 }
 
-body {
+#__next {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +33,7 @@ body {
   min-width: 320px;
   font-family: 'Roboto', Arial, sans-serif;
   font-weight: 400;
-  /* color: $color-white; */
+  color: $color-white; 
   box-sizing: border-box;
   position: relative;
   min-height: 100vh;
@@ -49,15 +49,10 @@ body {
   min-height: 100vh;
 }
 
-.main {
-  /* max-width:$container-max-width; */
-  width: 100%;
-  min-height: 650px;
-  padding-bottom: 100px;
-}
+
 
 .link {
-  /* color: $color-white; */
+  color: $color-white;
 }
 
 .hide-scroll {
@@ -65,8 +60,8 @@ body {
   padding-right: 17px;
 }
 
-/* @media screen and (max-width: $breakpoint-sm) {
-  body {
+@media screen and (max-width: $breakpoint-sm) {
+  #__next {
     background-image: linear-gradient(rgba(24, 26, 25, 0.7), rgba(24, 26, 25, 0.5)), url(../images/bg-modile.png);
   }
-} */
+}

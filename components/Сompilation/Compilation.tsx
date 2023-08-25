@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 // import { Navigation } from 'swiper';
@@ -7,7 +8,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import MovieCard from '../MovieCard/MovieCard';
 
 import { routes } from '../../settings/routes';
-import useWindowWidth from '../../hooks/useWindowWidth';
+import {useWindowWidth} from '../../hooks/useWindowWidth';
 
 // import './Compilation.scss';
 
@@ -41,7 +42,7 @@ function Compilation({ title, moviesList }: CompilationInt) {
   return (
     <section className='compilation'>
       <h2 className='compilation__title'>{title}</h2>
-      {/* <div className='compilation__movies'>
+      <div className='compilation__movies'>
         <Swiper
           slidesPerView={slides}
           spaceBetween={20}
@@ -57,13 +58,14 @@ function Compilation({ title, moviesList }: CompilationInt) {
         >
           {moviesList.map((item) => (
             <SwiperSlide key={item.id}>
-              <Link to={`${routes.MOVIES}/${item.id}`} state={{ movie: item }} className='link'>
+{/* {state={{ movie: item }}} */}
+              <Link href={`${routes.MOVIES}/${item.id}`} className='link'>
                 <MovieCard item={item} />
               </Link>
             </SwiperSlide>
           ))}
         </Swiper>
-      </div> */}
+      </div>
     </section>
   );
 }

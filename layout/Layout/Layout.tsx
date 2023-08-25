@@ -4,7 +4,7 @@ import Footer from '../../components/Footer/Footer';
 
 import { ModalsContext } from '../../context/ModalsContext';
 
- import styles from './Layout.module.css';
+ import styles from './Layout.module.scss';
 
 interface LayoutInt {
   children: JSX.Element,

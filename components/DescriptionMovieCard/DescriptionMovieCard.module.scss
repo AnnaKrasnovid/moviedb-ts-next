@@ -2,7 +2,8 @@
 
 .about-movie {
   padding: 100px 0;
-color: $color-white;
+  color: $color-white;
+
   &__description {
     display: grid;
     grid-template-columns: 0.7fr 1.7fr;
@@ -22,7 +23,7 @@ color: $color-white;
     width: 100%;
     border: 1px solid $color-dark;
     border-radius: 5px;
-    box-shadow: $box-shadow;    
+    box-shadow: $box-shadow;
   }
 
   &__container-rating {

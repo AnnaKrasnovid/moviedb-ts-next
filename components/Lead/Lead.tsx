@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-// @ts-ignore
+//@ts-ignore
 import { Autoplay, Pagination, Navigation } from 'swiper';
 
 import Interstellar from '../../images/main-interstellar.jpg';
@@ -11,7 +11,7 @@ import Live from '../../images/main-live.jpg';
 import Dune from '../../images/main-dune2.jpg';
 import Aquaman from '../../images/main-aquaman.jpg';
 
-// import './Lead.scss';
+import styles from './Lead.module.scss';
 
 function Lead() {
   const slides = [Interstellar, Avengers, Live, Dune, Aquaman];
@@ -23,22 +23,22 @@ function Lead() {
       // loopAdditionalSlides={3}
       spaceBetween={30}
       centeredSlides={true}
-      autoplay={{
-        delay: 3000,
-        disableOnInteraction: false,
-      }}
-      speed={1500}
+      // autoplay={{
+      //   delay: 3000,
+      //   disableOnInteraction: false,
+      // }}
+      // speed={1500}
       pagination={{
         clickable: true,
       }}
       modules={[Autoplay, Pagination, Navigation]}
-      className='section-lead'
+      className={styles['section-lead']}
     >
       {slides.map((item,index) => (
         <SwiperSlide key={index}>
-          <Image src={item} alt='Постер к фильму' className='lead__img' />
+          <Image src={item} alt='Постер к фильму' className={styles['lead__img']} />         
         </SwiperSlide>
-      ))}
+       ))} 
     </Swiper>
 
   );

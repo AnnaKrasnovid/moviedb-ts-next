@@ -1,0 +1,20 @@
+@import '../../styles/variables.scss';
+
+.main {
+   max-width:$container-max-width;
+  width: 100%;
+  min-height: 650px;
+  padding-bottom: 100px;
+
+}
+
+.main-page {
+  // max-width: $container-max-width;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1400px) {
+    .main-page {
+      margin: 0 5%;
+    }
+  }

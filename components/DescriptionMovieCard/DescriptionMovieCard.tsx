@@ -18,7 +18,7 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
   function toggleAllText() {
     setIsShowAllText(!isShowAllText);
   }
-  
+
   return (
     <section className={styles['about-movie']}>
       <div className={styles['about-movie__description']}>
@@ -37,8 +37,8 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
           <ul className= {styles['about-movie__box-main']}>
             <DescriptionMovieItem title='Продолжительность' info={getTime(movie.movieLength)} />
             <DescriptionMovieItem title='Год выпускa' info={movie.year} />
-            <DescriptionMovieItem title='Жанр' info={getInfo(movie.genres)} />
             <DescriptionMovieItem title='Страна' info={getInfo(movie.countries)} />
+            <DescriptionMovieItem title='Жанр' info={getInfo(movie.genres)} />            
             <DescriptionMovieItem title='Участвует в подборках' info={getInfo(movie.genres)} />
             {/* <DescriptionMovieItem title='В главных ролях' info={} /> */}
           </ul>
