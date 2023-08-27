@@ -27,7 +27,7 @@ export interface SubmenuItemInt {
     id: string, 
     path: string, 
     title: string, 
-    request: string, 
+    value: string, 
 }
 
 export interface MenuItemInt {

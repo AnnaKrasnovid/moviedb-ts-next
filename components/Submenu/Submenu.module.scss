@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 
 .menu {
-  padding: 10px 20px;
+  // padding: 10px 20px;
   width: 180px;
   background: $background;
   border: 1px solid $color-dark;
@@ -41,6 +41,12 @@
 
     &_active {
       color: $color-primary;
+    }
+  }
+  &__genre {
+    padding: 3px 20px;
+    &:hover {
+      background: rgba(28, 29, 31, 0.5);
     }
   }
 }

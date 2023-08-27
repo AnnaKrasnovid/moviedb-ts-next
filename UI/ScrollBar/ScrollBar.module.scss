@@ -5,7 +5,7 @@
    // padding-right: 10px; //отступ скролла от содержимого слева
    //два свойства ниже для браузера firefox
     scrollbar-width: thin;
-    scrollbar-color: $color-primary #fff;
+    scrollbar-color: $color-primary rgba(28, 29, 31, 0.5);
 }
 
 .scroll::-webkit-scrollbar {
@@ -19,7 +19,7 @@
 }
 
 .scroll::-webkit-scrollbar-track {
-    background: #fff; //цвет бокса скролла    
+    background: rgba(28, 29, 31, 0.5); //цвет бокса скролла    
     background-clip: content-box;
     border-radius: 10px;    
     margin-top: 5px; // отступ вверху скролла от контейнера

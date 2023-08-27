@@ -1,0 +1,20 @@
+@import '../../styles/variables.scss';
+
+.arrow {
+    transition: transform 0.5s ease;
+
+    &_active {
+        transform: rotate(180deg);
+        transition: transform 0.5s ease;
+    }
+}
+
+@media screen and (max-width: $breakpoint-md) {
+    .arrow {
+        &_type {
+            &_menu {
+                display: none;
+            }
+        }        
+    }    
+}

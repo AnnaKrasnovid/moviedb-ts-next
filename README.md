@@ -1,6 +1,6 @@
 # Pet project "MovieDB" (проект в процессе разработки)
 
-#### Проект переписан, старый репозиторий: https://github.com/AnnaKrasnovid/moviedb
+#### Проект переписан, добавлен Next.js и Typescript, старый репозиторий: https://github.com/AnnaKrasnovid/moviedb
 
 #### Посмотреть проект в браузере: #
 ## Описание:

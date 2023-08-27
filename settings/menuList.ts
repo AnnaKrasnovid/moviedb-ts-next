@@ -2,18 +2,18 @@ import { genresRoutes, routes } from "./routes";
 import { MenuItemInt,SubmenuItemInt } from "./interfaces";
 
 export const submenuGenres:Array<SubmenuItemInt> = [
-  { id: '1', path: genresRoutes.ACTION_MOVIE, title: 'Боевики', request: 'боевик' },
-  { id: '2', path: genresRoutes.MILITARY, title: 'Военные', request: 'военный' },
-  { id: '3', path: genresRoutes.DETECTIVE, title: 'Детективы', request: 'детектив' },
-  { id: '4', path: genresRoutes.FAMILY, title: 'Семейные', request: 'семейный' },
-  { id: '5', path: genresRoutes.DRAMA, title: 'Драмы', request: 'драма' },
-  { id: '6', path: genresRoutes.COMEDY, title: 'Комедии', request: 'комедия' },
-  { id: '7', path: genresRoutes.CRIMINAL, title: 'Криминал', request: 'криминал' },
-  { id: '8', path: genresRoutes.MELODRAMA, title: 'Мелодрамы', request: 'мелодрама' },
-  { id: '9', path: genresRoutes.THRILLER, title: 'Триллеры', request: 'триллер' },
-  { id: '10', path: genresRoutes.HORROR, title: 'Ужасы', request: 'ужасы' },
-  { id: '11', path: genresRoutes.FANTASTIC, title: 'Фантастика', request: 'фантастика' },
-  { id: '12', path: genresRoutes.FANTASY, title: 'Фэнтези', request: 'фэнтези' },
+  { id: '1', path: genresRoutes.ACTION_MOVIE, title: 'Боевики', value: 'боевик' },
+  { id: '2', path: genresRoutes.MILITARY, title: 'Военные', value: 'военный' },
+  { id: '3', path: genresRoutes.DETECTIVE, title: 'Детективы', value: 'детектив' },
+  { id: '4', path: genresRoutes.FAMILY, title: 'Семейные', value: 'семейный' },
+  { id: '5', path: genresRoutes.DRAMA, title: 'Драмы', value: 'драма' },
+  { id: '6', path: genresRoutes.COMEDY, title: 'Комедии', value: 'комедия' },
+  { id: '7', path: genresRoutes.CRIMINAL, title: 'Криминал', value: 'криминал' },
+  { id: '8', path: genresRoutes.MELODRAMA, title: 'Мелодрамы', value: 'мелодрама' },
+  { id: '9', path: genresRoutes.THRILLER, title: 'Триллеры', value: 'триллер' },
+  { id: '10', path: genresRoutes.HORROR, title: 'Ужасы', value: 'ужасы' },
+  { id: '11', path: genresRoutes.FANTASTIC, title: 'Фантастика', value: 'фантастика' },
+  { id: '12', path: genresRoutes.FANTASY, title: 'Фэнтези', value: 'фэнтези' },
 ];
 
 export const menu: Array<MenuItemInt> = [
