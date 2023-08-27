@@ -10,9 +10,13 @@ import { submenuGenres } from '../../settings/menuList';
 import styles from './MoviesList.module.scss';
 
 function MoviesList({ list }: any) {
+  const { asPath } = useRouter();
   const [movies, setMovies] = useState([]);
   const [genre, setGenre] = useState<string>('')
-  const { asPath } = useRouter();
+  const [years, setYears] = useState<string>('')
+  const [rating, setRaiting] = useState<string>('')
+  const [sort, setSort] = useState<string>('')
+
 
   const selectGenresList = [
     { id: '0', title: 'Все', value: '' },
@@ -57,23 +61,14 @@ function MoviesList({ list }: any) {
     { id: '2', title: 'По дате выхода', value: '' },
   ]
 
-  function getGenre(value: string) {
-    setGenre(value);
-    console.log(value)
-  }
-
   return (
     <section className={styles['movies']}>
-      {/* <div className={styles['filters-container']}> */}
-        <div className={styles['filters']}>
-          <Select options={selectGenresList} callback={getGenre} placeholder='Жанры' />
-          <Select options={selectYearsList} callback={getGenre} placeholder='Рейтинг' />
-          <Select options={selectRatingList} callback={getGenre} placeholder='Годы выхода' />
-          <Select options={selectSortList} callback={getGenre} placeholder='Рекомендуемые' />
-        </div>
-        
-      {/* </div> */}
-
+      <div className={styles['filters']}>
+        <Select options={selectGenresList} callback={(value) => setGenre(value)} placeholder='Жанры' defaultValue={selectGenresList[3].title} />
+        <Select options={selectYearsList} callback={(value) => setYears(value)} placeholder='Рейтинг' defaultValue={selectYearsList[0].title} />
+        <Select options={selectRatingList} callback={(value) => setRaiting(value)} placeholder='Годы выхода' defaultValue={selectRatingList[0].title} />
+        <Select options={selectSortList} callback={(value) => setSort(value)} placeholder='Рекомендуемые' defaultValue={selectSortList[0].title} />
+      </div>
       <ul className={styles['movies__list']}>
         {list.map((item: any) => (
           <li key={item.id}>

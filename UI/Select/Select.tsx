@@ -16,10 +16,11 @@ export interface SelectInt {
     options: Array<OptionItemInt>,
     label?: string,
     placeholder?: string,
-    callback: (value: string) => void
+    callback: (value: string) => void,
+    defaultValue?: string, 
 }
 
-function Select({ options, label, placeholder = 'Выберите...', callback }: SelectInt) {
+function Select({ options, label, placeholder = 'Выберите...', callback, defaultValue }: SelectInt) {
     const [isActiveDropdown, setIsActiveDropdown] = useState(false);
     const [selectedItem, setSelectedItem] = useState<string>(placeholder);
 
@@ -43,10 +44,16 @@ function Select({ options, label, placeholder = 'Выберите...', callback 
     const choiceOption = (id: string | number) => {
         const item = options.find((i) => i.id === id)
         if (item) {
-            setSelectedItem(item.value);
-            callback(item.value)
+            setSelectedItem(item.title);
+            callback(item.value);
         }
-    }
+    }   
+
+    useEffect(() => {      
+       const value= defaultValue === options[0].title ? placeholder : defaultValue;     
+       // @ts-ignore
+       setSelectedItem(value);
+    }, [])
 
     useEffect(() => {
         document.addEventListener('click', closeDropdown);
@@ -66,7 +73,7 @@ function Select({ options, label, placeholder = 'Выберите...', callback 
                     <ScrollBar>
                         <ul className={styles['dropdown-select__list']}>
                             {options.map((item) => (
-                                <li className={`${styles['dropdown-select__item']} ${item.value === selectedItem ? styles['dropdown-select__item_active'] : ''}`} key={item.id} onClick={() => choiceOption(item.id)}>
+                                <li className={`${styles['dropdown-select__item']} ${item.title === selectedItem ? styles['dropdown-select__item_active'] : ''}`} key={item.id} onClick={() => choiceOption(item.id)}>
                                     <span className={styles['dropdown-select__title']}>{item.title}</span>
                                 </li>
                             ))}

@@ -26,7 +26,7 @@ function MovieCard({ item }:any) {
           <p className={styles['movie__description']}> {item.year}<br /> {item.genres[0].name}<br /> {item.countries[0].name} </p>
         </div>
       </div>
-      <h3 className={styles['movie__title']}>{item.name}</h3>
+      {/* <h3 className={styles['movie__title']}>{item.name}</h3> */}
     </div>
   );
 }
