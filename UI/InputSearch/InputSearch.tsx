@@ -1,13 +1,17 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
 import Error from '../Error/Error';
 
 import styles from './InputSearch.module.scss';
 
-function InputSearch() {
+interface InputSearchInt {
+    searchValue: string,
+    setSearchValue: Dispatch<SetStateAction<string>>
+}
+
+function InputSearch({searchValue,setSearchValue }:InputSearchInt) {
     const [isActiveSearchClass, setIsActiveSearchClass] = useState(false);
     const [isActiveInput, setIsActiveInput] = useState(false);
-    const [searchValue, setSearchValue] = useState('');    
 
     function handleMouseEnter() {
         setIsActiveSearchClass(true);
@@ -23,6 +27,10 @@ function InputSearch() {
 
     function handleOnBlurInput() {
         setIsActiveInput(false);
+    }
+
+    function handleChange(e: any) {
+        setSearchValue(e.target.value)
     }
     
     return (
@@ -42,7 +50,7 @@ function InputSearch() {
                     minLength={1}
                     autoComplete='off'
                     value={searchValue}
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    onChange={ handleChange}
                 />
                 <span className={`${styles['input-box__icon']} ${isActiveInput ? styles['input-box__icon_active'] : ''}`} ></span>
             </div>

@@ -20,9 +20,3 @@ export const genresRoutes = {
     FANTASY: 'fantasy',
     DRAMA: 'drama',
 };
-
-
-
-
-
-

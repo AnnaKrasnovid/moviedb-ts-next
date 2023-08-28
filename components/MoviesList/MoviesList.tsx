@@ -17,7 +17,6 @@ function MoviesList({ list }: any) {
   const [rating, setRaiting] = useState<string>('')
   const [sort, setSort] = useState<string>('')
 
-
   const selectGenresList = [
     { id: '0', title: 'Все', value: '' },
     { id: '1', title: 'Боевик', value: 'боевик' },
@@ -55,6 +54,7 @@ function MoviesList({ list }: any) {
     { id: '4', title: 'Больше 6', value: '' },
     { id: '5', title: 'Больше 5', value: '' },
   ]
+
   const selectSortList = [
     { id: '0', title: 'Рекомендуемые', value: '-' },
     { id: '1', title: 'По рейтингу', value: '' },
@@ -64,7 +64,7 @@ function MoviesList({ list }: any) {
   return (
     <section className={styles['movies']}>
       <div className={styles['filters']}>
-        <Select options={selectGenresList} callback={(value) => setGenre(value)} placeholder='Жанры' defaultValue={selectGenresList[3].title} />
+        <Select options={selectGenresList} callback={(value) => setGenre(value)} placeholder='Жанры' defaultValue={selectGenresList[0].title} />
         <Select options={selectYearsList} callback={(value) => setYears(value)} placeholder='Рейтинг' defaultValue={selectYearsList[0].title} />
         <Select options={selectRatingList} callback={(value) => setRaiting(value)} placeholder='Годы выхода' defaultValue={selectRatingList[0].title} />
         <Select options={selectSortList} callback={(value) => setSort(value)} placeholder='Рекомендуемые' defaultValue={selectSortList[0].title} />
@@ -72,7 +72,6 @@ function MoviesList({ list }: any) {
       <ul className={styles['movies__list']}>
         {list.map((item: any) => (
           <li key={item.id}>
-            {/* state={{ movie: item }} */}
             <Link href={`${asPath}/${item.id}`} className='link'>
               <MovieCard item={item} />
             </Link>
