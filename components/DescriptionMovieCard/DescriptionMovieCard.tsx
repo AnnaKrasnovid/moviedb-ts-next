@@ -6,7 +6,7 @@ import DescriptionMovie from '../DescriptionMovie/DescriptionMovie';
 
 import { getTime, getInfo } from '../../tools/utils';
 
- import styles from './DescriptionMovieCard.module.scss';
+import styles from './DescriptionMovieCard.module.scss';
 
 interface DescriptionMovieCardInt {
   movie: any
@@ -19,6 +19,12 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
     setIsShowAllText(!isShowAllText);
   }
 
+  function getActors() {
+    let actors:Array<string> = []
+    movie.persons.map((i) => i.profession === 'актеры' ? actors.push(i.name) : '')
+    return actors.join(", ")
+  }  
+ 
   return (
     <section className={styles['about-movie']}>
       <div className={styles['about-movie__description']}>
@@ -31,15 +37,15 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
             )}
           </div>
         </div>
-        <div className= {styles['about-movie__container']}>
+        <div className={styles['about-movie__container']}>
           <h3 className={styles['about-movie__title']}>{movie.name} ({movie.year})</h3>
           {movie.alternativeName ? <p className={styles['about-movie__title-en']}>{movie.alternativeName} ({movie.year})</p> : <></>}
-          <ul className= {styles['about-movie__box-main']}>
+          <ul className={styles['about-movie__box-main']}>
             <DescriptionMovieItem title='Продолжительность' info={getTime(movie.movieLength)} />
             <DescriptionMovieItem title='Год выпускa' info={movie.year} />
             <DescriptionMovieItem title='Страна' info={getInfo(movie.countries)} />
-            <DescriptionMovieItem title='Жанр' info={getInfo(movie.genres)} />            
-            <DescriptionMovieItem title='Участвует в подборках' info={getInfo(movie.genres)} />
+            <DescriptionMovieItem title='Жанр' info={getInfo(movie.genres)} />
+            <DescriptionMovieItem title='Актеры' info={getActors()} />
             {/* <DescriptionMovieItem title='В главных ролях' info={} /> */}
           </ul>
           <DescriptionMovie
@@ -47,7 +53,7 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
             info={isShowAllText ? movie.description : movie.shortDescription}
             buttonText={!isShowAllText ? 'Ещё' : 'Скрыть'}
             callback={toggleAllText}
-          />         
+          />
         </div>
       </div>
     </section>

@@ -12,29 +12,26 @@ import styles from './SearchForm.module.scss';
 
 function SearchForm() {
   const router = useRouter();
-  const {moviesList, setMoviesList}= useContext(MoviesContext);
+  const { moviesList, setMoviesList } = useContext(MoviesContext);
   // const [movieSearch, setMovieSearch] = useState<Array<any>>();
   const [searchValue, setSearchValue] = useState('');
 
-  const res = useDebounce(async () => {
+  const searchMovie = useDebounce(async () => {
     try {
       const response = await api.searchMovie(searchValue)
-      // console.log(response)
       setMoviesList(response.docs)
       router.push(routes.MOVIES)
     }
     catch (error) {
       console.log(error)
     }
-  }, 500) 
+  }, 500)
 
   useEffect(() => {
     if (searchValue.length > 0) {
-      res()
+      searchMovie()
     }
-
   }, [searchValue])
-  // console.log(moviesList)
 
   return (
     <form className={styles['search']} noValidate>

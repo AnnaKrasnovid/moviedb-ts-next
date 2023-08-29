@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
 import MovieCard from '../MovieCard/MovieCard';
 import Select from '../../UI/Select/Select';
+import ButtonText from '../../UI/ButtonText/ButtonText';
 
 import { submenuGenres } from '../../settings/menuList';
 
 import styles from './MoviesList.module.scss';
 
 function MoviesList({ list }: any) {
-  const { asPath } = useRouter();
+  console.log(list)
+  const { asPath, back } = useRouter();
   const [movies, setMovies] = useState([]);
   const [genre, setGenre] = useState<string>('')
   const [years, setYears] = useState<string>('')
   const [rating, setRaiting] = useState<string>('')
   const [sort, setSort] = useState<string>('')
-
+  
   const selectGenresList = [
     { id: '0', title: 'Все', value: '' },
     { id: '1', title: 'Боевик', value: 'боевик' },
@@ -34,7 +36,7 @@ function MoviesList({ list }: any) {
   ]
 
   const selectYearsList = [
-    { id: '0', title: 'Все годы', value: '-' },
+    { id: '0', title: 'Все годы', value: '' },
     { id: '1', title: '2022-2023', value: '' },
     { id: '2', title: '2020-2021', value: '' },
     { id: '3', title: '2010-2019', value: '' },
@@ -47,7 +49,7 @@ function MoviesList({ list }: any) {
   ]
 
   const selectRatingList = [
-    { id: '0', title: 'Любой рейтинг', value: '-' },
+    { id: '0', title: 'Любой рейтинг', value: '' },
     { id: '1', title: 'Больше 9', value: '' },
     { id: '2', title: 'Больше 8', value: '' },
     { id: '3', title: 'Больше 7', value: '' },
@@ -63,21 +65,31 @@ function MoviesList({ list }: any) {
 
   return (
     <section className={styles['movies']}>
-      <div className={styles['filters']}>
-        <Select options={selectGenresList} callback={(value) => setGenre(value)} placeholder='Жанры' defaultValue={selectGenresList[0].title} />
-        <Select options={selectYearsList} callback={(value) => setYears(value)} placeholder='Рейтинг' defaultValue={selectYearsList[0].title} />
-        <Select options={selectRatingList} callback={(value) => setRaiting(value)} placeholder='Годы выхода' defaultValue={selectRatingList[0].title} />
-        <Select options={selectSortList} callback={(value) => setSort(value)} placeholder='Рекомендуемые' defaultValue={selectSortList[0].title} />
-      </div>
-      <ul className={styles['movies__list']}>
-        {list.map((item: any) => (
-          <li key={item.id}>
-            <Link href={`${asPath}/${item.id}`} className='link'>
-              <MovieCard item={item} />
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {list.length > 0 ? (
+        <>
+          <div className={styles['filters']}>
+            <Select options={selectGenresList} callback={(value) => setGenre(value)} placeholder='Жанры' defaultValue={selectGenresList[0].title} />
+            <Select options={selectYearsList} callback={(value) => setYears(value)} placeholder='Рейтинг' defaultValue={selectYearsList[0].title} />
+            <Select options={selectRatingList} callback={(value) => setRaiting(value)} placeholder='Годы выхода' defaultValue={selectRatingList[0].title} />
+            {/* <Select options={selectSortList} callback={(value) => setSort(value)} placeholder='Рекомендуемые' defaultValue={selectSortList[0].title} /> */}
+          </div>
+          <ul className={styles['movies__list']}>
+            {list.map((item: any) => (
+              <li key={item.id}>
+                <Link href={`${asPath}/${item.id}`} className='link'>
+                  <MovieCard item={item} />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <div  className={styles['movies__box']}>
+          <p className={styles['movies__info']}>Ничего не найдено</p>
+          <ButtonText text='Назад' callback={back} />
+        </div>
+
+      )}
     </section>
   );
 }
