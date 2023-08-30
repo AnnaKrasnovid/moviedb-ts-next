@@ -11,7 +11,7 @@ import api from '../../tools/api';
 function MoviePage({ movie }: any) {
   console.log(movie.docs[0].persons)
 const actors = movie.docs[0].persons.filter((i:any)=> i.profession==='актеры')
-console.log(actors)
+console.log(movie)
   return (
     <Layout>
       <DescriptionMovieCard movie={movie.docs[0]} />

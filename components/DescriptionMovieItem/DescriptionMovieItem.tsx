@@ -2,10 +2,10 @@ import styles from './DescriptionMovieItem.module.scss';
 
 interface DescriptionMovieItemInt {
     title: string,
-    info: string | number,
+    info?: string | number,
 }
 
-function DescriptionMovieItem({ title, info }: DescriptionMovieItemInt) {
+function DescriptionMovieItem({ title, info='' }: DescriptionMovieItemInt) {
     return (
         <li className={styles['description-item']}>
             <p className={styles['description-item__heading']}>{title}</p>

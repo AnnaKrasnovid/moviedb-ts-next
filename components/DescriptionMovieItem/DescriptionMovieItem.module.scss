@@ -6,9 +6,10 @@
     list-style: none;
     border-bottom: 1px solid $color-dark;
     min-height: 51px;
+    padding: 1rem;
 
     &__heading {
-        margin: 0 0 0 20px;
+        margin: 0 ;
         display: flex;
         align-items: center;
         font-weight: 700;

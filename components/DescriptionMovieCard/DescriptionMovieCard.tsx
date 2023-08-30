@@ -12,18 +12,34 @@ interface DescriptionMovieCardInt {
   movie: any
 }
 
+interface ActorInt {
+  id: number,
+  name: string,
+  photo: string,
+  profession: string
+}
+
 function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
   const [isShowAllText, setIsShowAllText] = useState<boolean>(false);
 
   function toggleAllText() {
     setIsShowAllText(!isShowAllText);
   }
-
-  function getActors() {
-    let actors:Array<string> = []
-    movie.persons.map((i) => i.profession === 'актеры' ? actors.push(i.name) : '')
+// console.log(movie)
+  function getActors(list:Array<ActorInt>) {
+    if(list){
+     let actors:Array<string> = []
+    list.map((i:ActorInt) => i.profession === 'актеры' ? actors.push(i.name) : '')
+  //  const filterActors= list.filter((i:any)=> i.profession === 'актеры')
+  //   filterActors.forEach((i:any)=> actors.push(i.name))
+  //    console.log(filterActors)
+    //  return actors.join(', ')
+    console.log(typeof actors.join(', '))
     return actors.join(", ")
+  }
+  
   }  
+
  
   return (
     <section className={styles['about-movie']}>
@@ -45,7 +61,7 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
             <DescriptionMovieItem title='Год выпускa' info={movie.year} />
             <DescriptionMovieItem title='Страна' info={getInfo(movie.countries)} />
             <DescriptionMovieItem title='Жанр' info={getInfo(movie.genres)} />
-            <DescriptionMovieItem title='Актеры' info={getActors()} />
+            <DescriptionMovieItem title='Актеры' info={getActors(movie.persons)} />
             {/* <DescriptionMovieItem title='В главных ролях' info={} /> */}
           </ul>
           <DescriptionMovie

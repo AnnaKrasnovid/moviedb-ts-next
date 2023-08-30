@@ -21,7 +21,8 @@ class Api {
   }
 
   getMovies(years) {
-    return fetch (`${this._baseUrl}/v1.3/movie?sort=year&sort=rating.kp&year=${years}&sortType=1&limit=20&token=${this._key}`, {
+    return fetch (`${this._baseUrl}/v1.3/movie?type=movie&year=${years}&rating.kp=8.3-10&limit=20&token=${this._key}`, {
+      // return fetch (`${this._baseUrl}/v1.3/movie?sort=year&sort=rating.kp&year=${years}&sortType=1&limit=20&token=${this._key}`, {
       method: 'GET',
     })
     .then(this._checkResponseStatus);  
