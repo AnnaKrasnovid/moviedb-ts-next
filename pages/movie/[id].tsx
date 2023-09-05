@@ -9,9 +9,8 @@ import ActorsList from '../../components/ActorsList/ActorsList';
 import api from '../../tools/api';
 
 function MoviePage({ movie }: any) {
-  console.log(movie.docs[0].persons)
-const actors = movie.docs[0].persons.filter((i:any)=> i.profession==='актеры')
-console.log(movie)
+const actors = movie.docs[0].persons.filter((i:any)=> i.profession==='актеры');
+
   return (
     <Layout>
       <DescriptionMovieCard movie={movie.docs[0]} />
@@ -24,7 +23,7 @@ console.log(movie)
 
 export async function getServerSideProps(params: GetServerSidePropsContext) {
   let movie: any = {};
-  movie = await api.getMovieId(params.query.id)
+  movie = await api.getMovieId(params.query.id);
 
   return {
     props: { movie },
@@ -32,5 +31,3 @@ export async function getServerSideProps(params: GetServerSidePropsContext) {
 }
 
 export default MoviePage;
-
-

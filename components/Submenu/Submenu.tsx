@@ -18,7 +18,7 @@ function Submenu({ item, isActiveSubmenu }: SubmenuInt) {
         {item.submenu && item.submenu.map((i) => (
           <li className={styles['menu__genre']} key={i.id}>
             <Link
-              href={`${item.path}/${i.path}`}
+              href={`${item.path}/${i.value}`}
               className={`${styles['menu__link']} ${asPath === `${item.path}/${i.path}` ? styles['menu__link_active'] : ''}`}
             >
               {i.title}

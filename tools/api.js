@@ -1,4 +1,5 @@
 import { API_URL, API_KEY } from '../settings/constants';
+import { getCurrentYear } from './utils';
 
 class Api {
   constructor({ baseUrl, key }) {
@@ -20,8 +21,8 @@ class Api {
     .then(this._checkResponseStatus);  
   }
 
-  getMovies(years) {
-    return fetch (`${this._baseUrl}/v1.3/movie?type=movie&year=${years}&rating.kp=8.3-10&limit=20&token=${this._key}`, {
+  getMovies(type,years) {
+    return fetch (`${this._baseUrl}/v1.3/movie?type=${type}&year=${years}&rating.kp=8-10&limit=20&sort=year&sort=rating.kp&token=${this._key}`, {
       // return fetch (`${this._baseUrl}/v1.3/movie?sort=year&sort=rating.kp&year=${years}&sortType=1&limit=20&token=${this._key}`, {
       method: 'GET',
     })
@@ -36,6 +37,14 @@ class Api {
   }
   getSeries(years) {
     return fetch (`${this._baseUrl}/v1.3/movie?type=tv-series&year=${years}&rating.kp=8.3-10&limit=20&token=${this._key}`, {     
+      method: 'GET',
+    })
+    .then(this._checkResponseStatus);  
+  }
+
+  getMoviesByGenre(genre, years='2000-2023', rating='7-10') {
+    return fetch (`${this._baseUrl}/v1.3/movie?genres.name=${genre}&year=${years}&rating.kp=${rating}&limit=20&sort=year&sort=rating.kp&token=${this._key}`, {
+      // return fetch (`${this._baseUrl}/v1.3/movie?sort=year&sort=rating.kp&year=${years}&sortType=1&limit=20&token=${this._key}`, {
       method: 'GET',
     })
     .then(this._checkResponseStatus);  

@@ -25,22 +25,15 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
   function toggleAllText() {
     setIsShowAllText(!isShowAllText);
   }
-// console.log(movie)
-  function getActors(list:Array<ActorInt>) {
-    if(list){
-     let actors:Array<string> = []
-    list.map((i:ActorInt) => i.profession === 'актеры' ? actors.push(i.name) : '')
-  //  const filterActors= list.filter((i:any)=> i.profession === 'актеры')
-  //   filterActors.forEach((i:any)=> actors.push(i.name))
-  //    console.log(filterActors)
-    //  return actors.join(', ')
-    console.log(typeof actors.join(', '))
-    return actors.join(", ")
-  }
-  
-  }  
 
- 
+  function getActors(list: Array<ActorInt>) {
+    if (list) {
+      let actors: Array<string> = [];
+      list.map((i: ActorInt) => i.profession === 'актеры' ? actors.push(i.name) : '');
+      return actors.join(", ");
+    }
+  }
+
   return (
     <section className={styles['about-movie']}>
       <div className={styles['about-movie__description']}>

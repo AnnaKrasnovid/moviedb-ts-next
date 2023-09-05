@@ -11,14 +11,13 @@ import { submenuGenres } from '../../settings/menuList';
 import styles from './MoviesList.module.scss';
 
 function MoviesList({ list }: any) {
-  console.log(list)
   const { asPath, back } = useRouter();
   const [movies, setMovies] = useState([]);
   const [genre, setGenre] = useState<string>('')
   const [years, setYears] = useState<string>('')
   const [rating, setRaiting] = useState<string>('')
   const [sort, setSort] = useState<string>('')
-  
+
   const selectGenresList = [
     { id: '0', title: 'Все', value: '' },
     { id: '1', title: 'Боевик', value: 'боевик' },
@@ -76,7 +75,7 @@ function MoviesList({ list }: any) {
           <ul className={styles['movies__list']}>
             {list.map((item: any) => (
               <li key={item.id}>
-                <Link href={`${asPath}/${item.id}`} className='link'>
+                <Link href={`/movie/${item.id}`} className='link'>
                   <MovieCard item={item} />
                 </Link>
               </li>

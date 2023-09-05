@@ -13,7 +13,7 @@ interface GenreCardInt {
 
 function GenreCard({ item, index }: GenreCardInt) {
     return (
-        <Link href={`${routes.GENRES}/${item.path}`} className={`${styles['genre-item']} ${styles[`genre-item_bg_${index}`]}`} >
+        <Link href={`${routes.GENRES}/${item.value}`} className={`${styles['genre-item']} ${styles[`genre-item_bg_${index}`]}`} >
             <h3 className={styles['genre-item__title']}>{item.title}</h3>
         </Link>
     );

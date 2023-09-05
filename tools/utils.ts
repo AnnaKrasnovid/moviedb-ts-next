@@ -28,4 +28,8 @@ export const hideScroll = (state: boolean): void => {
     }
 };
 
+export const getCurrentYear = () => {
+    return new Date().getFullYear();
+}
+
 

@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import MovieCard from '../MovieCard/MovieCard';
 
 import { routes } from '../../settings/routes';
-import {useWindowWidth} from '../../hooks/useWindowWidth';
+import { useWindowWidth } from '../../hooks/useWindowWidth';
 
 import styles from './Compilation.module.scss';
 
@@ -55,9 +55,8 @@ function Compilation({ title, moviesList }: CompilationInt) {
           // modules={[Navigation]}
           className="compilation-swiper"
         >
-          {moviesList.map((item) => (
+          {moviesList&& moviesList.map((item) => (
             <SwiperSlide key={item.id}>
-{/* {state={{ movie: item }}} */}
               <Link href={`${routes.MOVIES}/${item.id}`} className='link'>
                 <MovieCard item={item} />
               </Link>
