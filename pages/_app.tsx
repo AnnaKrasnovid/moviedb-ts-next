@@ -11,6 +11,7 @@ import '../styles/index.scss';
 export default function App({ Component, pageProps }: AppProps) {
   const [isOpenPopupMenu, setIsOpenPopupMenu] = useState(false);
   const [moviesList, setMoviesList] = useState<Array<any>>([]);
+  const [isSearchMovie, setIsSearchMovie]= useState(false)
 
   function openMenu() {
     setIsOpenPopupMenu(true);
@@ -29,6 +30,8 @@ export default function App({ Component, pageProps }: AppProps) {
   const moviesContextProps = {
     moviesList: moviesList,
     setMoviesList: setMoviesList,
+    isSearchMovie: isSearchMovie,
+    setIsSearchMovie: setIsSearchMovie,
   }
 
   return (

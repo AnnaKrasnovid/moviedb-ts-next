@@ -20,7 +20,7 @@ function SearchForm() {
     try {
       const response = await api.searchMovie(searchValue)
       setMoviesList(response.docs)
-      router.push(routes.MOVIES)
+      router.push(routes.SEARCH)
     }
     catch (error) {
       console.log(error)

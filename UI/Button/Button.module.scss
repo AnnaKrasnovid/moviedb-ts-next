@@ -1,0 +1,31 @@
+@import '../../styles/variables.scss';
+
+.button-default {
+    padding: 6px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-primary;
+    color: $color-white;
+    border-radius: 8px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    border: none;
+    white-space: nowrap;
+    height: 36px;
+   cursor: pointer;
+
+    &_active {
+        // background-color: $color-middle-green; 
+        cursor: pointer; 
+        &:hover {
+            // background-color: $color-green;
+
+        }
+    }
+
+    &:hover {
+        background-color: $color-primary-hover;
+    }
+}

@@ -5,6 +5,8 @@ import Navigation from '../Navigation/Navigation';
 import SearchForm from '../SearchForm/SearchForm';
 import ButtonBurger from '../../UI/ButtonBurger/ButtonBurger';
 
+import { routes } from '../../settings/routes';
+
 import styles from './Header.module.scss';
 interface HeaderInt {
   onOpenMenu: () => void,
@@ -12,6 +14,8 @@ interface HeaderInt {
 }
 
 function Header({ onOpenMenu, onClosePopup }: HeaderInt) {
+  const { pathname } = useRouter()
+  console.log()
   return (
     <header className={styles['header']}>
       <div className={styles['header__wrapper']}>

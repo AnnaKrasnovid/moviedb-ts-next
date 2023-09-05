@@ -1,9 +1,11 @@
 export const routes = {
     INDEX: '/',
     MOVIES: '/movies',
+    MOVIE: '/movie',
     GENRES: '/genres',
     SERIALS: '/serials',
     CARTOONS: '/cartoons',
+    SEARCH: '/search',
 };
 
 export const genresRoutes = {
