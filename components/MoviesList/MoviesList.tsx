@@ -15,25 +15,26 @@ import styles from './MoviesList.module.scss';
 
 function MoviesList({ list }: any) {
   const { asPath, back } = useRouter();
+  const [renderList, setRenderList] = useState(list)
 
-  async function filtersMovies (genre:string, years:string,rating:string)  {
+  async function filtersMovies(genre: string, years: string, rating: string) {
     try {
-        const response = await api.getMoviesByGenre(genre, years,rating)
-       console.log(response)
-      }
-      catch (error) {
-        console.log(error)
-      }
-
-}
+      const response = await api.getMoviesByGenre(genre, years, rating)
+      console.log(response.docs)
+      setRenderList(response.docs)
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <section className={styles['movies']}>
       {list.length > 0 ? (
         <>
-          <Filters callback={filtersMovies}/>
+          <Filters callback={filtersMovies} />
           <ul className={styles['movies__list']}>
-            {list.map((item: any) => (
+            {renderList.length >0&& renderList.map((item: any) => (
               <li key={item.id}>
                 <Link href={`${routes.MOVIE}/${item.id}`} className='link'>
                   <MovieCard item={item} />

@@ -22,8 +22,7 @@ class Api {
   }
 
   getMovies(type,years) {
-    return fetch (`${this._baseUrl}/v1.3/movie?type=${type}&year=${years}&rating.kp=8-10&limit=20&sort=year&sort=rating.kp&token=${this._key}`, {
-      // return fetch (`${this._baseUrl}/v1.3/movie?sort=year&sort=rating.kp&year=${years}&sortType=1&limit=20&token=${this._key}`, {
+    return fetch (`${this._baseUrl}/v1.3/movie?type=${type}&year=${years}&rating.kp=8-10&limit=20&sort=year&sort=rating.kp&token=${this._key}`, {     
       method: 'GET',
     })
     .then(this._checkResponseStatus);  
@@ -42,9 +41,8 @@ class Api {
     .then(this._checkResponseStatus);  
   }
 
-  getMoviesByGenre(genre, years='2000-2023', rating='7-10') {
-    return fetch (`${this._baseUrl}/v1.3/movie?genres.name=${genre}&year=${years}&rating.kp=${rating}&limit=20&sort=year&sort=rating.kp&token=${this._key}`, {
-      // return fetch (`${this._baseUrl}/v1.3/movie?sort=year&sort=rating.kp&year=${years}&sortType=1&limit=20&token=${this._key}`, {
+  getMoviesByGenre(genre='', years='year=2000-2023', rating='rating.kp=7-10') {
+    return fetch (`${this._baseUrl}/v1.3/movie?${genre}&${years}&${rating}&limit=20&sort=year&sort=rating.kp&token=${this._key}`, {     
       method: 'GET',
     })
     .then(this._checkResponseStatus);  

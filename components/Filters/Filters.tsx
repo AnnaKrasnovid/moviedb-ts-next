@@ -13,7 +13,6 @@ interface FiltersInt {
 }
 
 function Filters({ callback }: FiltersInt) {
-    const [movies, setMovies] = useState([]);
     const [genre, setGenre] = useState<string>('');
     const [years, setYears] = useState<string>('');
     const [rating, setRaiting] = useState<string>('');
@@ -38,7 +37,7 @@ function Filters({ callback }: FiltersInt) {
     const selectYearsList = [
         { id: '0', title: 'Все годы', value: '' },
         { id: '1', title: `2022-${getCurrentYear()}`, value: `2022-${getCurrentYear()}` },
-        { id: '2', title: '2020-2021', value: '2020-2021' },
+        { id: '2', title: '2020-2023', value: '2020-2023' },
         { id: '3', title: '2010-2019', value: '2010-2019' },
         { id: '4', title: '2000-2009', value: '2000-2009' },
         { id: '5', title: '1990-1999', value: '1990-1999' },
@@ -63,17 +62,25 @@ function Filters({ callback }: FiltersInt) {
         { id: '2', title: 'По дате выхода', value: '' },
     ]
 
-    useEffect(() => {
-        console.log(genre, years, rating)
-    }, [genre, years, rating])
+    function getFiltersMovies() {
+        const genreFilter = genre !== '' ? `genres.name=${genre}` : ''
+        const yearFilter = `year=${years}`
+        const ratingFilter = `rating.kp=${rating}`
+
+        callback(genreFilter, yearFilter, ratingFilter)
+    }
+
+    // useEffect(() => {
+    //     console.log(`genres.name=${genre}`, `year=${years}`, `rating.kp=${rating}`)
+    // }, [genre, years, rating])
 
     return (
         <div className={styles['filters']}>
             <Select options={selectGenresList} callback={(value) => setGenre(value)} placeholder='Жанры' defaultValue={selectGenresList[0].title} />
-            <Select options={selectYearsList} callback={(value) => setYears(value)} placeholder='Рейтинг' defaultValue={selectYearsList[0].title} />
-            <Select options={selectRatingList} callback={(value) => setRaiting(value)} placeholder='Годы выхода' defaultValue={selectRatingList[0].title} />
+            <Select options={selectYearsList} callback={(value) => setYears(value)} placeholder='Годы выхода' defaultValue={selectYearsList[0].title} />
+            <Select options={selectRatingList} callback={(value) => setRaiting(value)} placeholder='Рейтинг' defaultValue={selectRatingList[0].title} />
             {/* <Select options={selectSortList} callback={(value) => setSort(value)} placeholder='Рекомендуемые' defaultValue={selectSortList[0].title} /> */}
-            <Button title='Найти' callback={() => callback(genre, years, rating)} />
+            <Button title='Найти' callback={getFiltersMovies} />
         </div>
     )
 }
