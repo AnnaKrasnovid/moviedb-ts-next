@@ -1,4 +1,5 @@
 import MoviesList from "../MoviesList/MoviesList";
+import DescriptionMovieItem from "../DescriptionMovieItem/DescriptionMovieItem";
 
 import styles from './Actor.module.scss';
 
@@ -8,17 +9,25 @@ function Actor({ actor }: any) {
         item.map((i: any) => array.push(i.value))
         return array.join('/')
     }
-    console.log(actor)
+
+    const date = new Date(Date.parse(actor.birthday));
+    const birthday = `${date.getDate()}.${date.getMonth() < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}.${date.getFullYear()}`;
+
     return (
-        <div>
-            <div>
-                <img src={actor.photo} alt="" />
-                <div>
-                    <h2>{actor.name}</h2>
-                    <p>Карьера: {getString(actor.profession)}</p>
-                    <p>Возраст: {actor.age}</p>
-                    <p>Дата рождения: {actor.birthday}</p>
-                    <p>Место рождения: {getString(actor.birthPlace)}</p>
+        <div className={styles['page-actor']}>
+            <div className={styles['actor-info']}>
+                <div className={styles['actor-info__img']}>
+                    <img src={actor.photo} alt="" />
+                </div>
+                <div className={styles['actor-info__content']}>
+                    <h2 className={styles['actor-info__title']}>{actor.name}</h2>
+                    <div className={styles['actor-info__wrapper']}>
+                        <DescriptionMovieItem title="Карьера:" info={getString(actor.profession)} />
+                        <DescriptionMovieItem title="Возраст:" info={actor.age} />
+                        <DescriptionMovieItem title="Дата рождения:" info={birthday} />
+                        <DescriptionMovieItem title="Место рождения:" info={getString(actor.birthPlace)} />
+                    </div>
+
                 </div>
             </div>
             {/* <MoviesList list={actor.movies} /> */}

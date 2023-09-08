@@ -1,8 +1,10 @@
 @import './variables.scss';
+
 .swiper-slide {
-overflow: hidden;
-border-radius: 12px;
+    overflow: hidden;
+    // border-radius: 12px;
 }
+
 .swiper-slide img {
     display: block;
     width: 100%;

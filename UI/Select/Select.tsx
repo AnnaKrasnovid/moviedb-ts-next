@@ -17,7 +17,7 @@ export interface SelectInt {
     label?: string,
     placeholder?: string,
     callback: (value: string) => void,
-    defaultValue?: string, 
+    defaultValue?: any, 
 }
 
 function Select({ options, label, placeholder = 'Выберите...', callback, defaultValue }: SelectInt) {
@@ -50,10 +50,10 @@ function Select({ options, label, placeholder = 'Выберите...', callback,
     }   
 
     useEffect(() => {      
-       const value= defaultValue === options[0].title ? placeholder : defaultValue;     
+       const value= defaultValue === options[0].title ? options[0].title : defaultValue;     
        // @ts-ignore
        setSelectedItem(value);
-    }, [])
+    }, [defaultValue])
 
     useEffect(() => {
         document.addEventListener('click', closeDropdown);

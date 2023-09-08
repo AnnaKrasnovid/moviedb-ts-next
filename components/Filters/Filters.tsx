@@ -10,16 +10,16 @@ import api from '../../tools/api';
 import styles from './Filters.module.scss';
 
 interface FiltersInt {
-    callback: (genre: string, years: string, rating: string, movieType:string) => Promise<void>,
+    callback: (genre: string, years: string, rating: string, movieType: string) => Promise<void>,
 }
 
 function Filters({ callback }: FiltersInt) {
-    const { pathname } = useRouter();
+    const { pathname, query } = useRouter();
     const [genre, setGenre] = useState<string>('');
     const [years, setYears] = useState<string>('');
     const [rating, setRaiting] = useState<string>('');
-    const [sort, setSort] = useState<string>('');
-    console.log(pathname)
+    // const [sort, setSort] = useState<string>('');
+    // console.log(query.genre)
     const selectGenresList = [
         { id: '0', title: 'Все', value: '' },
         { id: '1', title: 'Боевик', value: 'боевик' },
@@ -65,30 +65,43 @@ function Filters({ callback }: FiltersInt) {
     ]
 
     function getMoviesType() {
-        if (pathname === '/movies') {
-            return 'movie';
-        } else if (pathname === '/serials') {
+        if (pathname === '/serials') {
             return 'tv-series';
-        }else if (pathname === '/cartoons') {
+        } else if (pathname === '/cartoons') {
             return 'cartoon';
+        } else {
+            return 'movie';
         }
     }
 
     function getFiltersMovies() {
         const genreFilter = genre !== '' ? `genres.name=${genre}` : '';
-        const yearFilter = `year=${years}`;
-        const ratingFilter = `rating.kp=${rating}`;
+        const yearFilter = years !== '' ? `year=${years}` : '';
+        const ratingFilter = rating !== '' ? `rating.kp=${rating}` : '';
         const movieType = `type=${getMoviesType()}`;
 
         callback(genreFilter, yearFilter, ratingFilter, movieType);
     }
 
+    function getGenre() {
+        let indexGenre;
+        selectGenresList.map((i, index) => {           
+            if (i.value === query.genre) {               
+                indexGenre= selectGenresList[index].title
+            } else {                
+                indexGenre= selectGenresList[0].title
+            }
+        })
+        console.log(indexGenre)
+        return indexGenre;
+    }
+
     return (
         <div className={styles['filters']}>
-            <Select options={selectGenresList} callback={(value) => setGenre(value)} placeholder='Жанры' defaultValue={selectGenresList[0].title} />
+            <Select options={selectGenresList} callback={(value) => setGenre(value)} placeholder='Жанры' defaultValue={getGenre()} />
             <Select options={selectYearsList} callback={(value) => setYears(value)} placeholder='Годы выхода' defaultValue={selectYearsList[0].title} />
             <Select options={selectRatingList} callback={(value) => setRaiting(value)} placeholder='Рейтинг' defaultValue={selectRatingList[0].title} />
-            <Select options={selectSortList} callback={(value) => setSort(value)} placeholder='Рекомендуемые' defaultValue={selectSortList[0].title} />
+            {/* <Select options={selectSortList} callback={(value) => setSort(value)} placeholder='Рекомендуемые' defaultValue={selectSortList[0].title} /> */}
             <Button title='Найти' callback={getFiltersMovies} />
         </div>
     )

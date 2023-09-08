@@ -5,15 +5,19 @@
   padding: 32px 5% 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
   background: radial-gradient(696.2% 730.65% at 47.6% 26.27%, rgba(24, 26, 25, 0.5) 0%, rgba(36, 40, 43, 0.5) 68.62%);
   box-shadow: 0px -7px 16px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(20px);
+  
 
   &__container {
     padding-bottom: 30px;
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid $border-color;    
+    max-width: $container-max-width;
+    width: 100%;
   }
 
   &__box-about {
@@ -44,6 +48,7 @@
       'info social politics';
     min-height: 80px;
     align-items: center;
+    max-width: $container-max-width;
   }
 
   &__info {

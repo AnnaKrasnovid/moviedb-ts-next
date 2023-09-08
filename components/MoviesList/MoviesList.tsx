@@ -19,14 +19,15 @@ function MoviesList({ list }: any) {
 
   async function filtersMovies(genre: string, years: string, rating: string, movieType:string) {
     try {
-      const response = await api.getMoviesByGenre(genre, years, rating,movieType)
-      console.log(response.docs)
+      const response = await api.filtersMovies(genre, years, rating,movieType)
+      // console.log(response.docs)
       setRenderList(response.docs)
     }
     catch (error) {
       console.log(error)
     }
   }
+// console.log(renderList)
 
   return (
     <section className={styles['movies']}>

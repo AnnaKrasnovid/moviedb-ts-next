@@ -13,7 +13,7 @@ interface ActorInt {
 }
 
 function ActorItem({ item }: ActorInt) {
-    console.log(item)
+    // console.log(item)
     return (
         <Link href={`${routes.ACTOR}/${item.id}`} className={styles['actor']}>
             <div className={styles['actor__img']} >

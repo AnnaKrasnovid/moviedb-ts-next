@@ -15,17 +15,19 @@ interface HeaderInt {
 
 function Header({ onOpenMenu, onClosePopup }: HeaderInt) {
   const { pathname } = useRouter()
-  console.log()
+  
   return (
     <header className={styles['header']}>
-      <div className={styles['header__wrapper']}>
-        <Logo type='header' />
-        <div className={styles['header__box']}>
-          <ButtonBurger callback={onOpenMenu} />
-          <Navigation type='header' onClosePopup={onClosePopup} />
+      <div className={styles['header__content']}>
+        <div className={styles['header__wrapper']}>
+          <Logo type='header' />
+          <div className={styles['header__box']}>
+            <ButtonBurger callback={onOpenMenu} />
+            <Navigation type='header' onClosePopup={onClosePopup} />
+          </div>
         </div>
+        <SearchForm />
       </div>
-      <SearchForm />
     </header>
   );
 }

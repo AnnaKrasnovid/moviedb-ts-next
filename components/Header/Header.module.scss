@@ -5,10 +5,10 @@
   margin-bottom: 30px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 32px;
   min-height: 100px;
-  width: 100%;  
+  width: 100%;
   background: radial-gradient(696.2% 730.65% at 47.6% 26.27%, #181A19 0%, #24282B 68.62%);
   box-shadow: $box-shadow;
   box-sizing: border-box;
@@ -19,7 +19,14 @@
     grid-template-columns: max-content 1fr;
     align-items: center;
     gap: 32px;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
     width: 100%;
+    max-width: $container-max-width;
   }
 }
 
@@ -27,6 +34,10 @@
   .header {
     flex-direction: column;
     gap: 16px;
+
+    &__content {
+      flex-direction: column;
+    }
   }
 }
 
