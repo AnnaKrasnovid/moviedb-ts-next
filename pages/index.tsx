@@ -18,7 +18,7 @@ function Home({ movieRating, cartoons, series }: any) {
       <Compilation title='Драмы' moviesList={mov} />
       <Compilation title='Комедии' moviesList={mov} />
       <Compilation title='Детективы' moviesList={mov} />
-      <DescriptionMovieCard movie={mov[3]} />
+      {/* <DescriptionMovieCard movie={mov[3]} /> */}
     </Layout>
   )
 }

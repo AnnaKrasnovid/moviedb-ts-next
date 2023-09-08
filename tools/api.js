@@ -21,6 +21,13 @@ class Api {
     .then(this._checkResponseStatus);  
   }
 
+  getActorId(id) {
+    return fetch (`${this._baseUrl}/v1/person/${id}?token=${this._key}`, {     
+      method: 'GET',
+    })
+    .then(this._checkResponseStatus);  
+  }
+
   getMovies(type,years) {
     return fetch (`${this._baseUrl}/v1.3/movie?type=${type}&year=${years}&rating.kp=8-10&limit=20&sort=year&sort=rating.kp&token=${this._key}`, {     
       method: 'GET',
@@ -41,17 +48,18 @@ class Api {
     .then(this._checkResponseStatus);  
   }
 
-  getMoviesByGenre(genre='', years='year=2000-2023', rating='rating.kp=7-10') {
-    return fetch (`${this._baseUrl}/v1.3/movie?${genre}&${years}&${rating}&limit=20&sort=year&sort=rating.kp&token=${this._key}`, {     
+  getMoviesByGenre(genre='', years='year=2000-2023', rating='rating.kp=7-10',movieType='type=movie') {
+    return fetch (`${this._baseUrl}/v1.3/movie?${movieType}&${genre}&${years}&${rating}&limit=20&sort=year&sort=rating.kp&token=${this._key}`, {     
       method: 'GET',
     })
     .then(this._checkResponseStatus);  
   }
 
   _checkResponseStatus(res) {
-    if (res.ok) {
+    console.log(res.status)
+    if (res.ok) {     
       return res.json();
-    }      
+    }          
     return Promise.reject(`Ошибка: ${res.status}`)
   }
 }

@@ -1,26 +1,30 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import MoviesList from "../MoviesList/MoviesList";
 
 import styles from './Actor.module.scss';
 
-interface ActorInt {
-    item: {
-        id: number,
-        photo: string,
-        name: string,
+function Actor({ actor }: any) {
+    const getString = (item: Array<any>) => {
+        const array: Array<string> = [];
+        item.map((i: any) => array.push(i.value))
+        return array.join('/')
     }
-}
-
-function Actor({ item }: ActorInt) {
-    
+    console.log(actor)
     return (
-        <Link href={'#'} className={styles['actor']}>
-            <div className={styles['actor__img']} >
-                <img src={item.photo} alt="" />
+        <div>
+            <div>
+                <img src={actor.photo} alt="" />
+                <div>
+                    <h2>{actor.name}</h2>
+                    <p>Карьера: {getString(actor.profession)}</p>
+                    <p>Возраст: {actor.age}</p>
+                    <p>Дата рождения: {actor.birthday}</p>
+                    <p>Место рождения: {getString(actor.birthPlace)}</p>
+                </div>
             </div>
-            <p className={styles['actor__text']}>{item.name}</p>
-        </Link>
-    );
+            {/* <MoviesList list={actor.movies} /> */}
+
+        </div>
+    )
 }
 
 export default Actor;

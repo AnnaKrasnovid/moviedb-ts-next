@@ -17,9 +17,9 @@ function MoviesList({ list }: any) {
   const { asPath, back } = useRouter();
   const [renderList, setRenderList] = useState(list)
 
-  async function filtersMovies(genre: string, years: string, rating: string) {
+  async function filtersMovies(genre: string, years: string, rating: string, movieType:string) {
     try {
-      const response = await api.getMoviesByGenre(genre, years, rating)
+      const response = await api.getMoviesByGenre(genre, years, rating,movieType)
       console.log(response.docs)
       setRenderList(response.docs)
     }
