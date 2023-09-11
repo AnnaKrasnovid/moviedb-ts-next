@@ -9,10 +9,10 @@ import api from '../../tools/api';
 
 
 function MoviesPage({ genre }: any) {
-    // console.log(genre)
+    console.log(genre)
     return (
         <Layout>
-            <MoviesList list={genre.docs} />
+            <MoviesList list={genre.docs} pages={genre.pages}/>
         </Layout>
     );
 }

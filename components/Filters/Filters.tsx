@@ -10,7 +10,7 @@ import api from '../../tools/api';
 import styles from './Filters.module.scss';
 
 interface FiltersInt {
-    callback: (genre: string, years: string, rating: string, movieType: string) => Promise<void>,
+    callback: (genre: string, years: string, rating: string, movieType: string) => void,
 }
 
 function Filters({ callback }: FiltersInt) {
@@ -18,8 +18,9 @@ function Filters({ callback }: FiltersInt) {
     const [genre, setGenre] = useState<string>('');
     const [years, setYears] = useState<string>('');
     const [rating, setRaiting] = useState<string>('');
+    const [defaultValueGenre, setDefaultValueGenre] = useState<string>('');
     // const [sort, setSort] = useState<string>('');
-    // console.log(query.genre)
+  
     const selectGenresList = [
         { id: '0', title: 'Все', value: '' },
         { id: '1', title: 'Боевик', value: 'боевик' },
@@ -84,21 +85,22 @@ function Filters({ callback }: FiltersInt) {
     }
 
     function getGenre() {
-        let indexGenre;
-        selectGenresList.map((i, index) => {           
-            if (i.value === query.genre) {               
-                indexGenre= selectGenresList[index].title
-            } else {                
-                indexGenre= selectGenresList[0].title
+        selectGenresList.find((i, index) => {
+            if (i.value === query.genre) {                
+                setDefaultValueGenre(selectGenresList[index].title)
+            } else if (query.genre === undefined) {
+                setDefaultValueGenre(selectGenresList[0].title)
             }
         })
-        console.log(indexGenre)
-        return indexGenre;
     }
+
+    useEffect(() => {
+        getGenre()
+    }, [genre])
 
     return (
         <div className={styles['filters']}>
-            <Select options={selectGenresList} callback={(value) => setGenre(value)} placeholder='Жанры' defaultValue={getGenre()} />
+            <Select options={selectGenresList} callback={(value) => setGenre(value)} placeholder='Жанры' defaultValue={defaultValueGenre} />
             <Select options={selectYearsList} callback={(value) => setYears(value)} placeholder='Годы выхода' defaultValue={selectYearsList[0].title} />
             <Select options={selectRatingList} callback={(value) => setRaiting(value)} placeholder='Рейтинг' defaultValue={selectRatingList[0].title} />
             {/* <Select options={selectSortList} callback={(value) => setSort(value)} placeholder='Рекомендуемые' defaultValue={selectSortList[0].title} /> */}

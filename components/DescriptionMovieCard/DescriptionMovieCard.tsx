@@ -55,7 +55,6 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
             <DescriptionMovieItem title='Страна' info={getInfo(movie.countries)} />
             <DescriptionMovieItem title='Жанр' info={getInfo(movie.genres)} />
             <DescriptionMovieItem title='Актеры' info={getActors(movie.persons)} />
-            {/* <DescriptionMovieItem title='В главных ролях' info={} /> */}
           </ul>
           <DescriptionMovie
             title={`О чем фильм “${movie.name} (${movie.year})”`}
