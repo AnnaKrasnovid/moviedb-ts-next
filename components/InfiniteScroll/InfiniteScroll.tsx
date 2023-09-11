@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+
+import Loader from "../../UI/Loader/Loader";
+
 import styles from './InfiniteScroll.module.scss';
 
 function InfiniteScroll({ children, page, setPage, pages, callback }: any) {
@@ -40,7 +43,7 @@ function InfiniteScroll({ children, page, setPage, pages, callback }: any) {
     return (
         <>
             {children}
-            {loading && <div className={styles['loading']}>Загрузка...</div>}
+            {loading && <Loader/>}
         </>
     )
 }

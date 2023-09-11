@@ -5,22 +5,29 @@ import MoviesList from '../../components/MoviesList/MoviesList';
 import Actor from '../../components/Actor/Actor';
 
 import api from '../../tools/api';
+import { checkEmptyObject } from '../../tools/utils';
 
-function ActorPage({actor}:any) {  
-    return (
-        <Layout>
-           <Actor actor={actor}/>
-        </Layout>
-    );
+function ActorPage({ actor }: any) {
+  return (
+    <Layout>
+      {checkEmptyObject(actor) ? <div>Что-то пошло не так...</div> : <Actor actor={actor} />}
+    </Layout>
+  );
 }
 
 export async function getServerSideProps(params: GetServerSidePropsContext) {
-    let actor: any = {};
+  let actor: any = {};
+
+
+  try {
     actor = await api.getActorId(params.query.id);
-  
-    return {
-      props: { actor },
-    }
+  } catch (error) {
+    console.log(error);
   }
+
+  return {
+    props: { actor },
+  }
+}
 
 export default ActorPage;

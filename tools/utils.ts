@@ -1,4 +1,4 @@
-export const getRoundNumber = (number: number) => {
+export function getRoundNumber(number: number) {
     return Math.round(number * 10) / 10;
 };
 
@@ -32,4 +32,7 @@ export const getCurrentYear = () => {
     return new Date().getFullYear();
 }
 
+export function checkEmptyObject(obj: {}) {
+    return Object.keys(obj).length === 0
+}
 

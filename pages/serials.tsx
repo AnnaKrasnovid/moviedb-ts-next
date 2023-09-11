@@ -12,8 +12,13 @@ function SerialsPage({serials}:any) {
 }
 
 export async function getServerSideProps() {
-    let serials: any = {};     
-    serials = await api.getMovies('tv-series', '2000-2023');  
+    let serials: any = {};          
+
+    try {
+        serials = await api.getMovies('tv-series', '2000-2023'); 
+      } catch (error) {
+        console.log(error);
+      }
    
     return {
         props: { serials },

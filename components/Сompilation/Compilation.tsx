@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // import { Navigation } from 'swiper';
 
 import MovieCard from '../MovieCard/MovieCard';
+import Loader from '../../UI/Loader/Loader';
 
 import { routes } from '../../settings/routes';
 import { useWindowWidth } from '../../hooks/useWindowWidth';
@@ -42,27 +43,30 @@ function Compilation({ title, moviesList }: CompilationInt) {
     <section className={styles['compilation']}>
       <h2 className={styles['compilation__title']}>{title}</h2>
       <div className={styles['compilation__movies']}>
-        <Swiper
-          slidesPerView={slides}
-          spaceBetween={20}
-          slidesPerGroup={2}
-          loop={true}
-          watchOverflow={true}
-          navigation={{
-            nextEl: '.next-slide-compilation',
-            prevEl: '.prev-slide-compilation',
-          }}
-          // modules={[Navigation]}
-          className="compilation-swiper"
-        >
-          {moviesList&& moviesList.map((item) => (
-            <SwiperSlide key={item.id}>
-              <Link href={`${routes.MOVIES}/${item.id}`} className='link'>
-                <MovieCard item={item} />
-              </Link>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {moviesList ? (
+          <Swiper
+            slidesPerView={slides}
+            spaceBetween={20}
+            slidesPerGroup={2}
+            loop={true}
+            watchOverflow={true}
+            navigation={{
+              nextEl: '.next-slide-compilation',
+              prevEl: '.prev-slide-compilation',
+            }}
+            // modules={[Navigation]}
+            className="compilation-swiper"
+          >
+            {moviesList && moviesList.map((item) => (
+              <SwiperSlide key={item.id}>
+                <Link href={`${routes.MOVIES}/${item.id}`} className='link'>
+                  <MovieCard item={item} />
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        ) : <Loader />
+        }
       </div>
     </section>
   );

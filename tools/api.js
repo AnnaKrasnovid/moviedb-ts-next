@@ -67,9 +67,9 @@ class Api {
     if (res.ok) {     
       return res.json();
     } 
-    if(res.status === 403)     {
-      console.log('Вы сделали более 200 запросов за сутки')
-    }     
+    // if(res.status === 403)     {
+    //   console.log('Вы сделали более 200 запросов за сутки')
+    // }     
      return Promise.reject(`Ошибка: ${res.status}`)
   }
 }
