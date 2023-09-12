@@ -3,16 +3,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import MovieCard from '../MovieCard/MovieCard';
-import Select from '../../UI/Select/Select';
 import ButtonText from '../../UI/ButtonText/ButtonText';
 import Filters from '../Filters/Filters';
 import InfiniteScroll from '../InfiniteScroll/InfiniteScroll';
 import Loader from '../../UI/Loader/Loader';
 
-import { submenuGenres } from '../../settings/menuList';
 import { routes } from '../../settings/routes';
 import api from '../../tools/api';
-import { mov } from '../../assets/mockData/movies';
 
 import styles from './MoviesList.module.scss';
 
@@ -22,25 +19,45 @@ interface MoviesListInt {
 }
 
 function MoviesList({ list, pages }: MoviesListInt) {
-  const { asPath, back } = useRouter();
+  const { back } = useRouter();
   const [renderList, setRenderList] = useState(list);
-  const [page, setPage] = useState<number>(1)
-  const [requestData, setRequestData] = useState({ genre: '', years: '', rating: '', movieType: '' })
+  const [page, setPage] = useState<number>(1);
+  const [pagesFilters, setPagesFilters]= useState(pages);
+  const [requestData, setRequestData] = useState({ genre: '', years: '', rating: '', movieType: '' });
 
-  function filtersMovies(genre: string, years: string, rating: string, movieType: string) {
-    setRequestData({ genre: genre, years: years, rating: rating, movieType: movieType })
-    getfiltersMovies(genre, years, rating, movieType, page)
+  function filtersMovies(genre: string, years: string, rating: string, movieType: string) {    
+    setRequestData({ genre: genre, years: years, rating: rating, movieType: movieType });
+    getfiltersMovies(genre,years,rating,movieType);
   }
 
-  async function getfiltersMovies(genre: string, years: string, rating: string, movieType: string, page: number) {
-    try {
-      const response = await api.filtersMovies(genre, years, rating, movieType, page)
-      setRenderList([...renderList, ...response.docs])
+  async function getfiltersMovies(genre: string, years: string, rating: string, movieType: string) {
+    try {     
+      if (genre !== requestData.genre || years !== requestData.years || rating !== requestData.rating) {
+        const response = await api.filtersMovies(genre, years, rating, movieType, 1);
+        setRenderList(response.docs);
+        setPagesFilters(response.pages);
+        
+        console.log('response 1', page)
+      } else {
+        const response = await api.filtersMovies(genre, years, rating, movieType, page);
+        setRenderList([...renderList, ...response.docs]);
+        setPagesFilters(response.pages);
+        console.log('response 2',page)        
+      }     
     }
     catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }
+  useEffect(()=> {
+    if(page!==1) {
+      getfiltersMovies(requestData.genre, requestData.years, requestData.rating, requestData.movieType);      
+    }   
+  },[page])
+
+  useEffect(()=> {
+    setPage(1)    
+  },[requestData])
 
   return (
     <section className={styles['movies']}>
@@ -48,8 +65,11 @@ function MoviesList({ list, pages }: MoviesListInt) {
         renderList.length > 0 ? (
           <>
             <Filters callback={filtersMovies} />
-            <InfiniteScroll page={page} setPage={setPage} pages={pages}
-              callback={() => getfiltersMovies(requestData.genre, requestData.years, requestData.rating, requestData.movieType, page)}
+            <InfiniteScroll
+              page={page}
+              setPage={setPage}
+              pages={pagesFilters}
+            // callback={() => getfiltersMovies(requestData.genre, requestData.years, requestData.rating, requestData.movieType)}
             >
               <ul className={styles['movies__list']}>
                 {renderList.length > 0 && renderList.map((item: any) => (

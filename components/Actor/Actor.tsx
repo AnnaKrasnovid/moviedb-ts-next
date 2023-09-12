@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import MoviesList from "../MoviesList/MoviesList";
 import DescriptionMovieItem from "../DescriptionMovieItem/DescriptionMovieItem";
 
@@ -6,8 +8,8 @@ import styles from './Actor.module.scss';
 function Actor({ actor }: any) {
     const getString = (item: Array<any>) => {
         const array: Array<string> = [];
-        item.map((i: any) => array.push(i.value))
-        return array.join('/')
+        item.map((i: any) => array.push(i.value));
+        return array.join('/');
     }
 
     const date = new Date(Date.parse(actor.birthday));
@@ -17,7 +19,7 @@ function Actor({ actor }: any) {
         <div className={styles['page-actor']}>
             <div className={styles['actor-info']}>
                 <div className={styles['actor-info__img']}>
-                    <img src={actor.photo} alt="" />
+                    <Image src={actor.photo} alt="" />
                 </div>
                 <div className={styles['actor-info__content']}>
                     <h2 className={styles['actor-info__title']}>{actor.name}</h2>
@@ -27,11 +29,9 @@ function Actor({ actor }: any) {
                         <DescriptionMovieItem title="Дата рождения:" info={birthday} />
                         <DescriptionMovieItem title="Место рождения:" info={getString(actor.birthPlace)} />
                     </div>
-
                 </div>
             </div>
             {/* <MoviesList list={actor.movies} /> */}
-
         </div>
     )
 }

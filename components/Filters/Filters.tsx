@@ -87,9 +87,9 @@ function Filters({ callback }: FiltersInt) {
     function getGenre() {
         selectGenresList.find((i, index) => {
             if (i.value === query.genre) {                
-                setDefaultValueGenre(selectGenresList[index].title)
+                setDefaultValueGenre(selectGenresList[index].title);
             } else if (query.genre === undefined) {
-                setDefaultValueGenre(selectGenresList[0].title)
+                setDefaultValueGenre(selectGenresList[0].title);
             }
         })
     }

@@ -1,7 +1,6 @@
 import { GetServerSidePropsContext } from 'next';
 
 import Layout from '../../layout/Layout/Layout';
-import MoviesList from '../../components/MoviesList/MoviesList';
 import Actor from '../../components/Actor/Actor';
 
 import api from '../../tools/api';

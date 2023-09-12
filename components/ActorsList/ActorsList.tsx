@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 import ActorItem from "../ActorItem/ActorItem";
 
 import { useWindowWidth } from '../../hooks/useWindowWidth';
 
-import styles from './ActorsList.module.scss'
+import styles from './ActorsList.module.scss';
 
 function ActorsList({ list }: any) {
   const windowWidth = useWindowWidth();
@@ -28,16 +28,9 @@ function ActorsList({ list }: any) {
   useEffect(() => {
     getNumberSlides();
   }, [windowWidth]);
-  // console.log(list)
+
   return (
-    <ul className={styles['actors']}>
-      {/* {list.map((item: any) => (
-        <li key={item.id}>
-          <ActorItem item={item} />
-        </li>
-      ))} */}
-
-
+    <ul className={styles['actors']}>   
       <Swiper
         slidesPerView={slides}
         spaceBetween={20}
@@ -52,10 +45,8 @@ function ActorsList({ list }: any) {
         className="compilation-swiper"
       >
         {list.map((item: any) => (
-          <SwiperSlide key={item.id}>
-            
-              <ActorItem item={item} />
-            
+          <SwiperSlide key={item.id}>            
+              <ActorItem item={item} />            
           </SwiperSlide>
         ))}
       </Swiper>

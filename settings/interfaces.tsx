@@ -2,20 +2,41 @@ export interface GenreItemInt {
     name: string,
 }
 export interface MovieInt {
-    id: number
-    type: string,
+    id: number,
     name: string,
+    type: string,
+    alternativeName: string,
+    year: number,
+    description: string,
+    shortDescription: string,
     rating: {
         kp: number,
         imdb: number,
-        [propName: string]: string | number,
     },
-    [propName: string]: string | number | {},
+    videos: {
+        trailers: {
+            url: string,
+        }
+    },
+    persons: Array<
+        {
+            id: number,
+            photo: Array<string>,
+            profession: string,
+            name: string,
+        }
+    >,
+    movieLength: number,
+    poster: {
+        url: string,
+    }
+    countries: Array<{ name: string, }>
+    genres: Array<{ name: string, }>
 }
 
 type ButtonTypes = 'button' | 'submit';
 export interface ButtonInt {
-    type?: ButtonTypes,    
+    type?: ButtonTypes,
     callback: () => void
 }
 
@@ -24,10 +45,10 @@ export interface ButtonTextInt extends ButtonInt {
 }
 
 export interface SubmenuItemInt {
-    id: string, 
-    path: string, 
-    title: string, 
-    value: string, 
+    id: string,
+    path: string,
+    title: string,
+    value: string,
 }
 
 export interface MenuItemInt {

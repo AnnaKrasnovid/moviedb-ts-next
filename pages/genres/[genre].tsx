@@ -3,10 +3,7 @@ import { GetServerSidePropsContext } from 'next';
 import Layout from '../../layout/Layout/Layout';
 import MoviesList from '../../components/MoviesList/MoviesList';
 
-import { mov } from '../../assets/mockData/movies';
 import api from '../../tools/api';
-
-
 
 function MoviesPage({ genre }: any) {
     console.log(genre)
@@ -16,7 +13,6 @@ function MoviesPage({ genre }: any) {
         </Layout>
     );
 }
-
 
 export async function getServerSideProps(params: GetServerSidePropsContext) {
     let genre: any = {};

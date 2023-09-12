@@ -7,6 +7,7 @@ import DescriptionMovie from '../DescriptionMovie/DescriptionMovie';
 import { getTime, getInfo } from '../../tools/utils';
 
 import styles from './DescriptionMovieCard.module.scss';
+import { MovieInt } from '../../settings/interfaces';
 
 interface DescriptionMovieCardInt {
   movie: any
@@ -48,7 +49,7 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
         </div>
         <div className={styles['about-movie__container']}>
           <h3 className={styles['about-movie__title']}>{movie.name} ({movie.year})</h3>
-          {movie.alternativeName ? <p className={styles['about-movie__title-en']}>{movie.alternativeName} ({movie.year})</p> : <></>}
+          {movie.alternativeName!==null? <p className={styles['about-movie__title-en']}>{movie.alternativeName} ({movie.year})</p> : <></>}
           <ul className={styles['about-movie__box-main']}>
             <DescriptionMovieItem title='Продолжительность' info={getTime(movie.movieLength)} />
             <DescriptionMovieItem title='Год выпускa' info={movie.year} />

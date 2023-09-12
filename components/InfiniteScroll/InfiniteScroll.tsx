@@ -9,10 +9,7 @@ function InfiniteScroll({ children, page, setPage, pages, callback }: any) {
 
     function handleScrollPage() {
         const handleScroll = () => {
-            if (
-                window.innerHeight + document.documentElement.scrollTop !==
-                document.documentElement.offsetHeight
-            ) {
+            if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight) {
                 return;
             }
             setLoading(true);
@@ -23,27 +20,30 @@ function InfiniteScroll({ children, page, setPage, pages, callback }: any) {
 
     function makeNewRequest() {
         if (!loading) { return };
-        console.log(page , pages)
-        if (page === pages) { setLoading(false); return }
+        if (page === pages) {
+            setLoading(false);
+            return
+        };
+
         setTimeout(() => {
             setPage(page + 1);
-            callback()
+            // callback();
             setLoading(false);
         }, 500);
     }
 
     useEffect(() => {
-        handleScrollPage()
+        handleScrollPage();
     }, [])
 
     useEffect(() => {
-        makeNewRequest()
+        makeNewRequest();
     }, [loading]);
 
     return (
         <>
             {children}
-            {loading && <Loader/>}
+            {loading && <Loader />}
         </>
     )
 }

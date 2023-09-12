@@ -6,7 +6,7 @@ import api from '../tools/api';
 function SerialsPage({serials}:any) {  
     return (
         <Layout>
-            <MoviesList list={serials.docs} />
+            <MoviesList list={serials.docs} pages={serials.pages}/>
         </Layout>
     );
 }

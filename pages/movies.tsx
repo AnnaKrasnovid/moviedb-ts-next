@@ -6,12 +6,13 @@ import MoviesList from '../components/MoviesList/MoviesList';
 
 import { MoviesContext } from '../context/MoviesContext';
 import api from '../tools/api';
+import { mov } from '../assets/mockData/movies';
 
 function MoviesPage({ movies }: any) {
-    const { isSearchMovie } = useContext(MoviesContext)
+   
     return (
         <Layout>
-            <MoviesList list={movies.docs} />
+            <MoviesList list={movies.docs} pages={movies.pages} />
         </Layout>
     );
 }

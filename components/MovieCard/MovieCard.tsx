@@ -15,7 +15,7 @@ function MovieCard({ item }:any) {
   return (
     <div className={styles['movie']} >
       <div className={styles['movie__box']}>
-       {item.poster ? <img className={styles['movie__img']} src={item.poster.url} alt='Фильм'></img> : <></>}
+       {item.poster.url ? <Image className={styles['movie__img']} src={item.poster.url} alt='Фильм' width={500} height={300} /> : <></>}
         <div className={styles['movie__container']}>
           <Rating number={item.rating.kp} type='orange' />
           {item.rating.imdb > 0 && (

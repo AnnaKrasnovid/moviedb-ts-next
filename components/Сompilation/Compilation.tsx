@@ -42,7 +42,7 @@ function Compilation({ title, moviesList }: CompilationInt) {
   return (
     <section className={styles['compilation']}>
       <h2 className={styles['compilation__title']}>{title}</h2>
-      <div className={styles['compilation__movies']}>
+      <div className={styles['compilation__movies']}>        
         {moviesList ? (
           <Swiper
             slidesPerView={slides}
@@ -50,23 +50,23 @@ function Compilation({ title, moviesList }: CompilationInt) {
             slidesPerGroup={2}
             loop={true}
             watchOverflow={true}
-            navigation={{
-              nextEl: '.next-slide-compilation',
-              prevEl: '.prev-slide-compilation',
-            }}
+            // navigation={{
+            //   nextEl: '.next-slide-compilation',
+            //   prevEl: '.prev-slide-compilation',
+            // }}
             // modules={[Navigation]}
             className="compilation-swiper"
           >
             {moviesList && moviesList.map((item) => (
               <SwiperSlide key={item.id}>
-                <Link href={`${routes.MOVIES}/${item.id}`} className='link'>
+                <Link href={`${routes.MOVIE}/${item.id}`} className='link'>
                   <MovieCard item={item} />
                 </Link>
               </SwiperSlide>
             ))}
           </Swiper>
         ) : <Loader />
-        }
+        }       
       </div>
     </section>
   );

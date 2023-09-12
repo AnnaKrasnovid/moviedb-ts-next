@@ -12,24 +12,23 @@ import styles from './SearchForm.module.scss';
 
 function SearchForm() {
   const router = useRouter();
-  const { moviesList, setMoviesList } = useContext(MoviesContext);
-  // const [movieSearch, setMovieSearch] = useState<Array<any>>();
+  const {  setMoviesList } = useContext(MoviesContext);
   const [searchValue, setSearchValue] = useState('');
 
   const searchMovie = useDebounce(async () => {
     try {
-      const response = await api.searchMovie(searchValue)
-      setMoviesList(response.docs)
-      router.push(routes.SEARCH)
+      const response = await api.searchMovie(searchValue);
+      setMoviesList(response.docs);
+      router.push(routes.SEARCH);
     }
     catch (error) {
-      console.log(error)
+      console.log(error);
     }
   }, 500)
 
   useEffect(() => {
     if (searchValue.length > 0) {
-      searchMovie()
+      searchMovie();
     }
   }, [searchValue])
 
