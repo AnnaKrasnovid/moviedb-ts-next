@@ -4,12 +4,13 @@ import Layout from '../../layout/Layout/Layout';
 import MoviesList from '../../components/MoviesList/MoviesList';
 
 import api from '../../tools/api';
+import { mov } from '../../assets/mockData/movies';
 
 function MoviesPage({ genre }: any) {
     console.log(genre)
     return (
         <Layout>
-            <MoviesList list={genre.docs} pages={genre.pages} />
+            <MoviesList list={mov} pages={5} /> 
         </Layout>
     );
 }

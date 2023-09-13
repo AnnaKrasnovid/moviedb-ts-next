@@ -10,6 +10,7 @@ import Loader from '../../UI/Loader/Loader';
 
 import { routes } from '../../settings/routes';
 import api from '../../tools/api';
+import { getMoviesType } from '../../tools/utils';
 
 import styles from './MoviesList.module.scss';
 
@@ -19,45 +20,63 @@ interface MoviesListInt {
 }
 
 function MoviesList({ list, pages }: MoviesListInt) {
-  const { back } = useRouter();
+  const { pathname, back, query } = useRouter();
   const [renderList, setRenderList] = useState(list);
   const [page, setPage] = useState<number>(1);
-  const [pagesFilters, setPagesFilters]= useState(pages);
-  const [requestData, setRequestData] = useState({ genre: '', years: '', rating: '', movieType: '' });
-
-  function filtersMovies(genre: string, years: string, rating: string, movieType: string) {    
-    setRequestData({ genre: genre, years: years, rating: rating, movieType: movieType });
-    getfiltersMovies(genre,years,rating,movieType);
+  const [pagesFilters, setPagesFilters] = useState(pages);
+  const [requestData, setRequestData] = useState({ genre: '', years: '', rating: '' });
+  const [movieType, setMovieType] = useState('type=movie')
+// console.log(useRouter())
+  function filtersMovies(genre: string, years: string, rating: string) {
+    setRequestData({ genre: genre, years: years, rating: rating });
+    getfiltersMovies(genre, years, rating);
   }
 
-  async function getfiltersMovies(genre: string, years: string, rating: string, movieType: string) {
-    try {     
-      if (genre !== requestData.genre || years !== requestData.years || rating !== requestData.rating) {
-        const response = await api.filtersMovies(genre, years, rating, movieType, 1);
-        setRenderList(response.docs);
-        setPagesFilters(response.pages);
-        
-        console.log('response 1', page)
-      } else {
-        const response = await api.filtersMovies(genre, years, rating, movieType, page);
-        setRenderList([...renderList, ...response.docs]);
-        setPagesFilters(response.pages);
-        console.log('response 2',page)        
-      }     
+  async function getfiltersMovies(genre: string, years: string, rating: string) {
+    // console.log(genre===requestData.genre)
+    try {
+      if(genre!==requestData.genre) {
+        // const response = await api.filtersMovies(genre, years, rating, movieType, 1);
+        // setRenderList(response.docs);
+        // setPagesFilters(response.pages);
+        console.log(1)
+      }
+      else if ( years !== requestData.years || rating !== requestData.rating) {
+        // const response = await api.filtersMovies(genre, years, rating, movieType, 1);
+        // setRenderList(response.docs);
+        // setPagesFilters(response.pages);
+        console.log(2)
+      } else if(page !== 1){
+        console.log(3)
+        // const response = await api.filtersMovies(genre, years, rating, movieType, page);
+        // setRenderList([...renderList, ...response.docs]);
+        // setPagesFilters(response.pages);
+      }
+
     }
     catch (error) {
       console.log(error);
     }
   }
-  useEffect(()=> {
-    if(page!==1) {
-      getfiltersMovies(requestData.genre, requestData.years, requestData.rating, requestData.movieType);      
-    }   
-  },[page])
 
-  useEffect(()=> {
-    setPage(1)    
-  },[requestData])
+  useEffect(() => {
+    // if (page !== 1) {
+      getfiltersMovies(requestData.genre, requestData.years, requestData.rating);
+    // }
+  }, [page,query.genre])
+
+  useEffect(() => {
+    setPage(1)
+  }, [requestData])
+
+  useEffect(() => {
+    const movieType = `type=${getMoviesType(pathname)}`;
+    setMovieType(movieType)
+  }, [])
+
+  useEffect(() => {
+  //  console.log(query.genre)
+  }, [query.genre])
 
   return (
     <section className={styles['movies']}>

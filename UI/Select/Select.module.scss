@@ -18,7 +18,7 @@
         // background-color: var(--background-color);
     }
 
-    &__levels {  
+    &__levels {
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
         width: calc(100% + 2px);
         position: absolute;
@@ -36,14 +36,14 @@
         overflow: hidden;
 
         background: rgba(28, 29, 31, 0.5);
-    border: 1px solid #2B2B2B;
-    box-shadow: 0px 7px 16px rgba(0, 0, 0, 0.25);
-    -webkit-backdrop-filter: blur(20px);
-    backdrop-filter: blur(20px);
-    border-radius: 8px;
-    margin-top: 2px;
+        border: 1px solid #2B2B2B;
+        box-shadow: 0px 7px 16px rgba(0, 0, 0, 0.25);
+        -webkit-backdrop-filter: blur(20px);
+        backdrop-filter: blur(20px);
+        border-radius: 8px;
+        margin-top: 2px;
 
-        &_active {            
+        &_active {
             border: 1px solid #424242;
             // border-top: 1px solid $color-light-green;
             visibility: visible;
@@ -61,9 +61,9 @@
         grid-template-columns: 1fr 7px;
         column-gap: 8px;
         align-items: center;
-        padding: 0 16px;        
+        padding: 0 16px;
         height: 36px;
-        color: #fff;      
+        color: #fff;
         border: 1px solid #424242;
         background-color: #1B1E1E;
         border-radius: 8px;
@@ -87,7 +87,7 @@
         grid-template-rows: 1fr;
         row-gap: 8px;
         padding: 8px 0;
-         max-height: 300px;
+        max-height: 300px;
     }
 
     &__item {
@@ -96,7 +96,8 @@
         align-items: center;
         justify-content: space-between;
         min-height: 30px;
-cursor: pointer;
+        cursor: pointer;
+
         &:hover {
             background: rgba(28, 29, 31, 0.5);
             color: $color-primary;

@@ -5,22 +5,22 @@ import Select from '../../UI/Select/Select';
 import Button from '../../UI/Button/Button';
 
 import { getCurrentYear } from '../../tools/utils';
-import api from '../../tools/api';
+import { routes } from '../../settings/routes';
 
 import styles from './Filters.module.scss';
 
 interface FiltersInt {
-    callback: (genre: string, years: string, rating: string, movieType: string) => void,
+    callback: (genre: string, years: string, rating: string) => void,
 }
 
 function Filters({ callback }: FiltersInt) {
-    const { pathname, query } = useRouter();
+    const { pathname, query, push } = useRouter();
     const [genre, setGenre] = useState<string>('');
     const [years, setYears] = useState<string>('');
     const [rating, setRaiting] = useState<string>('');
     const [defaultValueGenre, setDefaultValueGenre] = useState<string>('');
     // const [sort, setSort] = useState<string>('');
-  
+//   console.log(useRouter())
     const selectGenresList = [
         { id: '0', title: 'Все', value: '' },
         { id: '1', title: 'Боевик', value: 'боевик' },
@@ -65,29 +65,21 @@ function Filters({ callback }: FiltersInt) {
         { id: '2', title: 'По дате выхода', value: '' },
     ]
 
-    function getMoviesType() {
-        if (pathname === '/serials') {
-            return 'tv-series';
-        } else if (pathname === '/cartoons') {
-            return 'cartoon';
-        } else {
-            return 'movie';
-        }
-    }
-
     function getFiltersMovies() {
         const genreFilter = genre !== '' ? `genres.name=${genre}` : '';
         const yearFilter = years !== '' ? `year=${years}` : '';
         const ratingFilter = rating !== '' ? `rating.kp=${rating}` : '';
-        const movieType = `type=${getMoviesType()}`;
 
-        callback(genreFilter, yearFilter, ratingFilter, movieType);
+        callback(genreFilter, yearFilter, ratingFilter);
+// push(`${routes.GENRES}/${genre}`)
     }
 
     function getGenre() {
         selectGenresList.find((i, index) => {
             if (i.value === query.genre) {                
                 setDefaultValueGenre(selectGenresList[index].title);
+                setGenre(selectGenresList[index].value)
+                // console.log(selectGenresList[index].value)
             } else if (query.genre === undefined) {
                 setDefaultValueGenre(selectGenresList[0].title);
             }
@@ -95,9 +87,13 @@ function Filters({ callback }: FiltersInt) {
     }
 
     useEffect(() => {
-        getGenre()
-    }, [genre])
+        getGenre()        
+    }, [genre,query.genre])
 
+    useEffect(() => {
+        getFiltersMovies()
+    }, [genre])
+    // console.log(useRouter())
     return (
         <div className={styles['filters']}>
             <Select options={selectGenresList} callback={(value) => setGenre(value)} placeholder='Жанры' defaultValue={defaultValueGenre} />

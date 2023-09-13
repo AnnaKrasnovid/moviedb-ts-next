@@ -30,10 +30,10 @@ export async function getServerSideProps(params: GetServerSidePropsContext) {
   let comedy: any = {};
 
   try {
-    movieRating = await api.getMovies('movie', '2022-2023');
-    cartoons = await api.getCartoons('2010-2023');
-    series = await api.getSeries('2010-2023');
-    comedy = await api.getMovies('2022-2023');
+    // movieRating = await api.getMovies('movie', '2022-2023');
+    // cartoons = await api.getCartoons('2010-2023');
+    // series = await api.getSeries('2010-2023');
+    // comedy = await api.getMovies('2022-2023');
   } catch (error) {
     console.log(error);
   }

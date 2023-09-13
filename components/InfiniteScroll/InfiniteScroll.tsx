@@ -25,11 +25,11 @@ function InfiniteScroll({ children, page, setPage, pages, callback }: any) {
             return
         };
 
-        setTimeout(() => {
+         setTimeout(() => {
             setPage(page + 1);
             // callback();
-            setLoading(false);
-        }, 500);
+            setLoading(false);           
+         }, 500);
     }
 
     useEffect(() => {

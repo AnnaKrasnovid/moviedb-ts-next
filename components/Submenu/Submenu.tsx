@@ -10,7 +10,8 @@ interface SubmenuInt {
 }
 
 function Submenu({ item, isActiveSubmenu }: SubmenuInt) {
-  const { asPath } = useRouter();
+  const { query } = useRouter();
+  // console.log(useRouter(),item)
 
   return (
     <div className={`${styles['menu']} ${isActiveSubmenu ? styles['menu_opened'] : ''}`}>
@@ -19,7 +20,7 @@ function Submenu({ item, isActiveSubmenu }: SubmenuInt) {
           <li className={styles['menu__genre']} key={i.id}>
             <Link
               href={`${item.path}/${i.value}`}
-              className={`${styles['menu__link']} ${asPath === `${item.path}/${i.path}` ? styles['menu__link_active'] : ''}`}
+              className={`${styles['menu__link']} ${query.genre === `${i.value}` ? styles['menu__link_active'] : ''}`}
             >
               {i.title}
             </Link>
