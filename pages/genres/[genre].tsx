@@ -10,7 +10,7 @@ function MoviesPage({ genre }: any) {
     console.log(genre)
     return (
         <Layout>
-            <MoviesList list={mov} pages={5} /> 
+            <MoviesList list={genre.docs} pages={genre.pages} /> 
         </Layout>
     );
 }

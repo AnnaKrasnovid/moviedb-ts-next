@@ -5,9 +5,23 @@
   display: flex;
   flex-direction: column;
   align-self: flex-end;
-  justify-self: end;
-  max-width: 600px;
+  // justify-self: end;
+  // max-width: 600px;
   width: 100%;
+}
+
+.section-search {
+  padding: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
 }
 
 @media screen and (max-width: $breakpoint-lg) {
@@ -18,12 +32,32 @@
       max-width: 100%;
     }
   }
+
+  .section-search {
+    &__list {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint-md) {
+  .section-search {
+    &__list {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
 }
 
 @media screen and (max-width: $breakpoint-sm) {
   .search {
     &_type_popup {
       display: flex;
+    }
+  }
+
+  .section-search {
+    &__list {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 }

@@ -29,6 +29,15 @@
     max-width: $container-max-width;
   }
 }
+.search {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  justify-self: end;
+  max-width: 600px;
+  width: 100%;
+}
 
 @media screen and (max-width: $breakpoint-lg) {
   .header {
@@ -38,6 +47,9 @@
     &__content {
       flex-direction: column;
     }
+  }
+  .search {    
+    max-width: 100%;
   }
 }
 

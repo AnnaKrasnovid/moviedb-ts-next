@@ -6,7 +6,6 @@ export const routes = {
     GENRES: '/genres',
     SERIALS: '/serials',
     CARTOONS: '/cartoons',
-    SEARCH: '/search',
 };
 
 export const genresRoutes = {

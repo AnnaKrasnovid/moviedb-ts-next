@@ -71,7 +71,6 @@ function Filters({ callback }: FiltersInt) {
         const ratingFilter = rating !== '' ? `rating.kp=${rating}` : '';
 
         callback(genreFilter, yearFilter, ratingFilter);
-// push(`${routes.GENRES}/${genre}`)
     }
 
     function getGenre() {
@@ -90,9 +89,9 @@ function Filters({ callback }: FiltersInt) {
         getGenre()        
     }, [genre,query.genre])
 
-    useEffect(() => {
-        getFiltersMovies()
-    }, [genre])
+    // useEffect(() => {
+    //     getFiltersMovies()
+    // }, [genre])
     // console.log(useRouter())
     return (
         <div className={styles['filters']}>

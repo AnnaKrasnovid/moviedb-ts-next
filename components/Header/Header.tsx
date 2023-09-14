@@ -1,7 +1,14 @@
+import { useContext } from 'react';
+
+
 import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
 import SearchForm from '../SearchForm/SearchForm';
 import ButtonBurger from '../../UI/ButtonBurger/ButtonBurger';
+import InputSearch from '../../UI/InputSearch/InputSearch';
+
+import { ModalsContext } from '../../context/ModalsContext';
+
 import styles from './Header.module.scss';
 interface HeaderInt {
   onOpenMenu: () => void,
@@ -9,6 +16,8 @@ interface HeaderInt {
 }
 
 function Header({ onOpenMenu, onClosePopup }: HeaderInt) {  
+  const { openPopupSearch } = useContext(ModalsContext);
+
   return (
     <header className={styles['header']}>
       <div className={styles['header__content']}>
@@ -19,7 +28,9 @@ function Header({ onOpenMenu, onClosePopup }: HeaderInt) {
             <Navigation type='header' onClosePopup={onClosePopup} />
           </div>
         </div>
-        <SearchForm />
+        <div className={styles['search']} onClick={openPopupSearch}>
+          <InputSearch searchValue={''} setSearchValue={() => { }} />
+        </div>
       </div>
     </header>
   );

@@ -25,8 +25,8 @@ function MoviesList({ list, pages }: MoviesListInt) {
   const [page, setPage] = useState<number>(1);
   const [pagesFilters, setPagesFilters] = useState(pages);
   const [requestData, setRequestData] = useState({ genre: '', years: '', rating: '' });
-  const [movieType, setMovieType] = useState('type=movie')
-// console.log(useRouter())
+  const [movieType, setMovieType] = useState('type=movie');
+
   function filtersMovies(genre: string, years: string, rating: string) {
     setRequestData({ genre: genre, years: years, rating: rating });
     getfiltersMovies(genre, years, rating);
@@ -34,25 +34,26 @@ function MoviesList({ list, pages }: MoviesListInt) {
 
   async function getfiltersMovies(genre: string, years: string, rating: string) {
     // console.log(genre===requestData.genre)
+    console.log(genre, requestData.genre)
     try {
-      if(genre!==requestData.genre) {
-        // const response = await api.filtersMovies(genre, years, rating, movieType, 1);
-        // setRenderList(response.docs);
-        // setPagesFilters(response.pages);
-        console.log(1)
-      }
-      else if ( years !== requestData.years || rating !== requestData.rating) {
-        // const response = await api.filtersMovies(genre, years, rating, movieType, 1);
-        // setRenderList(response.docs);
-        // setPagesFilters(response.pages);
+      // if(genre!==requestData.genre) {
+      //   const response = await api.filtersMovies(genre, years, rating, movieType, 1);
+      //   setRenderList(response.docs);
+      //   setPagesFilters(response.pages);
+      //   console.log(1)
+      // }
+      // else 
+      if (genre !== requestData.genre || years !== requestData.years || rating !== requestData.rating) {
+        const response = await api.filtersMovies(genre, years, rating, movieType, 1);
+        setRenderList(response.docs);
+        setPagesFilters(response.pages);
         console.log(2)
-      } else if(page !== 1){
+      } else if (page !== 1) {
         console.log(3)
-        // const response = await api.filtersMovies(genre, years, rating, movieType, page);
-        // setRenderList([...renderList, ...response.docs]);
-        // setPagesFilters(response.pages);
+        const response = await api.filtersMovies(genre, years, rating, movieType, page);
+        setRenderList([...renderList, ...response.docs]);
+        setPagesFilters(response.pages);
       }
-
     }
     catch (error) {
       console.log(error);
@@ -61,9 +62,12 @@ function MoviesList({ list, pages }: MoviesListInt) {
 
   useEffect(() => {
     // if (page !== 1) {
-      getfiltersMovies(requestData.genre, requestData.years, requestData.rating);
+    getfiltersMovies(requestData.genre, requestData.years, requestData.rating);
     // }
-  }, [page,query.genre])
+    // const data = JSON.stringify({ genre: requestData.genre, years: requestData.years, rating: requestData.rating })
+    // localStorage.setItem('movies', JSON.stringify(renderList));
+    // localStorage.setItem('filters', data);
+  }, [page, query.genre])
 
   useEffect(() => {
     setPage(1)
@@ -73,11 +77,7 @@ function MoviesList({ list, pages }: MoviesListInt) {
     const movieType = `type=${getMoviesType(pathname)}`;
     setMovieType(movieType)
   }, [])
-
-  useEffect(() => {
-  //  console.log(query.genre)
-  }, [query.genre])
-
+  console.log(pathname)
   return (
     <section className={styles['movies']}>
       {renderList ? (

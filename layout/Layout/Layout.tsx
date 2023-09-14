@@ -4,6 +4,8 @@ import Head from 'next/head';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import MenuMobile from '../../components/MenuMobile/MenuMobile';
+import Overlay from '../../UI/Overlay/Overlay';
+import SearchForm from '../../components/SearchForm/SearchForm';
 
 import { ModalsContext } from '../../context/ModalsContext';
 
@@ -14,7 +16,7 @@ interface LayoutInt {
 }
 
 function Layout({ children }: LayoutInt) {
-  const { openMenu, closePopup, isOpenPopupMenu } = useContext(ModalsContext);
+  const { openMenu, closePopup, isOpenPopupMenu,isOpenPopupSearch } = useContext(ModalsContext);
 
   return (
     <>
@@ -42,6 +44,9 @@ function Layout({ children }: LayoutInt) {
           onClosePopup={closePopup}
           isOpenPopupMenu={isOpenPopupMenu}
         />
+        <Overlay isOpenPopup={isOpenPopupSearch} >
+          <SearchForm/>
+        </Overlay>
       </div>
     </>
   );
