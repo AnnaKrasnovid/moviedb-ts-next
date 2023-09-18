@@ -10,7 +10,6 @@ import ButtonClose from '../../UI/ButtonClose/ButtonClose';
 import { useDebounce } from '../../hooks/useDebounce';
 import api from '../../tools/api';
 import { routes } from '../../settings/routes';
-import { MoviesContext } from '../../context/MoviesContext';
 import { ModalsContext } from '../../context/ModalsContext';
 import { API_KEY } from '../../settings/constants';
 import styles from './SearchForm.module.scss';
@@ -37,10 +36,6 @@ function SearchForm() {
     }
   }, [searchValue])
 
-  useEffect(() => {
-    console.log('moviesList', moviesList)
-  }, [searchValue])
-
   return (
     <section className={styles['section-search']}>
       <ButtonClose callback={closePopupSearch} />
@@ -50,7 +45,7 @@ function SearchForm() {
       {moviesList.length > 0 ? (
         <ul className={styles['section-search__list']}>
           {moviesList.map((item: any) => (
-            <li key={item.id}>
+            <li key={item.id} onClick={closePopupSearch}>
               <Link href={`${routes.MOVIE}/${item.id}`} className='link'>
                 <MovieCard item={item} type='small' />
               </Link>

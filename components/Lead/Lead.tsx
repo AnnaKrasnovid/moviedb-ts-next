@@ -23,11 +23,11 @@ function Lead() {
       // loopAdditionalSlides={3}
       spaceBetween={30}
       centeredSlides={true}
-      // autoplay={{
-      //   delay: 3000,
-      //   disableOnInteraction: false,
-      // }}
-      // speed={1500}
+      autoplay={{
+        delay: 3000,
+        disableOnInteraction: false,
+      }}
+      speed={1500}
       pagination={{
         clickable: true,
       }}

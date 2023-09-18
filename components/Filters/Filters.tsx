@@ -13,14 +13,16 @@ interface FiltersInt {
     callback: (genre: string, years: string, rating: string) => void,
 }
 
-function Filters({ callback }: FiltersInt) {
-    const { pathname, query, push } = useRouter();
-    const [genre, setGenre] = useState<string>('');
-    const [years, setYears] = useState<string>('');
-    const [rating, setRaiting] = useState<string>('');
+function Filters() {
+    const router = useRouter();
+    const [genre, setGenre] = useState<any>('');
+    const [years, setYears] = useState<any>('');
+    const [rating, setRaiting] = useState<any>('');
     const [defaultValueGenre, setDefaultValueGenre] = useState<string>('');
+    const [defaultValueRating, setDefaultValueRating] = useState<string>('');
+    const [defaultValueYears, setDefaultValueYears] = useState<string>('');
     // const [sort, setSort] = useState<string>('');
-//   console.log(useRouter())
+    //   console.log(useRouter())
     const selectGenresList = [
         { id: '0', title: 'Все', value: '' },
         { id: '1', title: 'Боевик', value: 'боевик' },
@@ -65,39 +67,48 @@ function Filters({ callback }: FiltersInt) {
         { id: '2', title: 'По дате выхода', value: '' },
     ]
 
-    function getFiltersMovies() {
-        const genreFilter = genre !== '' ? `genres.name=${genre}` : '';
-        const yearFilter = years !== '' ? `year=${years}` : '';
-        const ratingFilter = rating !== '' ? `rating.kp=${rating}` : '';
-
-        callback(genreFilter, yearFilter, ratingFilter);
+    function getFiltersMovies() {     
+        router.query.genre = genre;
+        router.query.year = years;
+        router.query.rating = rating;
+        router.push(router);
+        console.log('router filter')
     }
 
-    function getGenre() {
-        selectGenresList.find((i, index) => {
-            if (i.value === query.genre) {                
-                setDefaultValueGenre(selectGenresList[index].title);
-                setGenre(selectGenresList[index].value)
-                // console.log(selectGenresList[index].value)
-            } else if (query.genre === undefined) {
-                setDefaultValueGenre(selectGenresList[0].title);
+    function getGenre(list: any, param: string, setState: any) {
+        list.find((i: any, index: number) => {
+            if (i.value === param) {
+                setState(list[index].title)
+            } else if (param === undefined) {
+                setState(list[0].title)
             }
         })
     }
 
     useEffect(() => {
-        getGenre()        
-    }, [genre,query.genre])
+        // для селектов если уже была фильтрация
+        // @ts-ignore
+        getGenre(selectGenresList, router.query.genre, setDefaultValueGenre)
+        // @ts-ignore
+        getGenre(selectYearsList, router.query.year, setDefaultValueYears)
+        // @ts-ignore
+        getGenre(selectRatingList, router.query.rating, setDefaultValueRating)
+    }, [router.query])
 
     // useEffect(() => {
-    //     getFiltersMovies()
-    // }, [genre])
-    // console.log(useRouter())
+    //     // при монтировании если есть query параметры
+    //     if (router.query.genre || router.query.year || router.query.rating) {
+    //         setGenre(router.query.genre)
+    //         setYears(router.query.year)
+    //         setRaiting(router.query.rating)
+    //     }
+    // }, [])
+
     return (
         <div className={styles['filters']}>
             <Select options={selectGenresList} callback={(value) => setGenre(value)} placeholder='Жанры' defaultValue={defaultValueGenre} />
-            <Select options={selectYearsList} callback={(value) => setYears(value)} placeholder='Годы выхода' defaultValue={selectYearsList[0].title} />
-            <Select options={selectRatingList} callback={(value) => setRaiting(value)} placeholder='Рейтинг' defaultValue={selectRatingList[0].title} />
+            <Select options={selectYearsList} callback={(value) => setYears(value)} placeholder='Годы выхода' defaultValue={defaultValueYears} />
+            <Select options={selectRatingList} callback={(value) => setRaiting(value)} placeholder='Рейтинг' defaultValue={defaultValueRating} />
             {/* <Select options={selectSortList} callback={(value) => setSort(value)} placeholder='Рекомендуемые' defaultValue={selectSortList[0].title} /> */}
             <Button title='Найти' callback={getFiltersMovies} />
         </div>

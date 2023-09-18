@@ -24,71 +24,41 @@ function MoviesList({ list, pages }: MoviesListInt) {
   const [renderList, setRenderList] = useState(list);
   const [page, setPage] = useState<number>(1);
   const [pagesFilters, setPagesFilters] = useState(pages);
-  const [requestData, setRequestData] = useState({ genre: '', years: '', rating: '' });
   const [movieType, setMovieType] = useState('type=movie');
 
-  function filtersMovies(genre: string, years: string, rating: string) {
-    setRequestData({ genre: genre, years: years, rating: rating });
-    getfiltersMovies(genre, years, rating);
-  }
-
-  async function getfiltersMovies(genre: string, years: string, rating: string) {
-    // console.log(genre===requestData.genre)
-    console.log(genre, requestData.genre)
-    try {
-      // if(genre!==requestData.genre) {
-      //   const response = await api.filtersMovies(genre, years, rating, movieType, 1);
-      //   setRenderList(response.docs);
-      //   setPagesFilters(response.pages);
-      //   console.log(1)
-      // }
-      // else 
-      if (genre !== requestData.genre || years !== requestData.years || rating !== requestData.rating) {
-        const response = await api.filtersMovies(genre, years, rating, movieType, 1);
-        setRenderList(response.docs);
-        setPagesFilters(response.pages);
-        console.log(2)
-      } else if (page !== 1) {
-        console.log(3)
-        const response = await api.filtersMovies(genre, years, rating, movieType, page);
-        setRenderList([...renderList, ...response.docs]);
-        setPagesFilters(response.pages);
-      }
-    }
-    catch (error) {
-      console.log(error);
-    }
+  async function getfiltersMovies() {
+    const genreFilter = query.genre ? `genres.name=${query.genre}` : '';
+    const yearFilter = query.year ? `year=${query.year}` : '';
+    const ratingFilter = query.rating ? `rating.kp=${query.rating}` : '';
+    setMovieType(`type=${movieType}`)
+    const response = await api.filtersMovies(genreFilter, yearFilter, ratingFilter, movieType, page);
+    page === 1 ? setRenderList(response.docs) : setRenderList([...renderList, ...response.docs]);
+    setPagesFilters(response.pages);
   }
 
   useEffect(() => {
-    // if (page !== 1) {
-    getfiltersMovies(requestData.genre, requestData.years, requestData.rating);
-    // }
-    // const data = JSON.stringify({ genre: requestData.genre, years: requestData.years, rating: requestData.rating })
-    // localStorage.setItem('movies', JSON.stringify(renderList));
-    // localStorage.setItem('filters', data);
-  }, [page, query.genre])
+    getfiltersMovies();
+  }, [query, page,movieType])
 
   useEffect(() => {
-    setPage(1)
-  }, [requestData])
+    setPage(1);
+  }, [query])
 
   useEffect(() => {
     const movieType = `type=${getMoviesType(pathname)}`;
     setMovieType(movieType)
-  }, [])
-  console.log(pathname)
+  }, [pathname,movieType])
+
   return (
     <section className={styles['movies']}>
       {renderList ? (
         renderList.length > 0 ? (
           <>
-            <Filters callback={filtersMovies} />
+            <Filters />
             <InfiniteScroll
               page={page}
               setPage={setPage}
               pages={pagesFilters}
-            // callback={() => getfiltersMovies(requestData.genre, requestData.years, requestData.rating, requestData.movieType)}
             >
               <ul className={styles['movies__list']}>
                 {renderList.length > 0 && renderList.map((item: any) => (

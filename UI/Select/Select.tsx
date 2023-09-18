@@ -50,7 +50,7 @@ function Select({ options, label, placeholder = 'Выберите...', callback,
     }   
 
     useEffect(() => {      
-       const value= defaultValue === options[0].title ? options[0].title : defaultValue;     
+       const value= defaultValue === options[0].title ? options[0].title : defaultValue;   
        // @ts-ignore
        setSelectedItem(value);
     }, [defaultValue])

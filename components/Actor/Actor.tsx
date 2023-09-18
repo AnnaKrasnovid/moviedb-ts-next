@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import MoviesList from "../MoviesList/MoviesList";
 import DescriptionMovieItem from "../DescriptionMovieItem/DescriptionMovieItem";
 
 import styles from './Actor.module.scss';
@@ -30,8 +29,7 @@ function Actor({ actor }: any) {
                         <DescriptionMovieItem title="Место рождения:" info={getString(actor.birthPlace)} />
                     </div>
                 </div>
-            </div>
-            {/* <MoviesList list={actor.movies} /> */}
+            </div>           
         </div>
     )
 }

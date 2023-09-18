@@ -2,7 +2,6 @@ import { useState } from 'react';
 import type { AppProps } from 'next/app';
 
 import { ModalsContext } from '../context/ModalsContext';
-import { MoviesContext } from '../context/MoviesContext';
 
 import 'normalize.css';
 import 'swiper/css/bundle';
@@ -10,7 +9,6 @@ import '../styles/index.scss';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isOpenPopupMenu, setIsOpenPopupMenu] = useState(false);
-  const [moviesList, setMoviesList] = useState<Array<any>>([]);
   const [isSearchMovie, setIsSearchMovie]= useState(false);
   const [isOpenPopupSearch, setIsOpenPopupSearch] = useState(false);
 
@@ -37,20 +35,11 @@ export default function App({ Component, pageProps }: AppProps) {
     isOpenPopupSearch: isOpenPopupSearch,
     // setIsOpenPopupSearch: setIsOpenPopupSearch,
     closePopupSearch:closePopupSearch
-  }
-
-  const moviesContextProps = {
-    moviesList: moviesList,
-    setMoviesList: setMoviesList,
-    // isSearchMovie: isSearchMovie,
-    // setIsSearchMovie: setIsSearchMovie,
-  }
+  } 
 
   return (
-    <ModalsContext.Provider value={modalsContextProps}>
-      <MoviesContext.Provider value={moviesContextProps}>
+    <ModalsContext.Provider value={modalsContextProps}>      
         <Component {...pageProps} />
-      </MoviesContext.Provider>
     </ModalsContext.Provider>
   )
 }

@@ -1,10 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode, Dispatch, SetStateAction } from "react";
 
 import Loader from "../../UI/Loader/Loader";
 
 import styles from './InfiniteScroll.module.scss';
 
-function InfiniteScroll({ children, page, setPage, pages, callback }: any) {
+interface InfiniteScrollInt {
+    children: ReactNode,
+    page: number,
+    pages: any,
+    setPage: (Dispatch<SetStateAction<number>>)
+}
+
+function InfiniteScroll({ children, page, setPage, pages }: InfiniteScrollInt) {
     const [loading, setLoading] = useState(false);
 
     function handleScrollPage() {
@@ -25,11 +32,11 @@ function InfiniteScroll({ children, page, setPage, pages, callback }: any) {
             return
         };
 
-         setTimeout(() => {
+        setTimeout(() => {
             setPage(page + 1);
             // callback();
-            setLoading(false);           
-         }, 500);
+            setLoading(false);
+        }, 500);
     }
 
     useEffect(() => {
