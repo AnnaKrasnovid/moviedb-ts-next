@@ -72,6 +72,12 @@ a {
   gap: 3rem;
 }
 
+.page-actor {
+  display: grid;
+  grid-template-columns: repeat(6,200px);
+  gap: 20px;
+}
+
 @media screen and (max-width: $breakpoint-md) {
   .subtitle {
     font-size: 20px;

@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Link from 'next/link';
 
 import ActorItem from "../ActorItem/ActorItem";
+import MovieCardSimple from '../MovieCardSimple/MovieCardSimple';
 
 import { useWindowWidth } from '../../hooks/useWindowWidth';
 import { routes } from '../../settings/routes';
@@ -22,7 +23,7 @@ interface SimilarMovieInt {
 }
 
 interface SimilarMoviesInt {
-    list: Array<SimilarMovieInt>
+    list: Array<any>
 }
 
 function SimilarMovies({ list }: SimilarMoviesInt) {
@@ -46,11 +47,11 @@ function SimilarMovies({ list }: SimilarMoviesInt) {
     useEffect(() => {
         getNumberSlides();
     }, [windowWidth]);
-
+console.log(list[1])
     return (
         <div className={styles['semilar-movies']}>
             <p className='subtitle'>Похожее:</p>
-            <ul className={styles['semilar-movies__list']}>
+            <div className={styles['semilar-movies__list']}>
                 <Swiper
                     slidesPerView={slides}
                     spaceBetween={20}
@@ -60,13 +61,14 @@ function SimilarMovies({ list }: SimilarMoviesInt) {
                 >
                     {list.map((item: any) => (
                         <SwiperSlide key={item.id}>
-                            <Link href={`${routes.MOVIE}/${item.id}`} className={`link ${styles['semilar-movie']}`}>                                
-                                <img src={item.poster.url} alt={`Постер: ${item.name}`} />
-                            </Link>
+                            {/* <Link href={`${routes.MOVIE}/${item.id}`} className={`link ${styles['semilar-movie']}`}>                                
+                                <img src={`https://st.kp.yandex.net/images/film_iphone/iphone360_${item.id}.jpg`} alt={`Постер: ${item.name || item.alternativeName}`} />
+                            </Link> */}
+                            <MovieCardSimple item={item}/>
                         </SwiperSlide>
                     ))}
                 </Swiper>
-            </ul>
+            </div>
         </div>
     );
 }

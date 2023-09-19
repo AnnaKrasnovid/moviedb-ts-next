@@ -15,14 +15,14 @@ import { routes } from '../../settings/routes';
 
 function MoviePage({ movie }: any) {
   const actors = movie.persons.filter((i: any) => i.profession === 'актеры');
-  console.log(movie)
+  console.log(movie.similarMovies.length)
   return (
     <Layout>
       <div className='page-movie'>
-        <DescriptionMovieCard movie={movie} />        
+        <DescriptionMovieCard movie={movie} />
         <ActorsList list={actors} />
-        <SimilarMovies list={movie.similarMovies} />
-        <Facts list={movie.facts} />
+        {movie.similarMovies.length > 0 && <SimilarMovies list={movie.similarMovies} />}
+        {movie.facts.length > 0 && <Facts list={movie.facts} />}
       </div>
     </Layout>
   );
