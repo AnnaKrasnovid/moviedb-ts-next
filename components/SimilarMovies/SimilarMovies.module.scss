@@ -1,11 +1,7 @@
 @import '../../styles/variables.scss';
 
-.actors {
-
-    &__list {
-        display: flex;
-        gap: 2rem;
-    }
+.semilar-movies {
+    // padding-top: 4rem;
 
     &__title {
         font-weight: 400;
@@ -15,12 +11,18 @@
     }
 }
 
+.semilar-movie {
+    border-radius: 6px;
+    overflow: hidden;
+    display: block;
+}
+
 @media screen and (max-width: $breakpoint-md) {
-    .actors {
+    .semilar-movies {
         &__title {
-            font-size: 22px;
-            line-height: 30px;
-            margin-bottom: 1rem;
+        font-size: 22px;
+        line-height: 30px;
+        margin-bottom: 1rem;
         }
     }
-}
+  }

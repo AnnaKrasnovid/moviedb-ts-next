@@ -30,7 +30,9 @@ function ActorsList({ list }: any) {
   }, [windowWidth]);
 
   return (
-    <ul className={styles['actors']}>   
+    <div className={styles['actors']}>
+      <p className='subtitle'>Актеры:</p>
+    <ul className={styles['actors__list']}>   
       <Swiper
         slidesPerView={slides}
         spaceBetween={20}
@@ -46,6 +48,7 @@ function ActorsList({ list }: any) {
         ))}
       </Swiper>
     </ul>
+    </div>
   );
 }
 

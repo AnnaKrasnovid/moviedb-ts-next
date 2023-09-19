@@ -6,6 +6,8 @@ import DescriptionMovieCard from '../../components/DescriptionMovieCard/Descript
 import Compilation from '../../components/Сompilation/Compilation';
 import MoviePosters from '../../components/MoviePosters/MoviePosters';
 import ActorsList from '../../components/ActorsList/ActorsList';
+import SimilarMovies from '../../components/SimilarMovies/SimilarMovies';
+import Facts from '../../components/Facts/Facts';
 
 import api from '../../tools/api';
 import { checkEmptyObject } from '../../tools/utils';
@@ -13,17 +15,15 @@ import { routes } from '../../settings/routes';
 
 function MoviePage({ movie }: any) {
   const actors = movie.persons.filter((i: any) => i.profession === 'актеры');
-console.log(movie)
+  console.log(movie)
   return (
     <Layout>
-      {/* {checkEmptyObject(movie.docs[0]) ? <div>Что-то пошло не так...</div> : (
-        <> */}
-          <DescriptionMovieCard movie={movie} />
-          <ActorsList list={actors} />
-        
-      
-        {/* </>
-      )} */}
+      <div className='page-movie'>
+        <DescriptionMovieCard movie={movie} />        
+        <ActorsList list={actors} />
+        <SimilarMovies list={movie.similarMovies} />
+        <Facts list={movie.facts} />
+      </div>
     </Layout>
   );
 }

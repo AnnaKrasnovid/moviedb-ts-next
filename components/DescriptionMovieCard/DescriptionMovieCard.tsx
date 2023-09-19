@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
 
 import Rating from '../Rating/Rating';
+import RatingRound from '../RatingRound/RatingRound';
 import DescriptionMovieItem from '../DescriptionMovieItem/DescriptionMovieItem';
 import DescriptionMovie from '../DescriptionMovie/DescriptionMovie';
-import MovieCard from '../MovieCard/MovieCard';
 
 import { getTime, getInfo } from '../../tools/utils';
 
 import styles from './DescriptionMovieCard.module.scss';
-import { MovieInt } from '../../settings/interfaces';
-import { routes } from '../../settings/routes';
-
 interface DescriptionMovieCardInt {
   movie: any
 }
@@ -44,11 +39,18 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
       <div className={styles['about-movie__description']}>
         <div className={styles['about-movie__container']}>
           <img className={styles['about-movie__img']} src={movie.poster.url} alt='Постер к фильму' />
-          <div className={styles['about-movie__container-rating']}>
+          {/* <div className={styles['about-movie__container-rating']}>
             <Rating number={movie.rating.kp} type='orange' />
             {movie.rating.imdb > 0 && (
               <Rating number={movie.rating.imdb} type='yellow' />
             )}
+          </div> */}
+          <div className={styles['about-movie__ratings']}>
+            <RatingRound number={movie.rating.kp} />
+            {movie.rating.imdb > 0 && (
+              <RatingRound number={movie.rating.imdb} type='yellow' />
+            )}
+
           </div>
         </div>
         <div className={styles['about-movie__container']}>
@@ -68,16 +70,7 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
             callback={toggleAllText}
           />
         </div>
-      </div>   
-      <ul className='movies__list'>
-          {movie.similarMovies.length > 0 && movie.similarMovies.map((item: any) => (
-            <li key={item.id}>
-              <Link href={`${routes.MOVIE}/${item.id}`} className='link'>
-                <img className='about-movie__img' src={item.poster.url} alt='Постер к фильму' width={200} height={300}/>
-              </Link>
-            </li>
-          ))}
-        </ul>
+      </div>
     </section>
   );
 }

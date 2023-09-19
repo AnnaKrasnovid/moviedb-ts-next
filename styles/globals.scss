@@ -56,6 +56,29 @@ a {
   padding-right: 17px;
 }
 
+.subtitle {
+  font-weight: 400;
+    font-size: 28px;
+    line-height: 47px;
+    // margin: 0 0 5px;
+    border-bottom: 1px solid $color-primary;
+    margin-bottom: 2rem;
+}
+
+.page-movie {
+  padding-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+@media screen and (max-width: $breakpoint-md) {
+  .subtitle {
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
+
 @media screen and (max-width: $breakpoint-sm) {
   #__next {
     background-image: linear-gradient(rgba(24, 26, 25, 0.7), rgba(24, 26, 25, 0.5)), url(../images/bg-modile.png);

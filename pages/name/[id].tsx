@@ -7,6 +7,7 @@ import api from '../../tools/api';
 import { checkEmptyObject } from '../../tools/utils';
 
 function ActorPage({ actor }: any) {
+  console.log(actor)
   return (
     <Layout>
       {checkEmptyObject(actor) ? <div>Что-то пошло не так...</div> : <Actor actor={actor} />}
