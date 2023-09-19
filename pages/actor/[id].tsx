@@ -17,7 +17,6 @@ function ActorPage({ actor }: any) {
 export async function getServerSideProps(params: GetServerSidePropsContext) {
   let actor: any = {};
 
-
   try {
     actor = await api.getActorId(params.query.id);
   } catch (error) {

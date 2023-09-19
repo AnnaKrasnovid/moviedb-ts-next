@@ -2,23 +2,25 @@
 
 .actor {
     text-decoration: none;
-    color: #fff;
-    &__img {
+    color: $color-white;
 
-    }
+    &__img {}
+
     &__img {
         border-radius: 6px;
         height: 200px;
         width: 130px;
         overflow: hidden;
+
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
     }
+
     &__text {
-font-size: 14px;
-margin-top: 1rem;
+        font-size: 14px;
+        margin-top: 1rem;
     }
 }

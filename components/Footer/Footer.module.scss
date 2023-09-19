@@ -9,13 +9,13 @@
   background: radial-gradient(696.2% 730.65% at 47.6% 26.27%, rgba(24, 26, 25, 0.5) 0%, rgba(36, 40, 43, 0.5) 68.62%);
   box-shadow: 0px -7px 16px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(20px);
-  
+
 
   &__container {
     padding-bottom: 30px;
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid $border-color;    
+    border-bottom: 1px solid $border-color;
     max-width: $container-max-width;
     width: 100%;
   }
@@ -25,8 +25,8 @@
     margin-left: 5%;
     max-width: 900px;
     display: flex;
-    flex-direction: column;   
-    border-left: 1px solid $border-color;   
+    flex-direction: column;
+    border-left: 1px solid $border-color;
   }
 
   &__title {
@@ -57,7 +57,7 @@
     font-size: 16px;
     line-height: 21px;
     text-align: center;
-    color: $colot-light-text;    
+    color: $colot-light-text;
     text-align: start;
 
     &_type_link {

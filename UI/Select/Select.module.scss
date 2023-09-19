@@ -1,21 +1,15 @@
 @import '../../styles/variables.scss';
 
 .dropdown-select {
-    // max-width: 300px;
     width: 100%;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     position: relative;
-    // border: 1px solid var(--border-color);
-    // margin-top: 5px;
-    // height: 38px;
 
     &_active {
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
-        // border: 1px solid var(--border-color);
         border-radius: 5px 5px 0 0;
-        // background-color: var(--background-color);
     }
 
     &__levels {
@@ -25,8 +19,6 @@
         top: 36px;
         left: -1px;
         z-index: 1;
-        // background-color: var(--background-color);
-        // border: 1px solid var(--border-color);
         border-radius: 0 0 5px 5px;
         border-top: 0;
         max-height: 300px;
@@ -45,7 +37,6 @@
 
         &_active {
             border: 1px solid #424242;
-            // border-top: 1px solid $color-light-green;
             visibility: visible;
             opacity: 1;
             transition: visibility .2s linear, opacity .2s linear;
@@ -63,7 +54,7 @@
         align-items: center;
         padding: 0 16px;
         height: 36px;
-        color: #fff;
+        color: $color-white;
         border: 1px solid #424242;
         background-color: #1B1E1E;
         border-radius: 8px;
@@ -121,30 +112,13 @@
         width: 7px;
         height: 7px;
         box-shadow: 0px 0px 4px rgba(122, 204, 231, 0.6);
-        // background: $color-middle-gray;
         display: inline-block;
         border-radius: 50%;
     }
 
     &__done {
-        // display: none;
-        // color: $color-light-gray;
-
         &_active {
             display: block;
-            // color: $color-middle-green;
         }
     }
-
-    // .scroll {
-    //     padding: 0;
-    // }
 }
-
-.label-input {
-    // color: var(--color);
-}
-
-// .scroll_type_select {
-//     padding: 5px 0;
-// }

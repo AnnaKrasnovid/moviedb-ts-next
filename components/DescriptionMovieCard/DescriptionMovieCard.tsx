@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+
 import Rating from '../Rating/Rating';
 import DescriptionMovieItem from '../DescriptionMovieItem/DescriptionMovieItem';
 import DescriptionMovie from '../DescriptionMovie/DescriptionMovie';
+import MovieCard from '../MovieCard/MovieCard';
 
 import { getTime, getInfo } from '../../tools/utils';
 
 import styles from './DescriptionMovieCard.module.scss';
 import { MovieInt } from '../../settings/interfaces';
+import { routes } from '../../settings/routes';
 
 interface DescriptionMovieCardInt {
   movie: any
@@ -49,7 +53,7 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
         </div>
         <div className={styles['about-movie__container']}>
           <h3 className={styles['about-movie__title']}>{movie.name} ({movie.year})</h3>
-          {movie.alternativeName!==null? <p className={styles['about-movie__title-en']}>{movie.alternativeName} ({movie.year})</p> : <></>}
+          {movie.alternativeName !== null ? <p className={styles['about-movie__title-en']}>{movie.alternativeName} ({movie.year})</p> : <></>}
           <ul className={styles['about-movie__box-main']}>
             <DescriptionMovieItem title='Продолжительность' info={getTime(movie.movieLength)} />
             <DescriptionMovieItem title='Год выпускa' info={movie.year} />
@@ -64,7 +68,16 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
             callback={toggleAllText}
           />
         </div>
-      </div>
+      </div>   
+      <ul className='movies__list'>
+          {movie.similarMovies.length > 0 && movie.similarMovies.map((item: any) => (
+            <li key={item.id}>
+              <Link href={`${routes.MOVIE}/${item.id}`} className='link'>
+                <img className='about-movie__img' src={item.poster.url} alt='Постер к фильму' width={200} height={300}/>
+              </Link>
+            </li>
+          ))}
+        </ul>
     </section>
   );
 }

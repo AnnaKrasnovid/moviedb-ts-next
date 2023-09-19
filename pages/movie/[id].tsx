@@ -1,4 +1,5 @@
 import { GetServerSidePropsContext } from 'next';
+import Link from 'next/link';
 
 import Layout from '../../layout/Layout/Layout';
 import DescriptionMovieCard from '../../components/DescriptionMovieCard/DescriptionMovieCard';
@@ -8,20 +9,21 @@ import ActorsList from '../../components/ActorsList/ActorsList';
 
 import api from '../../tools/api';
 import { checkEmptyObject } from '../../tools/utils';
+import { routes } from '../../settings/routes';
 
 function MoviePage({ movie }: any) {
-  const actors = movie.docs[0].persons.filter((i: any) => i.profession === 'актеры');
-
+  const actors = movie.persons.filter((i: any) => i.profession === 'актеры');
+console.log(movie)
   return (
     <Layout>
       {/* {checkEmptyObject(movie.docs[0]) ? <div>Что-то пошло не так...</div> : (
         <> */}
-          <DescriptionMovieCard movie={movie.docs[0]} />
+          <DescriptionMovieCard movie={movie} />
           <ActorsList list={actors} />
+        
+      
         {/* </>
       )} */}
-
-      {/* <Compilation title='Фильмы в этом жанре' moviesList={mov} />  */}
     </Layout>
   );
 }

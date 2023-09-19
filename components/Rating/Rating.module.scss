@@ -39,7 +39,13 @@
     }
 
     &_bg_yellow {
-      background: #D59F31;
+      background: $color-yellow;
     }
+  }
+}
+
+@media screen and (max-width: $breakpoint-md)  {
+  .box-rating {
+    display: none;
   }
 }

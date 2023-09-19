@@ -1,14 +1,5 @@
 @import '../../styles/variables.scss';
 
-// .arrow {
-//     transition: transform 0.5s ease;
-
-//     &_active {
-//         transform: rotate(180deg);
-//         transition: transform 0.5s ease;
-//     }
-// }
-
 .link-menu {
     display: flex;
     align-items: center;
@@ -41,10 +32,6 @@
 }
 
 @media screen and (max-width: $breakpoint-md) {
-    // .arrow {
-    //     display: none;
-    // }
-
     .link-menu {
         font-weight: 400;
         font-size: 18px;

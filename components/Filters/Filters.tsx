@@ -72,10 +72,9 @@ function Filters() {
         router.query.year = years;
         router.query.rating = rating;
         router.push(router);
-        console.log('router filter')
     }
 
-    function getGenre(list: any, param: string, setState: any) {
+    function getGenre(list: any, param: (string| undefined), setState: any) {
         list.find((i: any, index: number) => {
             if (i.value === param) {
                 setState(list[index].title)
@@ -95,14 +94,14 @@ function Filters() {
         getGenre(selectRatingList, router.query.rating, setDefaultValueRating)
     }, [router.query])
 
-    // useEffect(() => {
-    //     // при монтировании если есть query параметры
-    //     if (router.query.genre || router.query.year || router.query.rating) {
-    //         setGenre(router.query.genre)
-    //         setYears(router.query.year)
-    //         setRaiting(router.query.rating)
-    //     }
-    // }, [])
+    useEffect(() => {
+        // при монтировании если есть query параметры
+        if (router.query.genre || router.query.year || router.query.rating) {
+            setGenre(router.query.genre)
+            setYears(router.query.year)
+            setRaiting(router.query.rating)
+        }
+    }, [])
 
     return (
         <div className={styles['filters']}>

@@ -6,12 +6,11 @@ import styles from './InfiniteScroll.module.scss';
 
 interface InfiniteScrollInt {
     children: ReactNode,
-    page: number,
-    pages: any,
-    setPage: (Dispatch<SetStateAction<number>>)
+    callback: () => void,
+    condition: boolean, // условие при котором не будет вызываться функция
 }
 
-function InfiniteScroll({ children, page, setPage, pages }: InfiniteScrollInt) {
+function InfiniteScroll({ children, condition, callback }: InfiniteScrollInt) {
     const [loading, setLoading] = useState(false);
 
     function handleScrollPage() {
@@ -27,14 +26,13 @@ function InfiniteScroll({ children, page, setPage, pages }: InfiniteScrollInt) {
 
     function makeNewRequest() {
         if (!loading) { return };
-        if (page === pages) {
+        if (condition) {
             setLoading(false);
             return
         };
 
         setTimeout(() => {
-            setPage(page + 1);
-            // callback();
+            callback();
             setLoading(false);
         }, 500);
     }

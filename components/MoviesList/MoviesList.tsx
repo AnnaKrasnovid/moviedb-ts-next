@@ -11,43 +11,44 @@ import Loader from '../../UI/Loader/Loader';
 import { routes } from '../../settings/routes';
 import api from '../../tools/api';
 import { getMoviesType } from '../../tools/utils';
+import { MOVIES_LIMIT } from '../../settings/constants';
 
 import styles from './MoviesList.module.scss';
 
 interface MoviesListInt {
   list: any,
-  pages?: number
+  pages?: number| undefined
 }
 
 function MoviesList({ list, pages }: MoviesListInt) {
   const { pathname, back, query } = useRouter();
   const [renderList, setRenderList] = useState(list);
   const [page, setPage] = useState<number>(1);
-  const [pagesFilters, setPagesFilters] = useState(pages);
-  const [movieType, setMovieType] = useState('type=movie');
+  const [pagesFilters, setPagesFilters] = useState<any>(pages);
+  const [movieType, setMovieType] = useState(`type=${getMoviesType(pathname)}`);
+  const [isFirstRequest, setIsFirstRequest] = useState(true);
 
   async function getfiltersMovies() {
     const genreFilter = query.genre ? `genres.name=${query.genre}` : '';
     const yearFilter = query.year ? `year=${query.year}` : '';
     const ratingFilter = query.rating ? `rating.kp=${query.rating}` : '';
-    setMovieType(`type=${movieType}`)
-    const response = await api.filtersMovies(genreFilter, yearFilter, ratingFilter, movieType, page);
-    page === 1 ? setRenderList(response.docs) : setRenderList([...renderList, ...response.docs]);
+
+    const response = await api.filtersMovies(genreFilter, yearFilter, ratingFilter, movieType, page* MOVIES_LIMIT);   
+    setRenderList(response.docs);
     setPagesFilters(response.pages);
+  }
+
+  function changePage() {
+    setPage(page + 1);
   }
 
   useEffect(() => {
     getfiltersMovies();
-  }, [query, page,movieType])
+  }, [query, page, movieType])
 
   useEffect(() => {
     setPage(1);
   }, [query])
-
-  useEffect(() => {
-    const movieType = `type=${getMoviesType(pathname)}`;
-    setMovieType(movieType)
-  }, [pathname,movieType])
 
   return (
     <section className={styles['movies']}>
@@ -56,9 +57,8 @@ function MoviesList({ list, pages }: MoviesListInt) {
           <>
             <Filters />
             <InfiniteScroll
-              page={page}
-              setPage={setPage}
-              pages={pagesFilters}
+              condition={pagesFilters===1}
+              callback={changePage}
             >
               <ul className={styles['movies__list']}>
                 {renderList.length > 0 && renderList.map((item: any) => (

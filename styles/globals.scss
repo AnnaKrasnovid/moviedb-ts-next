@@ -1,6 +1,4 @@
-/* @import './swiper.scss'; */
-/* @import './fonts.scss'; */
- @import './variables.scss'; 
+@import './variables.scss'; 
 
 * {
   box-sizing: border-box;
@@ -48,8 +46,6 @@ a {
   width: 100%;
   min-height: 100vh;
 }
-
-
 
 .link {
   color: $color-white;

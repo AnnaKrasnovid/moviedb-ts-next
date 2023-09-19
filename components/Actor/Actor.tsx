@@ -18,7 +18,7 @@ function Actor({ actor }: any) {
         <div className={styles['page-actor']}>
             <div className={styles['actor-info']}>
                 <div className={styles['actor-info__img']}>
-                    <Image src={actor.photo} alt="" />
+                    <Image src={actor.photo} alt={`Фотография ${actor.name}`} width={300} height={500}/>
                 </div>
                 <div className={styles['actor-info__content']}>
                     <h2 className={styles['actor-info__title']}>{actor.name}</h2>

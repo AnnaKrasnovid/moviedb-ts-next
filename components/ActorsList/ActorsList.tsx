@@ -37,11 +37,6 @@ function ActorsList({ list }: any) {
         slidesPerGroup={1}
         loop={true}
         watchOverflow={true}
-        // navigation={{
-        //   nextEl: '.next-slide-compilation',
-        //   prevEl: '.prev-slide-compilation',
-        // }}
-        // modules={[Navigation]}
         className="compilation-swiper"
       >
         {list.map((item: any) => (

@@ -27,12 +27,12 @@ export const menu: Array<MenuItemInt> = [
     path: routes.MOVIES,
     title: 'Фильмы',
   },
-  {
-    id: '3',
-    path: routes.GENRES,
-    title: 'По жанру',
-    submenu: submenuGenres,
-  },
+  // {
+  //   id: '3',
+  //   path: routes.GENRES,
+  //   title: 'По жанру',
+  //   submenu: submenuGenres,
+  // },
   {
     id: '4',
     path: routes.SERIALS,

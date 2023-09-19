@@ -7,7 +7,7 @@ import api from '../tools/api';
 import { mov } from '../assets/mockData/movies';
 
 function MoviesPage({ movies }: any) {
-   
+   console.log(movies)
     return (
         <Layout>
             <MoviesList list={movies.docs} pages={movies.pages} />

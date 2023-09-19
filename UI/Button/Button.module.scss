@@ -17,12 +17,7 @@
    cursor: pointer;
 
     &_active {
-        // background-color: $color-middle-green; 
-        cursor: pointer; 
-        &:hover {
-            // background-color: $color-green;
-
-        }
+        cursor: pointer;        
     }
 
     &:hover {
