@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useRouter } from 'next/router';
+import Image from 'next/image';
 
-import Rating from '../Rating/Rating';
 import RatingRound from '../RatingRound/RatingRound';
 import DescriptionMovieItem from '../DescriptionMovieItem/DescriptionMovieItem';
 import DescriptionMovie from '../DescriptionMovie/DescriptionMovie';
@@ -39,15 +38,21 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
     <section className={styles['about-movie']}>
       <div className={styles['about-movie__description']}>
         <div className={styles['about-movie__container']}>
-          <img className={styles['about-movie__img']} src={movie.poster?.url || `https://st.kp.yandex.net/images/film_iphone/iphone360_${movie.id}.jpg`} alt='Постер к фильму' />
+          <Image
+            className={styles['about-movie__img']}
+            src={movie.poster?.url || `https://st.kp.yandex.net/images/film_iphone/iphone360_${movie.id}.jpg`}
+            alt='Постер к фильму'
+            width={300}
+            height={500}
+          />
           <div className={styles['about-movie__ratings']}>
             {movie.rating.kp > 0 && <RatingRound number={movie.rating.kp} />}
             {movie.rating.imdb > 0 && <RatingRound number={movie.rating.imdb} type='yellow' />}
           </div>
         </div>
         <div className={styles['about-movie__container']}>
-          <h3 className={styles['about-movie__title']}>{movie.name} {movie.year && (movie.year)}</h3>
-          {movie.alternativeName !== null ? <p className={styles['about-movie__title-en']}>{movie.alternativeName} {movie.year && (movie.year)}</p> : <></>}
+          <h3 className={styles['about-movie__title']}>{movie.name} {movie.year && `(${movie.year})`}</h3>
+          {movie.alternativeName !== null ? <p className={styles['about-movie__title-en']}>{movie.alternativeName} {movie.year && `(${movie.year})`}</p> : <></>}
           <ul className={styles['about-movie__box-main']}>
             {movie.type === 'tv-series' ? (
               movie.seriesLength && <DescriptionMovieItem title='Продолжительность' info={getTime(movie.seriesLength)} />
@@ -62,7 +67,7 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
             {movie.persons && <DescriptionMovieItem title='Актеры' info={getActors(movie.persons)} />}
           </ul>
           <DescriptionMovie
-            title={`О чем фильм “${movie.name} ${movie.year ? (movie.year) : ''}”`}
+            title={`О чем фильм “${movie.name}” ${movie.year ? `(${movie.year})` : ''}`}
             info={isShowAllText ? movie.description : movie.shortDescription}
             buttonText={!isShowAllText ? 'Ещё' : 'Скрыть'}
             callback={toggleAllText}

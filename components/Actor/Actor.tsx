@@ -8,7 +8,7 @@ function Actor({ actor }: any) {
     const getString = (item: Array<any>) => {
         const array: Array<string> = [];
         item.map((i: any) => array.push(i.value));
-        return array.join('/');
+        return array.join(' / ');
     }
     console.log(actor)
     const date = new Date(Date.parse(actor.birthday));

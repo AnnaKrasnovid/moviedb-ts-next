@@ -12,8 +12,8 @@ interface NavigationLinkInt {
 }
 
 function NavigationLink({ item, isActiveSubmenu, closePopup }: NavigationLinkInt) {
-    const { asPath } = useRouter();
-    const isActiveLink = `/${asPath.split('/')[1]}` === item.path;
+    const { pathname } = useRouter();
+    const isActiveLink = pathname === item.path;
     
     return (
         <Link href={item.path} className={`${styles['link-menu']} ${isActiveLink ? styles['link-menu_active'] : ''}`} onClick={closePopup}>

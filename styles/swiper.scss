@@ -6,10 +6,10 @@
 }
 
 .swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    // display: block;
+    // width: 100%;
+    // height: 100%;
+    // object-fit: cover;
 }
 
 .swiper {
@@ -86,4 +86,10 @@
     opacity: 0.5;
     width: 8px;
     height: 8px;
+}
+
+.compilation-swiper {
+    .swiper-slide {
+        height: auto;
+    }
 }

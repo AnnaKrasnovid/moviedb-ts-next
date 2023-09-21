@@ -48,7 +48,7 @@ function Compilation({ title, moviesList }: CompilationInt) {
             slidesPerView={slides}
             spaceBetween={20}
             slidesPerGroup={2}
-            loop={true}
+            // loop={true}
             watchOverflow={true}
             // navigation={{
             //   nextEl: '.next-slide-compilation',
@@ -59,7 +59,7 @@ function Compilation({ title, moviesList }: CompilationInt) {
           >
             {moviesList && moviesList.map((item) => (
               <SwiperSlide key={item.id}>
-                <Link href={`${routes.MOVIE}/${item.id}`} className='link'>
+                <Link href={`${routes.MOVIE}/${item.id}`} className='link link-card'>
                   <MovieCard item={item} />
                 </Link>
               </SwiperSlide>
