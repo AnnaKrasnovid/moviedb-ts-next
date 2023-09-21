@@ -1,0 +1,35 @@
+@import '../../styles/variables.scss';
+
+.grid-movies {
+    margin: 0;
+    // padding: 2rem 0 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+}
+
+@media screen and (max-width: $breakpoint-xl) {
+    .grid-movies {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media screen and (max-width: $breakpoint-lg) {
+    .movies {
+        &__list {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+}
+
+@media screen and (max-width: $breakpoint-md) {
+    .grid-movies {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .grid-movies {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

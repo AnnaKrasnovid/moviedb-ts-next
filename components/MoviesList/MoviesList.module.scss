@@ -7,15 +7,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 3rem;
 
-  &__list {   
-    margin: 0;
-    padding: 2rem 0 0;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 20px;
+  // &__list {   
+  //   margin: 0;
+  //   padding: 2rem 0 0;
+  //   display: grid;
+  //   grid-template-columns: repeat(6, 1fr);
+  //   gap: 20px;
 
-  }
+  // }
   &__info {
     text-align: center;
     font-size: 26px;
@@ -34,28 +35,28 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
 }
-@media screen and (max-width: $breakpoint-xl) {
-  .movies {
-    &__list {
-      grid-template-columns: repeat(5, 1fr);
-    }
-  }
-}
+// @media screen and (max-width: $breakpoint-xl) {
+//   .movies {
+//     &__list {
+//       grid-template-columns: repeat(5, 1fr);
+//     }
+//   }
+// }
 
-@media screen and (max-width: $breakpoint-lg) {
-  .movies {
-    &__list {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-}
+// @media screen and (max-width: $breakpoint-lg) {
+//   .movies {
+//     &__list {
+//       grid-template-columns: repeat(4, 1fr);
+//     }
+//   }
+// }
 
 @media screen and (max-width: $breakpoint-md) {
   .movies {
     padding: 0;
-    &__list {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    // &__list {
+    //   grid-template-columns: repeat(3, 1fr);
+    // }
   }
 
   .filters {
@@ -63,13 +64,13 @@
   }
 }
 
-@media screen and (max-width: 500px) {
-  .movies {
-    &__list {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-}
+// @media screen and (max-width: 500px) {
+//   .movies {
+//     &__list {
+//       grid-template-columns: repeat(2, 1fr);
+//     }
+//   }
+// }
 
 @media screen and (max-width: $breakpoint-sm) {
   .filters {
@@ -78,10 +79,10 @@
   }
 }
 
-@media screen and (max-width: 320px) {
-  .movies {
-    &__list {
-      // grid-template-columns: repeat(1, 1fr);
-    }
-  }
-}
+// @media screen and (max-width: 320px) {
+//   .movies {
+//     &__list {
+//       // grid-template-columns: repeat(1, 1fr);
+//     }
+//   }
+// }

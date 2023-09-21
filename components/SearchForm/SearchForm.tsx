@@ -1,29 +1,28 @@
 import { useEffect, useState, useContext } from 'react';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 import InputSearch from '../../UI/InputSearch/InputSearch';
-import MoviesList from '../MoviesList/MoviesList';
 import MovieCard from '../MovieCard/MovieCard';
 import ButtonClose from '../../UI/ButtonClose/ButtonClose';
+import GridMovies from '../GridMovies/GridMovies';
 
 import { useDebounce } from '../../hooks/useDebounce';
 import api from '../../tools/api';
 import { routes } from '../../settings/routes';
 import { ModalsContext } from '../../context/ModalsContext';
-import { API_KEY } from '../../settings/constants';
 import styles from './SearchForm.module.scss';
 
 function SearchForm() {
-  const router = useRouter();
   const [searchValue, setSearchValue] = useState('');
   const { openPopupSearch, closePopupSearch } = useContext(ModalsContext)
   const [moviesList, setMoviesList] = useState<any>([]);
+  const [textResult, setTextResult] = useState<string>('');
 
   const searchMovie = useDebounce(async () => {
     try {
       const response = await api.searchMovie(searchValue);
       setMoviesList(response.docs);
+      response.docs.length>0 ? setTextResult('ничего не найдено') : ''
     }
     catch (error) {
       console.log(error);
@@ -38,22 +37,22 @@ function SearchForm() {
 
   return (
     <section className={styles['section-search']}>
-      <ButtonClose callback={closePopupSearch} />
+      <ButtonClose callback={closePopupSearch} className={styles['section-search-button']}/>
       <form className={styles['search']} noValidate onClick={openPopupSearch}>
         <InputSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       </form>
       {moviesList.length > 0 ? (
-        <ul className={styles['section-search__list']}>
+        <GridMovies>
           {moviesList.map((item: any) => (
             <li key={item.id} onClick={closePopupSearch}>
               <Link href={`${routes.MOVIE}/${item.id}`} className='link'>
-                <MovieCard item={item} type='small' />
+                <MovieCard item={item}  />
               </Link>
             </li>
           ))}
-        </ul>
+        </GridMovies>
       ) : (
-        searchValue && <p>Ничего не найдено</p>
+         <p>{textResult}</p>
       )}
     </section >
   );

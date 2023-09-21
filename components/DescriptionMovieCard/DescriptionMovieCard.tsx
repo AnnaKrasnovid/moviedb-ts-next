@@ -38,23 +38,15 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
     <section className={styles['about-movie']}>
       <div className={styles['about-movie__description']}>
         <div className={styles['about-movie__container']}>
-          <img className={styles['about-movie__img']} src={movie.poster.url} alt='Постер к фильму' />
-          {/* <div className={styles['about-movie__container-rating']}>
-            <Rating number={movie.rating.kp} type='orange' />
-            {movie.rating.imdb > 0 && (
-              <Rating number={movie.rating.imdb} type='yellow' />
-            )}
-          </div> */}
+          <img className={styles['about-movie__img']} src={movie.poster?.url || `https://st.kp.yandex.net/images/film_iphone/iphone360_${movie.id}.jpg`} alt='Постер к фильму' />
           <div className={styles['about-movie__ratings']}>
-            <RatingRound number={movie.rating.kp} />
-            {movie.rating.imdb > 0 && (
-              <RatingRound number={movie.rating.imdb} type='yellow' />
-            )}
+            {movie.rating.kp > 0 && <RatingRound number={movie.rating.kp} />}
+            {movie.rating.imdb > 0 && <RatingRound number={movie.rating.imdb} type='yellow' />}
 
           </div>
         </div>
         <div className={styles['about-movie__container']}>
-          <h3 className={styles['about-movie__title']}>{movie.name} ({movie.year})</h3>
+          <h3 className={styles['about-movie__title']}>{movie.name} {movie.year && movie.year}</h3>
           {movie.alternativeName !== null ? <p className={styles['about-movie__title-en']}>{movie.alternativeName} ({movie.year})</p> : <></>}
           <ul className={styles['about-movie__box-main']}>
             <DescriptionMovieItem title='Продолжительность' info={getTime(movie.movieLength)} />

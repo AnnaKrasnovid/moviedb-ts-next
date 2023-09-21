@@ -4,6 +4,8 @@ import Layout from '../../layout/Layout/Layout';
 import Actor from '../../components/Actor/Actor';
 import SimilarMovies from '../../components/SimilarMovies/SimilarMovies';
 import MovieCardSimple from '../../components/MovieCardSimple/MovieCardSimple';
+import GridMovies from '../../components/GridMovies/GridMovies';
+import Facts from '../../components/Facts/Facts';
 
 import api from '../../tools/api';
 import { checkEmptyObject } from '../../tools/utils';
@@ -15,17 +17,17 @@ function ActorPage({ actor }: any) {
       {checkEmptyObject(actor) ? (
         <div>Что-то пошло не так...</div>
       ) : (
-        <div>
+        <div className='page-actor'>
           <Actor actor={actor} />
-          <ul className='page-actor'>
+          <GridMovies>
             {actor.movies.map((item: any) => (
               <li key={item.id}>
                 <MovieCardSimple item={item} />
               </li>
             ))}
-          </ul>
+          </GridMovies>
+          {actor.facts.length > 0 && <Facts list={actor.facts} />}
         </div>
-
       )}
     </Layout>
   );

@@ -2,13 +2,14 @@
 
 .semilar-movies {
     // padding-top: 4rem;
-
+    
     &__title {
         font-weight: 400;
         font-size: 30px;
         line-height: 35px;
         margin-bottom: 2rem;
     }
+
 }
 
 @media screen and (max-width: $breakpoint-md) {

@@ -7,6 +7,7 @@ import ButtonText from '../../UI/ButtonText/ButtonText';
 import Filters from '../Filters/Filters';
 import InfiniteScroll from '../InfiniteScroll/InfiniteScroll';
 import Loader from '../../UI/Loader/Loader';
+import GridMovies from '../GridMovies/GridMovies';
 
 import { routes } from '../../settings/routes';
 import api from '../../tools/api';
@@ -17,7 +18,7 @@ import styles from './MoviesList.module.scss';
 
 interface MoviesListInt {
   list: any,
-  pages?: number| undefined
+  pages?: number | undefined
 }
 
 function MoviesList({ list, pages }: MoviesListInt) {
@@ -33,7 +34,7 @@ function MoviesList({ list, pages }: MoviesListInt) {
     const yearFilter = query.year ? `year=${query.year}` : '';
     const ratingFilter = query.rating ? `rating.kp=${query.rating}` : '';
 
-    const response = await api.filtersMovies(genreFilter, yearFilter, ratingFilter, movieType, page* MOVIES_LIMIT);   
+    const response = await api.filtersMovies(genreFilter, yearFilter, ratingFilter, movieType, page * MOVIES_LIMIT);
     setRenderList(response.docs);
     setPagesFilters(response.pages);
   }
@@ -57,10 +58,10 @@ function MoviesList({ list, pages }: MoviesListInt) {
           <>
             <Filters />
             <InfiniteScroll
-              condition={pagesFilters===1}
+              condition={pagesFilters === 1}
               callback={changePage}
             >
-              <ul className={styles['movies__list']}>
+             <GridMovies>
                 {renderList.length > 0 && renderList.map((item: any) => (
                   <li key={item.id}>
                     <Link href={`${routes.MOVIE}/${item.id}`} className='link'>
@@ -68,7 +69,7 @@ function MoviesList({ list, pages }: MoviesListInt) {
                     </Link>
                   </li>
                 ))}
-              </ul>
+             </GridMovies>
             </InfiniteScroll>
           </>
         ) : (

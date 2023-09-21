@@ -73,9 +73,9 @@ a {
 }
 
 .page-actor {
-  display: grid;
-  grid-template-columns: repeat(6,200px);
-  gap: 20px;
+ display: flex;
+ flex-direction: column;
+ gap: 3rem;
 }
 
 @media screen and (max-width: $breakpoint-md) {

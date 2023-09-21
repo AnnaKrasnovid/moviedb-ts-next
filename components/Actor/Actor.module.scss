@@ -3,12 +3,13 @@
 
 .page-actor {
     padding-top: 2rem;
-    max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .actor-info {
-    display: flex;
+    display: grid;
+    grid-template-columns: 0.4fr 1.6fr;
     gap: 24px;
 
     &__wrapper {
