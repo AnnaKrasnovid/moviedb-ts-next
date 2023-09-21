@@ -1,7 +1,7 @@
 export const routes = {
     INDEX: '/',
     MOVIES: '/movies',
-    MOVIE: '/movie',
+    MOVIE: '/film',
     ACTOR: '/name',
     GENRES: '/genres',
     SERIALS: '/serials',

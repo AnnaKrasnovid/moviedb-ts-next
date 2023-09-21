@@ -47,7 +47,7 @@ function SimilarMovies({ list }: SimilarMoviesInt) {
     useEffect(() => {
         getNumberSlides();
     }, [windowWidth]);
-console.log(list[1])
+    
     return (
         <div className={styles['semilar-movies']}>
             <p className='subtitle'>Похожее:</p>
@@ -56,20 +56,17 @@ console.log(list[1])
                     slidesPerView={slides}
                     spaceBetween={20}
                     slidesPerGroup={1}
-                    loop={true}
+                    loop={list.length >= slides ? true : false}
                     watchOverflow={true}
                 >
-                    {list.map((item: any) => (
-                        <SwiperSlide key={item.id}>
-                            {/* <Link href={`${routes.MOVIE}/${item.id}`} className={`link ${styles['semilar-movie']}`}>                                
-                                <img src={`https://st.kp.yandex.net/images/film_iphone/iphone360_${item.id}.jpg`} alt={`Постер: ${item.name || item.alternativeName}`} />
-                            </Link> */}
-                            <MovieCardSimple item={item}/>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-            </div>
+                {list.map((item: any) => (
+                    <SwiperSlide key={item.id}>
+                        <MovieCardSimple item={item} />
+                    </SwiperSlide>
+                ))}
+            </Swiper>
         </div>
+        </div >
     );
 }
 

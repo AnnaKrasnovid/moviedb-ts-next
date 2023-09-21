@@ -1,4 +1,4 @@
-@import './variables.scss'; 
+@import './variables.scss';
 
 * {
   box-sizing: border-box;
@@ -31,7 +31,7 @@ a {
   min-width: 320px;
   font-family: 'Roboto', Arial, sans-serif;
   font-weight: 400;
-  color: $color-white; 
+  color: $color-white;
   box-sizing: border-box;
   position: relative;
   min-height: 100vh;
@@ -58,24 +58,11 @@ a {
 
 .subtitle {
   font-weight: 400;
-    font-size: 28px;
-    line-height: 47px;
-    // margin: 0 0 5px;
-    border-bottom: 1px solid $color-primary;
-    margin-bottom: 2rem;
-}
-
-.page-movie {
-  padding-top: 4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
-}
-
-.page-actor {
- display: flex;
- flex-direction: column;
- gap: 3rem;
+  font-size: 28px;
+  line-height: 47px;
+  // margin: 0 0 5px;
+  border-bottom: 1px solid $color-primary;
+  margin-bottom: 2rem;
 }
 
 @media screen and (max-width: $breakpoint-md) {

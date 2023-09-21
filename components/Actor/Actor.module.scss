@@ -69,3 +69,10 @@
         }
     }
 }
+
+@media screen and (max-width: $breakpoint-md) {
+    .actor-info {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}

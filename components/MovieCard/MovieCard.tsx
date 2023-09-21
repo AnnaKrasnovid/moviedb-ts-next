@@ -26,7 +26,7 @@ function MovieCard({ item, type = 'middle' }: MovieCardInt) {
           )}
         </div>}
         <div className={styles['movie__info']}>
-          <p className={styles['movie__description']}> {item.year}, {item.genres[0].name}<br /> {item.countries[0] && item.countries[0].name} </p>         
+          <p className={styles['movie__description']}> {item.year}, {item.genres[0]?.name}<br /> {item.countries[0] && item.countries[0].name} </p>         
           <h3 className={styles['movie__title']}>{item.name}</h3>
         </div>
       </div>

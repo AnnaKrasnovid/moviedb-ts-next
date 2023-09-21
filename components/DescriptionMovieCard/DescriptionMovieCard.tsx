@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
 import Rating from '../Rating/Rating';
 import RatingRound from '../RatingRound/RatingRound';
 import DescriptionMovieItem from '../DescriptionMovieItem/DescriptionMovieItem';
 import DescriptionMovie from '../DescriptionMovie/DescriptionMovie';
 
-import { getTime, getInfo } from '../../tools/utils';
+import { getTime, getInfo, getMoviesType } from '../../tools/utils';
 
 import styles from './DescriptionMovieCard.module.scss';
 interface DescriptionMovieCardInt {
@@ -42,21 +43,26 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
           <div className={styles['about-movie__ratings']}>
             {movie.rating.kp > 0 && <RatingRound number={movie.rating.kp} />}
             {movie.rating.imdb > 0 && <RatingRound number={movie.rating.imdb} type='yellow' />}
-
           </div>
         </div>
         <div className={styles['about-movie__container']}>
-          <h3 className={styles['about-movie__title']}>{movie.name} {movie.year && movie.year}</h3>
-          {movie.alternativeName !== null ? <p className={styles['about-movie__title-en']}>{movie.alternativeName} ({movie.year})</p> : <></>}
+          <h3 className={styles['about-movie__title']}>{movie.name} {movie.year && (movie.year)}</h3>
+          {movie.alternativeName !== null ? <p className={styles['about-movie__title-en']}>{movie.alternativeName} {movie.year && (movie.year)}</p> : <></>}
           <ul className={styles['about-movie__box-main']}>
-            <DescriptionMovieItem title='Продолжительность' info={getTime(movie.movieLength)} />
-            <DescriptionMovieItem title='Год выпускa' info={movie.year} />
-            <DescriptionMovieItem title='Страна' info={getInfo(movie.countries)} />
-            <DescriptionMovieItem title='Жанр' info={getInfo(movie.genres)} />
-            <DescriptionMovieItem title='Актеры' info={getActors(movie.persons)} />
+            {movie.type === 'tv-series' ? (
+              movie.seriesLength && <DescriptionMovieItem title='Продолжительность' info={getTime(movie.seriesLength)} />
+            ) : (
+              movie.movieLength && <DescriptionMovieItem title='Продолжительность' info={getTime(movie.movieLength)} />
+            )}
+
+            {movie.movieLength && <DescriptionMovieItem title='Продолжительность' info={getTime(movie.seriesLength)} />}
+            {movie.year && <DescriptionMovieItem title='Год выпускa' info={movie.year} />}
+            {movie.countries && <DescriptionMovieItem title='Страна' info={getInfo(movie.countries)} />}
+            {movie.genres && <DescriptionMovieItem title='Жанр' info={getInfo(movie.genres)} />}
+            {movie.persons && <DescriptionMovieItem title='Актеры' info={getActors(movie.persons)} />}
           </ul>
           <DescriptionMovie
-            title={`О чем фильм “${movie.name} (${movie.year})”`}
+            title={`О чем фильм “${movie.name} ${movie.year ? (movie.year) : ''}”`}
             info={isShowAllText ? movie.description : movie.shortDescription}
             buttonText={!isShowAllText ? 'Ещё' : 'Скрыть'}
             callback={toggleAllText}

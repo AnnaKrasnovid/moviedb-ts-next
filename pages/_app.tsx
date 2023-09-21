@@ -33,7 +33,6 @@ export default function App({ Component, pageProps }: AppProps) {
     isOpenPopupMenu: isOpenPopupMenu,
     openPopupSearch: openPopupSearch,
     isOpenPopupSearch: isOpenPopupSearch,
-    // setIsOpenPopupSearch: setIsOpenPopupSearch,
     closePopupSearch:closePopupSearch
   } 
 
