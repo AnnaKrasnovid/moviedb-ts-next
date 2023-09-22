@@ -8,12 +8,10 @@ import { Autoplay, Pagination, Navigation } from 'swiper';
 
 import { routes } from '../../settings/routes';
 import { movies } from '../../assets/appData/movies';
-import { getRoundNumber } from '../../tools/utils';
 
 import styles from './Lead.module.scss';
 
 function Lead() {
-  console.log(movies)
   return (
     <Swiper
       loop={true}

@@ -14,10 +14,11 @@ import styles from './Compilation.module.scss';
 
 interface CompilationInt {
   title: string,
-  moviesList: Array<any>
+  moviesList: Array<any>,
+  link: string
 }
 
-function Compilation({ title, moviesList }: CompilationInt) {
+function Compilation({ title, moviesList, link }: CompilationInt) {
   const windowWidth = useWindowWidth();
   const [slides, setSlides] = useState(0);
 
@@ -41,8 +42,12 @@ function Compilation({ title, moviesList }: CompilationInt) {
 
   return (
     <section className={styles['compilation']}>
-      <h2 className={styles['compilation__title']}>{title}</h2>
-      <div className={styles['compilation__movies']}>        
+      <h2 className='subtitle'>
+        <Link href={link} className='link'>
+          {title}
+        </Link>
+      </h2>
+      <div className={styles['compilation__movies']}>
         {moviesList ? (
           <Swiper
             slidesPerView={slides}
@@ -66,7 +71,7 @@ function Compilation({ title, moviesList }: CompilationInt) {
             ))}
           </Swiper>
         ) : <Loader />
-        }       
+        }
       </div>
     </section>
   );

@@ -16,7 +16,7 @@ function DescriptionMovie({ title, info, buttonText, callback }: DescriptionMovi
                 <p className={styles['description-movie__title']}>{title}</p>
                 <p className={styles['description-movie__info']}>{info}</p>
             </div>
-            <ButtonText text={buttonText} callback={callback} />
+            {/* <ButtonText text={buttonText} callback={callback} /> */}
         </div>
     );
 }

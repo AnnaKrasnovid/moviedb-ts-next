@@ -1,29 +1,8 @@
 @import './variables.scss';
 
 .swiper-slide {
-    overflow: hidden;
-    // border-radius: 12px;
+    overflow: hidden;   
 }
-
-.swiper-slide img {
-    // display: block;
-    // width: 100%;
-    // height: 100%;
-    // object-fit: cover;
-}
-
-.swiper {
-    /*исправлено, в др блоке  position relative  родит блоку надо назначать*/
-    /* position: static;  */
-}
-
-/* .mySwiper {
-    width: 100%;
-    height: 100%;
-    border: 2px solid #2B2B2B;
-    border-radius: 12px;
-    position: relative;
-} */
 
 /* стили для кнопок исправлены*/
 .swiper-button-prev {
@@ -81,7 +60,6 @@
 }
 
 .swiper-pagination-bullet-active {
-    /*background-color: #81BECB;*/
     background-color: $color-white;
     opacity: 0.5;
     width: 8px;

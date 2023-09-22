@@ -106,18 +106,11 @@
       line-height: 16px;
     }
 
-    &__box-main {
-      // padding: 10px;
-    }
-
     &__box-info-main {
       grid-template-columns: 1fr 1fr;
     }
 
-    &__img {
-      width: 288px;
-      height: 449px;
-    }
+    
 
     &__container-rating {
       height: 98px;
@@ -139,6 +132,11 @@
     &__description {
       column-gap: 30px;
       grid-template-columns: 1fr;
+    }
+    &__img {
+      max-width: 50%;
+      height: auto;
+      justify-self: center;
     }
   }
 }

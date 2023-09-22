@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 
 .compilation {
-  padding: 30px 0 0;
+  // padding: 30px 0 0;
   position: relative;
 
   &__title {
@@ -14,8 +14,6 @@
 
   &__movies {
     margin: 0;
-    padding: 40px 0 0;
-    border-top: 1px solid $color-primary;    
     display: flex;
     align-items:center ;
     justify-content: center;
@@ -25,7 +23,7 @@
 
 @media screen and (max-width: $breakpoint-lg) {
   .compilation {
-    padding: 15px 0 15px;
+    // padding: 15px 0 15px;
   }
 }
 
@@ -34,10 +32,6 @@
     &__title {
       font-size: 18px;
       margin-bottom: 0;
-    }
-
-    &__movies {
-      padding-top: 20px;
     }
   }
 }

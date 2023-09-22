@@ -46,8 +46,8 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
             height={500}
           />
           <div className={styles['about-movie__ratings']}>
-            {movie.rating.kp > 0 && <RatingRound number={movie.rating.kp} />}
-            {movie.rating.imdb > 0 && <RatingRound number={movie.rating.imdb} type='yellow' />}
+            {movie.rating?.kp > 0 && <RatingRound number={movie.rating.kp} />}
+            {movie.rating?.imdb > 0 && <RatingRound number={movie.rating.imdb} type='yellow' />}
           </div>
         </div>
         <div className={styles['about-movie__container']}>
@@ -59,8 +59,6 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
             ) : (
               movie.movieLength && <DescriptionMovieItem title='Продолжительность' info={getTime(movie.movieLength)} />
             )}
-
-            {movie.movieLength && <DescriptionMovieItem title='Продолжительность' info={getTime(movie.seriesLength)} />}
             {movie.year && <DescriptionMovieItem title='Год выпускa' info={movie.year} />}
             {movie.countries && <DescriptionMovieItem title='Страна' info={getInfo(movie.countries)} />}
             {movie.genres && <DescriptionMovieItem title='Жанр' info={getInfo(movie.genres)} />}
@@ -68,7 +66,7 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
           </ul>
           <DescriptionMovie
             title={`О чем фильм “${movie.name}” ${movie.year ? `(${movie.year})` : ''}`}
-            info={isShowAllText ? movie.description : movie.shortDescription}
+            info={movie.description}
             buttonText={!isShowAllText ? 'Ещё' : 'Скрыть'}
             callback={toggleAllText}
           />

@@ -14,13 +14,6 @@ class Api {
       .then(this._checkResponseStatus)
   }
 
-  // getMovieId(id) {
-  //   return fetch(`${this._baseUrl}/v1.3/movie?search=${id}&field=id&selectFields=id name alternativeName year description shortDescription rating.kp videos.trailers.url persons.photo persons.profession persons.name movieLength poster.url countries.name genres.name persons.id rating.imdb&token=${this._key}`, {
-  //     method: 'GET',
-  //   })
-  //     .then(this._checkResponseStatus);
-  // }
-
   getMovieId(id) {
     return fetch(`${this._baseUrl}/v1.3/movie/${id}?token=${this._key}`, {
       method: 'GET',
@@ -52,6 +45,7 @@ class Api {
     })
       .then(this._checkResponseStatus);
   }
+
   getSeries(years) {
     return fetch(`${this._baseUrl}/v1.3/movie?type=tv-series&year=${years}&rating.kp=8.3-10&limit=${MOVIES_LIMIT}&token=${this._key}`, {
       method: 'GET',
@@ -68,6 +62,13 @@ class Api {
 
   filtersMovies(genre = '', years = 'year=2000-2023', rating = 'rating.kp=7-10', movieType , limit = 24) {
     return fetch(`${this._baseUrl}/v1.3/movie?${movieType}&${genre}&${years}&${rating}&limit=${limit}&sort=year&sort=rating.kp&page=1&token=${this._key}`, {
+      method: 'GET',
+    })
+      .then(this._checkResponseStatus);
+  }
+
+  getMovieRandom() {
+    return fetch(`${this._baseUrl}/v1.3/movie/random?token=${this._key}`, {
       method: 'GET',
     })
       .then(this._checkResponseStatus);
