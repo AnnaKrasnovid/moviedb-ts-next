@@ -13,6 +13,7 @@ import { routes } from '../../settings/routes';
 import api from '../../tools/api';
 import { getMoviesType } from '../../tools/utils';
 import { MOVIES_LIMIT } from '../../settings/constants';
+import { checkEmptyObject } from '../../tools/utils';
 
 import styles from './MoviesList.module.scss';
 
@@ -26,13 +27,13 @@ function MoviesList({ list, pages }: MoviesListInt) {
   const [renderList, setRenderList] = useState(list);
   const [page, setPage] = useState<number>(1);
   const [pagesFilters, setPagesFilters] = useState<any>(pages);
-  const [movieType, setMovieType] = useState(`type=${getMoviesType(pathname)}`);
   const [isFirstRequest, setIsFirstRequest] = useState(true);
 
   async function getfiltersMovies() {
     const genreFilter = query.genre ? `genres.name=${query.genre}` : '';
     const yearFilter = query.year ? `year=${query.year}` : '';
     const ratingFilter = query.rating ? `rating.kp=${query.rating}` : '';
+    const movieType = `type=${getMoviesType(pathname)}`;
 
     const response = await api.filtersMovies(genreFilter, yearFilter, ratingFilter, movieType, page * MOVIES_LIMIT);
     setRenderList(response.docs);
@@ -43,12 +44,19 @@ function MoviesList({ list, pages }: MoviesListInt) {
     setPage(page + 1);
   }
 
-  useEffect(() => {
-    getfiltersMovies();
-  }, [query, page, movieType])
 
   useEffect(() => {
-    setPage(1);
+    if (!checkEmptyObject(query)) {
+      getfiltersMovies();
+    } else if (page > 1 && checkEmptyObject(query)) {
+      getfiltersMovies();
+    }
+  }, [query, page])
+
+  useEffect(() => {
+    if (page !== 1 && checkEmptyObject(query)) {
+      setPage(1);
+    }
   }, [query])
 
   return (
@@ -61,7 +69,7 @@ function MoviesList({ list, pages }: MoviesListInt) {
               condition={pagesFilters === 1}
               callback={changePage}
             >
-             <GridMovies>
+              <GridMovies>
                 {renderList.length > 0 && renderList.map((item: any) => (
                   <li key={item.id}>
                     <Link href={`${routes.MOVIE}/${item.id}`} className='link'>
@@ -69,7 +77,7 @@ function MoviesList({ list, pages }: MoviesListInt) {
                     </Link>
                   </li>
                 ))}
-             </GridMovies>
+              </GridMovies>
             </InfiniteScroll>
           </>
         ) : (

@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-
-import { Swiper, SwiperSlide } from 'swiper/react';
-// import { Navigation } from 'swiper';
+import {  SwiperSlide } from 'swiper/react';
 
 import MovieCard from '../MovieCard/MovieCard';
 import Loader from '../../UI/Loader/Loader';
+import Carousel from '../Carousel/Carousel';
 
 import { routes } from '../../settings/routes';
-import { useWindowWidth } from '../../hooks/useWindowWidth';
 
 import styles from './Compilation.module.scss';
 
@@ -19,27 +17,6 @@ interface CompilationInt {
 }
 
 function Compilation({ title, moviesList, link }: CompilationInt) {
-  const windowWidth = useWindowWidth();
-  const [slides, setSlides] = useState(0);
-
-  function getNumberSlides() {
-    if (windowWidth > 1365) {
-      setSlides(6);
-    } else if (windowWidth > 1023) {
-      setSlides(5);
-    } else if (windowWidth > 767) {
-      setSlides(4);
-    } else if (windowWidth > 500) {
-      setSlides(3);
-    } else if (windowWidth > 320) {
-      setSlides(2);
-    }
-  }
-
-  useEffect(() => {
-    getNumberSlides();
-  }, [windowWidth]);
-
   return (
     <section className={styles['compilation']}>
       <h2 className='subtitle'>
@@ -49,19 +26,7 @@ function Compilation({ title, moviesList, link }: CompilationInt) {
       </h2>
       <div className={styles['compilation__movies']}>
         {moviesList ? (
-          <Swiper
-            slidesPerView={slides}
-            spaceBetween={20}
-            slidesPerGroup={2}
-            // loop={true}
-            watchOverflow={true}
-            // navigation={{
-            //   nextEl: '.next-slide-compilation',
-            //   prevEl: '.prev-slide-compilation',
-            // }}
-            // modules={[Navigation]}
-            className="compilation-swiper"
-          >
+          <Carousel loop={false} className="compilation-swiper">
             {moviesList && moviesList.map((item) => (
               <SwiperSlide key={item.id}>
                 <Link href={`${routes.MOVIE}/${item.id}`} className='link link-card'>
@@ -69,8 +34,10 @@ function Compilation({ title, moviesList, link }: CompilationInt) {
                 </Link>
               </SwiperSlide>
             ))}
-          </Swiper>
-        ) : <Loader />
+          </Carousel>
+        ) : (
+          <Loader />
+        )
         }
       </div>
     </section>

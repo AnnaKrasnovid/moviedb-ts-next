@@ -1,10 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { SwiperSlide } from 'swiper/react';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-//@ts-ignore
-import { Autoplay, Pagination, Navigation } from 'swiper';
+import Carousel from '../Carousel/Carousel';
 
 import { routes } from '../../settings/routes';
 import { movies } from '../../assets/appData/movies';
@@ -13,23 +12,7 @@ import styles from './Lead.module.scss';
 
 function Lead() {
   return (
-    <Swiper
-      loop={true}
-      loopedSlides={3}
-      // loopAdditionalSlides={3}
-      spaceBetween={30}
-      centeredSlides={true}
-      autoplay={{
-        delay: 3000,
-        disableOnInteraction: false,
-      }}
-      speed={1500}
-      pagination={{
-        clickable: true,
-      }}
-      modules={[Autoplay, Pagination, Navigation]}
-      className={styles['section-lead']}
-    >
+    <Carousel slides={1} className={styles['section-lead']} navigation={true} autoplay={true}>
       {movies.map((item, index) => (
         <SwiperSlide key={index}>
           <Link href={`${routes.MOVIE}/${item.id}`}>
@@ -38,14 +21,13 @@ function Lead() {
               <div className={styles['movie-banner__container']}>
                 <div className={styles['movie-banner__logo']}>
                   <img src={item.logo.url} alt='Постер к фильму' width={50} height={20} />
-                </div>               
+                </div>
               </div>
             </div>
           </Link>
         </SwiperSlide>
       ))}
-    </Swiper>
-
+    </Carousel>
   );
 }
 

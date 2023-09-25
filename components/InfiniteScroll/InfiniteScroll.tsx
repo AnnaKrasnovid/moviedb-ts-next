@@ -30,9 +30,8 @@ function InfiniteScroll({ children, condition, callback }: InfiniteScrollInt) {
             setLoading(false);
             return
         };
-
-        setTimeout(() => {
-            callback();
+        callback();
+        setTimeout(() => {            
             setLoading(false);
         }, 500);
     }

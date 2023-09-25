@@ -13,6 +13,24 @@ function Person({ actor }: any) {
   const [movies, setMovies] = useState(12);
   const [renderList, setRenderList] = useState(actor.movies);
 
+  // function getList() {
+  //   let arr: Array<number> = [];
+  //   let movies: any = []
+
+  //   // actor.movies.map((item: any) => {
+  //   //   arr.push(item.id)
+  //   // })
+  //    const uniqueId = Array.from(new Set(arr))
+
+  //   const res=actor.movies.map((item: any, index: number) => {
+  //    const reult= uniqueId.find((i)=> item.id===i)
+  //     return reult
+  //   })
+  //   console.log( res)
+  // }
+
+  // getList()
+
   function showMoreMoviess() {
     setMovies(movies + 6);
   }
@@ -37,7 +55,7 @@ function Person({ actor }: any) {
                 </li>
               ))}
             </GridMovies>
-            <Button title='Показать еще' callback={showMoreMoviess} className={styles['page-actor-button']}/>
+            <Button title='Показать еще' callback={showMoreMoviess} className={styles['page-actor-button']} />
           </div>
           {actor.facts.length > 0 && <Facts list={actor.facts} />}
         </div>
