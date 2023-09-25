@@ -7,13 +7,13 @@ import styles from './Movie.module.scss';
 
 function Movie({ movie }: any) {
   const actors = movie.persons.filter((i: any) => i.profession === 'актеры');
-  console.log(movie)
+  
   return (   
       <div className={styles['page-movie']}>
         <DescriptionMovieCard movie={movie} />
         <ActorsList list={actors} />
         {movie.similarMovies.length > 0 && <SimilarMovies list={movie.similarMovies} />}
-        {movie.facts.length > 0 && <Facts list={movie.facts} />}
+        {movie.facts?.length > 0 && <Facts list={movie.facts} />}
       </div>  
   );
 }

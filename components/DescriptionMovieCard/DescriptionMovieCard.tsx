@@ -6,17 +6,13 @@ import DescriptionMovieItem from '../DescriptionMovieItem/DescriptionMovieItem';
 import DescriptionMovie from '../DescriptionMovie/DescriptionMovie';
 
 import { getTime, getInfo, getMoviesType } from '../../tools/utils';
+import { MovieItemInt,ActorSimpleItemInt } from '../../settings/interfaces';
 
 import styles from './DescriptionMovieCard.module.scss';
-interface DescriptionMovieCardInt {
-  movie: any
-}
 
-interface ActorInt {
-  id: number,
-  name: string,
-  photo: string,
-  profession: string
+
+interface DescriptionMovieCardInt {
+  movie: MovieItemInt
 }
 
 function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
@@ -25,11 +21,11 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
   function toggleAllText() {
     setIsShowAllText(!isShowAllText);
   }
-
-  function getActors(list: Array<ActorInt>) {
+  console.log(movie)
+  function getActors(list: Array<ActorSimpleItemInt>) {
     if (list) {
       let actors: Array<string> = [];
-      list.map((i: ActorInt) => i.profession === 'актеры' ? actors.push(i.name) : '');
+      list.map((i: ActorSimpleItemInt) => i.profession === 'актеры' ? actors.push(i.name) : '');
       return actors.join(", ");
     }
   }
@@ -64,12 +60,12 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
             {movie.genres && <DescriptionMovieItem title='Жанр' info={getInfo(movie.genres)} />}
             {movie.persons && <DescriptionMovieItem title='Актеры' info={getActors(movie.persons)} />}
           </ul>
-          <DescriptionMovie
+          {movie.description && <DescriptionMovie
             title={`О чем фильм “${movie.name}” ${movie.year ? `(${movie.year})` : ''}`}
             info={movie.description}
             buttonText={!isShowAllText ? 'Ещё' : 'Скрыть'}
             callback={toggleAllText}
-          />
+          />}
         </div>
       </div>
     </section>

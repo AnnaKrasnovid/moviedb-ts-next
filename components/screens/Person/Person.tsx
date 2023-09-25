@@ -57,7 +57,7 @@ function Person({ actor }: any) {
             </GridMovies>
             <Button title='Показать еще' callback={showMoreMoviess} className={styles['page-actor-button']} />
           </div>
-          {actor.facts.length > 0 && <Facts list={actor.facts} />}
+          {actor.facts?.length > 0 && <Facts list={actor.facts} />}
         </div>
       )}
     </>
