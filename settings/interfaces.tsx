@@ -63,10 +63,53 @@ export interface ValueInt {
     value: string,
 }
 
-export interface MovieSimpleInt {
+export interface MovieBaseInt {
     alternativeName: string | null,
+    countries: Array<{ name: string }>,
     description: string | null,
-    enProfession: string | null,
+    enName: string | null,
+    externalId: {
+        imdb: string | any,//null
+        kpHD: string | any,//null
+    },
+    genres: Array<{ name: string }>,
+    id: number,
+    logo?: {
+        url: string | null,
+    },
+    movieLength: number | null,
+    name: string,
+    names: Array<{ name: string }>,
+    poster: {
+        previewUrl: string | null,
+        url: string | null,
+    },
+    rating: {
+        await: number,
+        filmCritics: number,
+        imdb: number,
+        kp: number,
+        russianFilmCritics: number,
+    },
+    shortDescription: string | null,
+    type: string,
+    votes: {
+        kp: number | null,
+        imdb: number | null,
+        filmCritics: number | null,
+        russianFilmCritics: number | null,
+        await: number | null
+    },
+    watchability: any,
+    year: number,
+    releaseYears?:
+    { start: number, end: number }
+}
+
+export interface MovieSimpleInt {
+    alternativeName?: string | null,
+    description: string | null,
+    enProfession?: string | null,
     general: boolean,
     id: number,
     name: string | null,
@@ -136,66 +179,36 @@ export interface FactsInt {
     list: Array<ValueInt>
 }
 
-export interface MovieItemInt {
+export interface MovieItemInt extends MovieBaseInt {
     ageRating: number | null,
-    alternativeName: string,
     backdrop: { previewUrl: string | null, url: string | null },
     budget: {
         value: number,
         currency: string
     },
-    countries: Array<{ name: string }>,
     deletedAt: any, // null
-    description: string | null,
     distributors: {
         distributor: any,//null
         distributorRelease: any,// null
-
     }
-    enName: string | null,
-    externalId: {
-        imdb: any,//null
-        kpHD: any,//null
-    },
     facts: Array<{ value: string }>,
     fees: {
         russia: any,
         usa: any,
         world: any,
     },
-    genres: Array<{ name: string }>,
-    id: number,
     images: { framesCount: number },
     imagesInfo: { framesCount: number }
     isSeries: boolean,
     lists: Array<any>,
-    logo: {
-        url: string | null,
-    },
-    movieLength: number | null,
-    name: string,
-    names: Array<{ name: string }>,
     persons: Array<ActorSimpleItemInt>,
-    poster: {
-        previewUrl: string | null,
-        url: string | null,
-    },
     premiere: any,
     productionCompanies: Array<any>,
-    rating: {
-        await: number,
-        filmCritics: number,
-        imdb: number,
-        kp: number,
-        russianFilmCritics: number,
-    },
     ratingMpaa: number | null,
-    releaseYears:
-    { start: number, end: number }
+
     seasonsInfo: Array<any>,
     sequelsAndPrequels: Array<any>
     seriesLength: number | null,
-    shortDescription: string | null,
     similarMovies: Array<MovieSemilarItemInt>,
     slogan: string,
     spokenLanguages: {
@@ -208,7 +221,6 @@ export interface MovieItemInt {
     top10: number | null,
     top250: number | null,
     totalSeriesLength: number | null,
-    type: string,
     typeNumber: number,
     updateDates: Array<string>,
     updatedAt: string,
@@ -221,17 +233,52 @@ export interface MovieItemInt {
         }>,
         teasers: Array<any>
     },
-    votes: {
-        kp: number | null,
-        imdb: number | null,
-        filmCritics: number | null,
-        russianFilmCritics: number | null,
-        await: number | null
-    },
-    watchability: any,
-    year: number
-
-
 }
 
+export interface MovieCardSimpleInt {
+    item: MovieSemilarItemInt
+}
+
+export interface MovieCardInt {
+    movie: MovieItemInt
+}
+
+export interface SimilarMovieCardInt {
+    alternativeName: string,
+    enName: string | null,
+    id: number,
+    name: string,
+    poster: {
+        previewUrl: string,
+        url: string
+    },
+    type: string
+}
+
+export interface SimilarMoviesInt {
+    list: Array<SimilarMovieCardInt>
+}
+
+export interface MoviesInfoInt{
+    docs: Array<MovieBaseInt>,
+    limit: number,
+    page: number,
+    pages: number,
+    total: number,
+  }
+
+  export interface CartoonsPageInt {
+    cartoons:  MoviesInfoInt,
+  }
+
+//   export interface CartoonsPageInt {
+//     cartoons:  MoviesInfoInt,
+//   }
+  
+  export interface MainPageInt {
+    movieRating: MoviesInfoInt,
+    cartoons:  MoviesInfoInt,
+    series:  MoviesInfoInt,
+    movieRandom: MovieItemInt
+  }
 

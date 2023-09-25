@@ -14,21 +14,21 @@ import api from '../../tools/api';
 import { getMoviesType } from '../../tools/utils';
 import { MOVIES_LIMIT } from '../../settings/constants';
 import { checkEmptyObject } from '../../tools/utils';
+import { MovieBaseInt } from '../../settings/interfaces'; 
 
 import styles from './MoviesList.module.scss';
 
 interface MoviesListInt {
-  list: any,
+  list: Array<MovieBaseInt>,
   pages?: number | undefined
 }
 
 function MoviesList({ list, pages }: MoviesListInt) {
   const { pathname, back, query } = useRouter();
-  const [renderList, setRenderList] = useState(list);
+  const [renderList, setRenderList] = useState<Array<MovieBaseInt>>(list);
   const [page, setPage] = useState<number>(1);
   const [pagesFilters, setPagesFilters] = useState<any>(pages);
-  const [isFirstRequest, setIsFirstRequest] = useState(true);
-
+  
   async function getfiltersMovies() {
     const genreFilter = query.genre ? `genres.name=${query.genre}` : '';
     const yearFilter = query.year ? `year=${query.year}` : '';
@@ -43,7 +43,6 @@ function MoviesList({ list, pages }: MoviesListInt) {
   function changePage() {
     setPage(page + 1);
   }
-
 
   useEffect(() => {
     if (!checkEmptyObject(query)) {
@@ -70,7 +69,7 @@ function MoviesList({ list, pages }: MoviesListInt) {
               callback={changePage}
             >
               <GridMovies>
-                {renderList.length > 0 && renderList.map((item: any) => (
+                {renderList.length > 0 && renderList.map((item: MovieBaseInt) => (
                   <li key={item.id}>
                     <Link href={`${routes.MOVIE}/${item.id}`} className='link'>
                       <MovieCard item={item} />

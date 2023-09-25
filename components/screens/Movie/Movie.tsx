@@ -3,11 +3,13 @@ import ActorsList from '../../ActorsList/ActorsList';
 import SimilarMovies from '../../SimilarMovies/SimilarMovies';
 import Facts from '../../Facts/Facts';
 
+import { MovieCardInt,ActorSimpleItemInt } from '../../../settings/interfaces';
+
 import styles from './Movie.module.scss';
 
-function Movie({ movie }: any) {
-  const actors = movie.persons.filter((i: any) => i.profession === 'актеры');
-  
+function Movie({ movie }: MovieCardInt) {
+  const actors = movie.persons.filter((i: ActorSimpleItemInt) => i.profession === 'актеры');
+console.log(movie.similarMovies)
   return (   
       <div className={styles['page-movie']}>
         <DescriptionMovieCard movie={movie} />
@@ -17,6 +19,5 @@ function Movie({ movie }: any) {
       </div>  
   );
 }
-
 
 export default Movie;

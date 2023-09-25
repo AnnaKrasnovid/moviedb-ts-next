@@ -1,12 +1,11 @@
-import { GetServerSidePropsContext } from 'next';
-
 import Layout from '../layout/Layout/Layout';
 import MoviesList from '../components/MoviesList/MoviesList';
 
-import api from '../tools/api';
-import { mov } from '../assets/mockData/movies';
+import { MoviesPageInt } from '../settings/interfaces';
 
-function MoviesPage({ movies }: any) {
+import api from '../tools/api';
+
+function MoviesPage({ movies }: MoviesPageInt) {
     return (
         <Layout>
             <MoviesList list={movies.docs} pages={movies.pages} />
@@ -14,7 +13,7 @@ function MoviesPage({ movies }: any) {
     );
 }
 
-export async function getServerSideProps(params: GetServerSidePropsContext) {
+export async function getServerSideProps() {
     let movies: any = {};
 
     try {

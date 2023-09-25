@@ -5,10 +5,12 @@ import Compilation from '../../Сompilation/Compilation';
 import DescriptionMovieCard from '../../DescriptionMovieCard/DescriptionMovieCard';
 
 import { routes } from '../../../settings/routes';
+import {  MainPageInt } from '../../../settings/interfaces';
 
 import styles from './Main.module.scss';
 
-function Main({ movieRating, cartoons, series, movieRandom }: any) {
+function Main({ movieRating, cartoons, series, movieRandom }: MainPageInt) {
+  console.log(movieRandom)
   return (
     <>
       <Lead />

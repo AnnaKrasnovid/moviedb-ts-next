@@ -10,19 +10,20 @@ import { useDebounce } from '../../hooks/useDebounce';
 import api from '../../tools/api';
 import { routes } from '../../settings/routes';
 import { ModalsContext } from '../../context/ModalsContext';
+import { MovieBaseInt } from '../../settings/interfaces';
 import styles from './SearchForm.module.scss';
 
 function SearchForm() {
   const [searchValue, setSearchValue] = useState('');
   const { openPopupSearch, closePopupSearch } = useContext(ModalsContext)
-  const [moviesList, setMoviesList] = useState<any>([]);
+  const [moviesList, setMoviesList] = useState<Array<MovieBaseInt>>([]);
   const [textResult, setTextResult] = useState<string>('');
 
   const searchMovie = useDebounce(async () => {
     try {
       const response = await api.searchMovie(searchValue);
       setMoviesList(response.docs);
-      response.docs.length>0 ? setTextResult('ничего не найдено') : ''
+      response.docs.length > 0 ? setTextResult('ничего не найдено') : ''
     }
     catch (error) {
       console.log(error);
@@ -37,7 +38,7 @@ function SearchForm() {
 
   return (
     <section className={styles['section-search']}>
-      <ButtonClose callback={closePopupSearch} className={styles['section-search-button']}/>
+      <ButtonClose callback={closePopupSearch} className={styles['section-search-button']} />
       <form className={styles['search']} noValidate onClick={openPopupSearch}>
         <InputSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       </form>
@@ -46,13 +47,13 @@ function SearchForm() {
           {moviesList.map((item: any) => (
             <li key={item.id} onClick={closePopupSearch}>
               <Link href={`${routes.MOVIE}/${item.id}`} className='link'>
-                <MovieCard item={item}  />
+                <MovieCard item={item} />
               </Link>
             </li>
           ))}
         </GridMovies>
       ) : (
-         <p>{textResult}</p>
+        <p>{textResult}</p>
       )}
     </section >
   );

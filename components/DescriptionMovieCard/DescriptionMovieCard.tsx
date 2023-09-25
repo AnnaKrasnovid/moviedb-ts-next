@@ -6,7 +6,7 @@ import DescriptionMovieItem from '../DescriptionMovieItem/DescriptionMovieItem';
 import DescriptionMovie from '../DescriptionMovie/DescriptionMovie';
 
 import { getTime, getInfo, getMoviesType } from '../../tools/utils';
-import { MovieItemInt,ActorSimpleItemInt } from '../../settings/interfaces';
+import { MovieItemInt, ActorSimpleItemInt } from '../../settings/interfaces';
 
 import styles from './DescriptionMovieCard.module.scss';
 
@@ -42,8 +42,8 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
             height={500}
           />
           <div className={styles['about-movie__ratings']}>
-            {movie.rating?.kp > 0 && <RatingRound number={movie.rating.kp} />}
-            {movie.rating?.imdb > 0 && <RatingRound number={movie.rating.imdb} type='yellow' />}
+            {movie.rating.kp > 0 && <RatingRound number={movie.rating.kp} />}
+            {movie.rating.imdb > 0 && <RatingRound number={movie.rating.imdb} type='yellow' />}
           </div>
         </div>
         <div className={styles['about-movie__container']}>

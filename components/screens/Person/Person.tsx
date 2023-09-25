@@ -7,12 +7,17 @@ import Facts from '../../Facts/Facts';
 import Button from '../../../UI/Button/Button';
 
 import { checkEmptyObject } from '../../../tools/utils';
+import { ActorItemInt, MovieSimpleInt } from '../../../settings/interfaces';
 import styles from './Person.module.scss';
 
-function Person({ actor }: any) {
-  const [movies, setMovies] = useState(12);
-  const [renderList, setRenderList] = useState(actor.movies);
+interface PersonPageInt {
+  actor: ActorItemInt,
+}
 
+function Person({ actor }: PersonPageInt) {
+  const [movies, setMovies] = useState(12);
+  const [renderList, setRenderList] = useState<Array<MovieSimpleInt>>([]);
+  
   // function getList() {
   //   let arr: Array<number> = [];
   //   let movies: any = []
@@ -34,11 +39,16 @@ function Person({ actor }: any) {
   function showMoreMoviess() {
     setMovies(movies + 6);
   }
+  useEffect(() => {
+    setRenderList(actor.movies)
+  }, [])
 
   useEffect(() => {
-    setRenderList(actor.movies.slice(0, movies))
+    if (actor.movies.length > 0) {
+      setRenderList(actor.movies.slice(0, movies))
+    }
   }, [movies])
-
+console.log(renderList)
   return (
     <>
       {checkEmptyObject(actor) ? (
@@ -55,9 +65,9 @@ function Person({ actor }: any) {
                 </li>
               ))}
             </GridMovies>
-            <Button title='Показать еще' callback={showMoreMoviess} className={styles['page-actor-button']} />
+            {renderList.length < actor.movies.length && <Button title='Показать еще' callback={showMoreMoviess} className={styles['page-actor-button']} />}
           </div>
-          {actor.facts?.length > 0 && <Facts list={actor.facts} />}
+          {actor.facts && <Facts list={actor.facts} />}
         </div>
       )}
     </>

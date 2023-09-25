@@ -1,12 +1,15 @@
 import Layout from '../layout/Layout/Layout';
 import MoviesList from '../components/MoviesList/MoviesList';
 
+import { CartoonsPageInt } from '../settings/interfaces';
+
 import api from '../tools/api';
 
-function CartoonsPage({ cartoons }: any) {
+function CartoonsPage({ cartoons }: CartoonsPageInt) {
+    console.log(cartoons)
     return (
         <Layout>
-            <MoviesList list={cartoons.docs} pages={cartoons.pages}/>
+            <MoviesList list={cartoons.docs} pages={cartoons.pages} />
         </Layout>
     );
 }
@@ -19,7 +22,7 @@ export async function getServerSideProps() {
     } catch (error) {
         console.log(error);
     }
-    
+
     return {
         props: { cartoons },
     }

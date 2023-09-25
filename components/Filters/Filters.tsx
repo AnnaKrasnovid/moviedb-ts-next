@@ -13,6 +13,10 @@ interface FiltersInt {
     callback: (genre: string, years: string, rating: string) => void,
 }
 
+interface FilterInt {
+    id: string, title: string, value: string
+}
+
 function Filters() {
     const router = useRouter();
     const [genre, setGenre] = useState<any>('');
@@ -22,8 +26,8 @@ function Filters() {
     const [defaultValueRating, setDefaultValueRating] = useState<string>('');
     const [defaultValueYears, setDefaultValueYears] = useState<string>('');
     // const [sort, setSort] = useState<string>('');
-    //   console.log(useRouter())
-    const selectGenresList = [
+    
+    const selectGenresList: Array<FilterInt> = [
         { id: '0', title: 'Все', value: '' },
         { id: '1', title: 'Боевик', value: 'боевик' },
         { id: '2', title: 'Военный', value: 'военный' },
@@ -39,7 +43,7 @@ function Filters() {
         { id: '12', title: 'Фэнтези', value: 'фэнтези' },
     ]
 
-    const selectYearsList = [
+    const selectYearsList:Array<FilterInt> = [
         { id: '0', title: 'Все годы', value: '' },
         { id: '1', title: `2022-${getCurrentYear()}`, value: `2022-${getCurrentYear()}` },
         { id: '2', title: '2020-2023', value: '2020-2023' },
@@ -52,7 +56,7 @@ function Filters() {
         { id: '9', title: 'до 1960', value: `1900-1960` },
     ]
 
-    const selectRatingList = [
+    const selectRatingList:Array<FilterInt> = [
         { id: '0', title: 'Любой рейтинг', value: '' },
         { id: '1', title: 'Больше 9', value: '9-10' },
         { id: '2', title: 'Больше 8', value: '8-10' },
@@ -61,7 +65,7 @@ function Filters() {
         { id: '5', title: 'Больше 5', value: '5-10' },
     ]
 
-    const selectSortList = [
+    const selectSortList:Array<FilterInt> = [
         { id: '0', title: 'Рекомендуемые', value: '-' },
         { id: '1', title: 'По рейтингу', value: '' },
         { id: '2', title: 'По дате выхода', value: '' },
@@ -74,8 +78,8 @@ function Filters() {
         router.push(router);
     }
 
-    function getGenre(list: any, param: (string| undefined), setState: any) {
-        list.find((i: any, index: number) => {
+    function getGenre(list: Array<FilterInt>, param: (string| undefined), setState: any) {
+        list.find((i: FilterInt, index: number) => {
             if (i.value === param) {
                 setState(list[index].title)
             } else if (param === undefined) {

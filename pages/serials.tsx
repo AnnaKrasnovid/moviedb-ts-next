@@ -1,27 +1,29 @@
 import Layout from '../layout/Layout/Layout';
 import MoviesList from '../components/MoviesList/MoviesList';
 
+import { MoviesPageInt } from '../settings/interfaces';
+
 import api from '../tools/api';
 
-function SerialsPage({serials}:any) {  
+function SerialsPage({movies}:MoviesPageInt) {  
     return (
         <Layout>
-            <MoviesList list={serials.docs} pages={serials.pages}/>
+            <MoviesList list={movies.docs} pages={movies.pages}/>
         </Layout>
     );
 }
 
 export async function getServerSideProps() {
-    let serials: any = {};          
+    let movies: any = {};          
 
     try {
-        serials = await api.getMovies('tv-series', '2000-2023'); 
+        movies = await api.getMovies('tv-series', '2000-2023'); 
       } catch (error) {
         console.log(error);
       }
    
     return {
-        props: { serials },
+        props: { movies },
     }
 }
 

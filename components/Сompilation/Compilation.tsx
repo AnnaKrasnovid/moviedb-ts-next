@@ -7,16 +7,18 @@ import Loader from '../../UI/Loader/Loader';
 import Carousel from '../Carousel/Carousel';
 
 import { routes } from '../../settings/routes';
+import { MovieBaseInt } from '../../settings/interfaces';
 
 import styles from './Compilation.module.scss';
 
 interface CompilationInt {
   title: string,
-  moviesList: Array<any>,
+  moviesList: Array<MovieBaseInt>,
   link: string
 }
 
 function Compilation({ title, moviesList, link }: CompilationInt) {
+  console.log(moviesList)
   return (
     <section className={styles['compilation']}>
       <h2 className='subtitle'>

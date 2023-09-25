@@ -1,16 +1,13 @@
 import { GetServerSidePropsContext } from 'next';
 
 import Layout from '../layout/Layout/Layout';
-import Lead from '../components/Lead/Lead';
-import Compilation from '../components/Сompilation/Compilation';
-import DescriptionMovieCard from '../components/DescriptionMovieCard/DescriptionMovieCard';
 import Main from '../components/screens/Main/Main';
 
-import { mov } from '../assets/mockData/movies';
-import { routes } from '../settings/routes';
+import { MainPageInt } from '../settings/interfaces';
+
 import api from '../tools/api';
 
-function Home({ movieRating, cartoons, series, movieRandom }: any) {
+function Home({ movieRating, cartoons, series, movieRandom }: MainPageInt) {
   console.log(movieRandom)
   return (
     <Layout >
