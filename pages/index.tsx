@@ -24,7 +24,7 @@ export async function getServerSideProps(params: GetServerSidePropsContext) {
 
   try {
     movieRating = await api.getMovies('movie', '2010-2023');
-    cartoons = await api.getCartoons('2010-2023');
+    cartoons = await api.getMovies('cartoon','2010-2023');
     series = await api.getMovies('tv-series', '2000-2023');
     movieRandom = await api.getMovieRandom()
   } catch (error) {

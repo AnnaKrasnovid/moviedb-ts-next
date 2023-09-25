@@ -13,9 +13,9 @@ import { ModalsContext } from '../../context/ModalsContext';
 import { MovieBaseInt } from '../../settings/interfaces';
 import styles from './SearchForm.module.scss';
 
-function SearchForm() {
+function SearchForm() {  
+  const { openPopupSearch, closePopupSearch } = useContext(ModalsContext);
   const [searchValue, setSearchValue] = useState('');
-  const { openPopupSearch, closePopupSearch } = useContext(ModalsContext)
   const [moviesList, setMoviesList] = useState<Array<MovieBaseInt>>([]);
   const [textResult, setTextResult] = useState<string>('');
 
