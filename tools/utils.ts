@@ -1,3 +1,5 @@
+import { NameInt } from "../settings/interfaces";
+
 export function getRoundNumber(number: number) {
     return Math.round(number * 10) / 10;
 };
@@ -14,13 +16,13 @@ export function getTime(number: number): string {
     }
 }
 
-export function getInfo(arr: Array<any>) {
+export function getInfo(arr: Array<NameInt>) {
     const infoArr: Array<string> = [];
     arr.map((i) => infoArr.push(i.name));
     return infoArr.join(', ');
 };
 
-export const hideScroll = (state: boolean): void => {
+export function hideScroll(state: boolean): void {
     if (state === true) {
         document.body.classList.add('hide-scroll');
     } else {
@@ -28,7 +30,7 @@ export const hideScroll = (state: boolean): void => {
     }
 };
 
-export const getCurrentYear = () => {
+export function getCurrentYear() {
     return new Date().getFullYear();
 }
 
@@ -36,7 +38,7 @@ export function checkEmptyObject(obj: {}) {
     return Object.keys(obj).length === 0
 }
 
-export  function getMoviesType(pathname:string) {
+export function getMoviesType(pathname: string) {
     if (pathname === '/serials') {
         return 'tv-series';
     } else if (pathname === '/cartoons') {
@@ -46,9 +48,9 @@ export  function getMoviesType(pathname:string) {
     }
 }
 
-export function getString (item: Array<any>) {
+export function getString(item: Array<any>) {
     const array: Array<string> = [];
     item.map((i: any) => array.push(i.value));
     return array.join(' / ');
-}    
+}
 

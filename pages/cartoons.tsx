@@ -1,30 +1,29 @@
 import Layout from '../layout/Layout/Layout';
 import MoviesList from '../components/MoviesList/MoviesList';
 
-import { CartoonsPageInt } from '../settings/interfaces';
+import { MoviesPageInt } from '../settings/interfaces';
 
 import api from '../tools/api';
 
-function CartoonsPage({ cartoons }: CartoonsPageInt) {
-    console.log(cartoons)
+function CartoonsPage({ movies }: MoviesPageInt) {    
     return (
         <Layout>
-            <MoviesList list={cartoons.docs} pages={cartoons.pages} />
+            <MoviesList list={movies.docs} pages={movies.pages} />
         </Layout>
     );
 }
 
 export async function getServerSideProps() {
-    let cartoons: any = {};
+    let movies: any = {};
 
     try {
-        cartoons = await api.getMovies('cartoon', '2000-2023');
+        movies = await api.getMovies('cartoon', '2000-2023');
     } catch (error) {
         console.log(error);
     }
 
     return {
-        props: { cartoons },
+        props: { movies },
     }
 }
 

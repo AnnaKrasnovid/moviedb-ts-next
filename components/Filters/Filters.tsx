@@ -26,7 +26,7 @@ function Filters() {
     const [defaultValueRating, setDefaultValueRating] = useState<string>('');
     const [defaultValueYears, setDefaultValueYears] = useState<string>('');
     // const [sort, setSort] = useState<string>('');
-    
+
     const selectGenresList: Array<FilterInt> = [
         { id: '0', title: 'Все', value: '' },
         { id: '1', title: 'Боевик', value: 'боевик' },
@@ -113,7 +113,7 @@ function Filters() {
             <Select options={selectYearsList} callback={(value) => setYears(value)} placeholder='Годы выхода' defaultValue={defaultValueYears} />
             <Select options={selectRatingList} callback={(value) => setRaiting(value)} placeholder='Рейтинг' defaultValue={defaultValueRating} />
             {/* <Select options={selectSortList} callback={(value) => setSort(value)} placeholder='Рекомендуемые' defaultValue={selectSortList[0].title} /> */}
-            <Button title='Найти' callback={getFiltersMovies} />
+            <Button text='Найти' callback={getFiltersMovies} />
         </div>
     )
 }

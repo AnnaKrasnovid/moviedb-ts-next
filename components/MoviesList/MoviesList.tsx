@@ -14,7 +14,7 @@ import api from '../../tools/api';
 import { getMoviesType } from '../../tools/utils';
 import { MOVIES_LIMIT } from '../../settings/constants';
 import { checkEmptyObject } from '../../tools/utils';
-import { MovieBaseInt } from '../../settings/interfaces'; 
+import { MovieBaseInt } from '../../settings/interfaces';
 
 import styles from './MoviesList.module.scss';
 
@@ -28,16 +28,20 @@ function MoviesList({ list, pages }: MoviesListInt) {
   const [renderList, setRenderList] = useState<Array<MovieBaseInt>>(list);
   const [page, setPage] = useState<number>(1);
   const [pagesFilters, setPagesFilters] = useState<any>(pages);
-  
+
   async function getfiltersMovies() {
     const genreFilter = query.genre ? `genres.name=${query.genre}` : '';
     const yearFilter = query.year ? `year=${query.year}` : '';
     const ratingFilter = query.rating ? `rating.kp=${query.rating}` : '';
     const movieType = `type=${getMoviesType(pathname)}`;
 
-    const response = await api.filtersMovies(genreFilter, yearFilter, ratingFilter, movieType, page * MOVIES_LIMIT);
-    setRenderList(response.docs);
-    setPagesFilters(response.pages);
+    try {
+      const response = await api.filtersMovies(genreFilter, yearFilter, ratingFilter, movieType, page * MOVIES_LIMIT);
+      setRenderList(response.docs);
+      setPagesFilters(response.pages);
+    } catch (err) {
+      console.error(err)
+    }
   }
 
   function changePage() {

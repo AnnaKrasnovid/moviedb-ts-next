@@ -1,38 +1,6 @@
 export interface GenreItemInt {
     name: string,
 }
-export interface MovieInt {
-    id: number,
-    name: string,
-    type: string,
-    alternativeName: string,
-    year: number,
-    description: string,
-    shortDescription: string,
-    rating: {
-        kp: number,
-        imdb: number,
-    },
-    videos: {
-        trailers: {
-            url: string,
-        }
-    },
-    persons: Array<
-        {
-            id: number,
-            photo: Array<string>,
-            profession: string,
-            name: string,
-        }
-    >,
-    movieLength: number,
-    poster: {
-        url: string,
-    }
-    countries: Array<{ name: string, }>
-    genres: Array<{ name: string, }>
-}
 
 type ButtonTypes = 'button' | 'submit';
 export interface ButtonInt {
@@ -61,6 +29,10 @@ export interface MenuItemInt {
 
 export interface ValueInt {
     value: string,
+}
+
+export interface NameInt {
+    name: string,
 }
 
 export interface MovieBaseInt {
@@ -205,7 +177,6 @@ export interface MovieItemInt extends MovieBaseInt {
     premiere: any,
     productionCompanies: Array<any>,
     ratingMpaa: number | null,
-
     seasonsInfo: Array<any>,
     sequelsAndPrequels: Array<any>
     seriesLength: number | null,
@@ -259,26 +230,22 @@ export interface SimilarMoviesInt {
     list: Array<SimilarMovieCardInt>
 }
 
-export interface MoviesInfoInt{
+export interface MoviesInfoInt {
     docs: Array<MovieBaseInt>,
     limit: number,
     page: number,
     pages: number,
     total: number,
-  }
+}
 
-  export interface CartoonsPageInt {
-    cartoons:  MoviesInfoInt,
-  }
+export interface MoviesPageInt {
+    movies: MoviesInfoInt,
+}
 
-//   export interface CartoonsPageInt {
-//     cartoons:  MoviesInfoInt,
-//   }
-  
-  export interface MainPageInt {
+export interface MainPageInt {
     movieRating: MoviesInfoInt,
-    cartoons:  MoviesInfoInt,
-    series:  MoviesInfoInt,
+    cartoons: MoviesInfoInt,
+    series: MoviesInfoInt,
     movieRandom: MovieItemInt
-  }
+}
 

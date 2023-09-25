@@ -23,10 +23,10 @@ function SearchForm() {
     try {
       const response = await api.searchMovie(searchValue);
       setMoviesList(response.docs);
-      response.docs.length > 0 ? setTextResult('ничего не найдено') : ''
+      response.docs.length > 0 ? setTextResult('Ничего не найдено') : ''
     }
     catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }, 1000)
 

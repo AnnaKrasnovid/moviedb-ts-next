@@ -1,16 +1,10 @@
 import styles from './Button.module.scss';
+import { ButtonTextInt } from '../../settings/interfaces';
 
-interface IButton {
-    typeButton?: any,
-    title: string,   
-    callback?: () => void,
-    className?: string
-}
-
-function Button({ typeButton = 'button', title = 'Title',  callback = () => { }, className }: IButton) {
+function Button({ type = 'button', text = 'Title',  callback = () => { }, className }: ButtonTextInt) {
     return (
-        <button className={`${styles['button-default']} ${className}`} type={typeButton} onClick={callback}>
-            {title}
+        <button className={`${styles['button-default']} ${className}`} type={type} onClick={callback}>
+            {text}
         </button>
     );
 }

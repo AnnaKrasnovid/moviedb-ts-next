@@ -36,7 +36,7 @@ class Api {
       //   'X-API-KEY': this._key,
       // }
     })
-      .then(this._checkResponseStatus);
+    .then(this._checkResponseStatus);
   }
 
   getCartoons(years) {
@@ -60,8 +60,8 @@ class Api {
       .then(this._checkResponseStatus);
   }
 
-  filtersMovies(genre = '', years = 'year=2000-2023', rating = 'rating.kp=7-10', movieType , limit = 24) {
-    return fetch(`${this._baseUrl}/v1.3/movie?${movieType}&${genre}&${years}&${rating}&limit=${limit}&sort=year&sort=rating.kp&page=1&token=${this._key}`, {
+  filtersMovies(genre = '', years = 'year=2000-2023', rating = 'rating.kp=7-10', movieType, limit = 24) {
+    return fetch(`${this._baseUrl}/v1..3/movie?${movieType}&${genre}&${years}&${rating}&limit=${limit}&sort=year&sort=rating.kp&page=1&token=${this._key}`, {
       method: 'GET',
     })
       .then(this._checkResponseStatus);
@@ -75,7 +75,7 @@ class Api {
   }
 
   _checkResponseStatus(res) {
-    if (res.ok) {
+    if (res.status === 200) {
       return res.json();
     }
     return Promise.reject(`Ошибка: ${res.status}`)

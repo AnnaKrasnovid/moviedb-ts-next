@@ -65,7 +65,7 @@ console.log(renderList)
                 </li>
               ))}
             </GridMovies>
-            {renderList.length < actor.movies.length && <Button title='Показать еще' callback={showMoreMoviess} className={styles['page-actor-button']} />}
+            {renderList.length < actor.movies.length && <Button text='Показать еще' callback={showMoreMoviess} className={styles['page-actor-button']} />}
           </div>
           {actor.facts && <Facts list={actor.facts} />}
         </div>
