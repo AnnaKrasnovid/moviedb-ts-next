@@ -6,13 +6,9 @@ import Instagram from '../../images/instagram.svg';
 import Twitter from '../../images/twitter.svg';
 
 import { links } from '../../settings/contacts';
+import { SocialButtonsInt } from '../../settings/interfaces';
 
 import styles from './SocialButtons.module.scss';
-
-type SocialButtonsTypes = 'footer' | 'menu';
-interface SocialButtonsInt {
-  type: SocialButtonsTypes
-}
 
 function SocialButtons({ type='footer' }:SocialButtonsInt) {
   return (

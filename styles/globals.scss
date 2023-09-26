@@ -80,6 +80,10 @@ a {
     font-size: 20px;
     line-height: 26px;
   }
+
+  .hide-scroll {  
+    padding-right: 0;
+  }
 }
 
 @media screen and (max-width: $breakpoint-sm) {

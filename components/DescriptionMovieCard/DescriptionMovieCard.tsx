@@ -21,7 +21,7 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
   function toggleAllText() {
     setIsShowAllText(!isShowAllText);
   }
-  console.log(movie)
+  
   function getActors(list: Array<ActorSimpleItemInt>) {
     if (list) {
       let actors: Array<string> = [];
@@ -62,9 +62,7 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
           </ul>
           {movie.description && <DescriptionMovie
             title={`О чем фильм “${movie.name}” ${movie.year ? `(${movie.year})` : ''}`}
-            info={movie.description}
-            buttonText={!isShowAllText ? 'Ещё' : 'Скрыть'}
-            callback={toggleAllText}
+            info={movie.description}            
           />}
         </div>
       </div>

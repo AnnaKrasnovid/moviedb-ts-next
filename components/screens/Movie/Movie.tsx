@@ -3,7 +3,7 @@ import ActorsList from '../../ActorsList/ActorsList';
 import SimilarMovies from '../../SimilarMovies/SimilarMovies';
 import Facts from '../../Facts/Facts';
 
-import { MovieCardInt, ActorSimpleItemInt } from '../../../settings/interfaces';
+import { ActorSimpleItemInt } from '../../../settings/interfaces';
 
 import styles from './Movie.module.scss';
 

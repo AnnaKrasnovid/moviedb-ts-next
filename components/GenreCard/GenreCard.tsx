@@ -1,15 +1,9 @@
-// import { Link } from 'react-router-dom';
 import Link from 'next/link';
 
 import { routes } from '../../settings/routes';
-import { SubmenuItemInt } from '../../settings/interfaces';
+import { GenreCardInt } from '../../settings/interfaces';
 
 import styles from './GenreCard.module.scss'; 
-
-interface GenreCardInt {
-    index: number,
-    item: SubmenuItemInt,  
-}
 
 function GenreCard({ item, index }: GenreCardInt) {
     return (

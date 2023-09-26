@@ -8,22 +8,18 @@ import ButtonClose from '../../UI/ButtonClose/ButtonClose';
 
 import {useWindowWidth} from '../../hooks/useWindowWidth';
 import { hideScroll } from '../../tools/utils';
+import { MenuMobileInt } from '../../settings/interfaces';
 
 import styles from './MenuMobile.module.scss';
 
-interface MenuMobileInt {
-  onClosePopup: () => void,
-  isOpenPopupMenu: boolean,
-}
-
 function MenuMobile({ onClosePopup, isOpenPopupMenu }: MenuMobileInt) {
-  const sizeWindow = useWindowWidth();
+  const windowWidth = useWindowWidth();
 
   useEffect(() => {
-    if (sizeWindow > 768) {
+    if (windowWidth > 768) {
       onClosePopup();
     }
-  }, [isOpenPopupMenu, sizeWindow]);
+  }, [isOpenPopupMenu, windowWidth]);
 
   useEffect(() => {
     hideScroll(isOpenPopupMenu);

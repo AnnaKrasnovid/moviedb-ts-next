@@ -8,7 +8,6 @@ import { MainPageInt } from '../settings/interfaces';
 import api from '../tools/api';
 
 function Home({ movieRating, cartoons, series, movieRandom }: MainPageInt) {
-  console.log(movieRandom)
   return (
     <Layout >
       <Main movieRating={movieRating} cartoons={cartoons} series={series} movieRandom={movieRandom} />

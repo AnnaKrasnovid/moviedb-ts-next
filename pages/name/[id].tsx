@@ -7,7 +7,6 @@ import { ActorInt } from '../../settings/interfaces';
 import api from '../../tools/api';
 
 function ActorPage({ actor }: ActorInt) {
-  console.log(actor)
   return (
     <Layout>
       <Person actor={actor}/>     

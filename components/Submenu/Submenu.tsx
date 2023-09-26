@@ -1,17 +1,12 @@
 import Link from 'next/link';
 
 import { useRouter } from 'next/router';
-import { MenuItemInt } from '../../settings/interfaces';
+import { SubmenuInt } from '../../settings/interfaces';
 
 import styles from './Submenu.module.scss';
-interface SubmenuInt {
-  item: MenuItemInt,
-  isActiveSubmenu: boolean,
-}
 
 function Submenu({ item, isActiveSubmenu }: SubmenuInt) {
   const { query } = useRouter();
-  // console.log(useRouter(),item)
 
   return (
     <div className={`${styles['menu']} ${isActiveSubmenu ? styles['menu_opened'] : ''}`}>

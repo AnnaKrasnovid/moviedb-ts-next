@@ -1,13 +1,10 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 
 import Error from '../Error/Error';
 
-import styles from './InputSearch.module.scss';
+import { InputSearchInt } from '../../settings/interfaces';
 
-interface InputSearchInt {
-    searchValue: string,
-    setSearchValue: Dispatch<SetStateAction<string>>
-}
+import styles from './InputSearch.module.scss';
 
 function InputSearch({searchValue,setSearchValue }:InputSearchInt) {
     const [isActiveSearchClass, setIsActiveSearchClass] = useState(false);

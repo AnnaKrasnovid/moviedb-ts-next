@@ -4,15 +4,7 @@ import { Swiper } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from "swiper";
 
 import { useWindowWidth } from '../../hooks/useWindowWidth';
-
-interface CarouselInt {
-    children: ReactNode,
-    slides?: Array<number> | number,
-    className?: string,
-    loop?: boolean,
-    autoplay?: boolean,
-    navigation?: boolean
-}
+import { CarouselInt } from '../../settings/interfaces';
 
 function Carousel({ children, slides = [6, 5, 4, 3, 2], className, loop = true, autoplay = false, navigation = false }: CarouselInt) {
     const windowWidth = useWindowWidth();

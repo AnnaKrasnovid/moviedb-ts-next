@@ -2,23 +2,9 @@ import { useEffect, useState, SyntheticEvent } from 'react';
 
 import ScrollBar from '../ScrollBar/ScrollBar';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
-// import { SubmenuItemInt } from '../../settings/interfaces';
+ import { SelectInt } from '../../settings/interfaces';
 
 import styles from './Select.module.scss';
-
-export interface OptionItemInt {
-    id: string,
-    title: string,
-    value: string,
-}
-
-export interface SelectInt {
-    options: Array<OptionItemInt>,
-    label?: string,
-    placeholder?: string,
-    callback: (value: string) => void,
-    defaultValue?: any, 
-}
 
 function Select({ options, label, placeholder = 'Выберите...', callback, defaultValue }: SelectInt) {
     const [isActiveDropdown, setIsActiveDropdown] = useState(false);

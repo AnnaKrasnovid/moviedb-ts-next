@@ -1,13 +1,6 @@
-import { MenuItemInt } from '../../settings/interfaces';
+import { ArrowIconInt } from '../../settings/interfaces';
 
 import styles from './ArrowIcon.module.scss';
-
-type ArrowTypes = 'select' | 'menu';
-
-interface ArrowIconInt {
-    isActive: boolean,
-    type?: ArrowTypes,
-}
 
 function ArrowIcon({ isActive, type='select' }: ArrowIconInt) {
     return (

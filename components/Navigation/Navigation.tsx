@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 
 import Submenu from '../Submenu/Submenu';
 import NavigationLink from '../NavigationLink/NavigationLink';
 
 import { menu } from '../../settings/menuList';
-import { MenuItemInt } from '../../settings/interfaces';
+import { MenuItemInt, NavigationInt } from '../../settings/interfaces';
 
 import styles from './Navigation.module.scss';
-
-type NavigationTypes = 'header' | 'menu';
-
-interface NavigationInt {
-  type: NavigationTypes,
-  onClosePopup: () => void
-}
 
 function Navigation({ type, onClosePopup }: NavigationInt) {
   const [isActiveSubmenu, setIsActiveSubmenu] = useState(false);
@@ -25,7 +17,7 @@ function Navigation({ type, onClosePopup }: NavigationInt) {
   const getMenuList = (item: MenuItemInt) => {
     if (item.submenu) {
       return (
-        <li className={styles['navigation__box-link']} key={item.id} onMouseOver={openSubmenu} onMouseOut={closeSubmenu}>         
+        <li className={styles['navigation__box-link']} key={item.id} onMouseOver={openSubmenu} onMouseOut={closeSubmenu}>
           <NavigationLink item={item} isActiveSubmenu={isActiveSubmenu} closePopup={onClosePopup} />
           <Submenu item={item} isActiveSubmenu={isActiveSubmenu} />
         </li>
@@ -33,7 +25,7 @@ function Navigation({ type, onClosePopup }: NavigationInt) {
     } else {
       return (
         <li className={styles['navigation__box-link']} key={item.id} >
-           <NavigationLink item={item} isActiveSubmenu={isActiveSubmenu} closePopup={onClosePopup} />
+          <NavigationLink item={item} isActiveSubmenu={isActiveSubmenu} closePopup={onClosePopup} />
         </li>
       );
     }

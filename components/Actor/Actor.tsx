@@ -10,7 +10,7 @@ import styles from './Actor.module.scss';
 function Actor({ actor }: ActorInt) {
     const date = new Date(Date.parse(actor.birthday));
     const birthday = `${date.getDate()}.${date.getMonth() < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}.${date.getFullYear()}`;
-    console.log(actor)
+   
     return (
         <div className={styles['page-actor']}>
             <div className={styles['actor-info']}>

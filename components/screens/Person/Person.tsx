@@ -7,17 +7,14 @@ import Facts from '../../Facts/Facts';
 import Button from '../../../UI/Button/Button';
 
 import { checkEmptyObject } from '../../../tools/utils';
-import { ActorItemInt, MovieSimpleInt } from '../../../settings/interfaces';
+import { MovieSimpleInt, PersonPageInt } from '../../../settings/interfaces';
 import styles from './Person.module.scss';
 
-interface PersonPageInt {
-  actor: ActorItemInt,
-}
 
 function Person({ actor }: PersonPageInt) {
   const [movies, setMovies] = useState(12);
   const [renderList, setRenderList] = useState<Array<MovieSimpleInt>>([]);
-  
+
   // function getList() {
   //   let arr: Array<number> = [];
   //   let movies: any = []
@@ -48,7 +45,7 @@ function Person({ actor }: PersonPageInt) {
       setRenderList(actor.movies.slice(0, movies))
     }
   }, [movies])
-console.log(renderList)
+  console.log(renderList)
   return (
     <>
       {checkEmptyObject(actor) ? (

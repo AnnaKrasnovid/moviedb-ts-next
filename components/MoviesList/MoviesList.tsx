@@ -14,14 +14,9 @@ import api from '../../tools/api';
 import { getMoviesType } from '../../tools/utils';
 import { MOVIES_LIMIT } from '../../settings/constants';
 import { checkEmptyObject } from '../../tools/utils';
-import { MovieBaseInt } from '../../settings/interfaces';
+import { MovieBaseInt, MoviesListInt } from '../../settings/interfaces';
 
 import styles from './MoviesList.module.scss';
-
-interface MoviesListInt {
-  list: Array<MovieBaseInt>,
-  pages?: number | undefined
-}
 
 function MoviesList({ list, pages }: MoviesListInt) {
   const { pathname, back, query } = useRouter();

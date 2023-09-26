@@ -1,3 +1,5 @@
+import { ReactNode,Dispatch,SetStateAction } from "react";
+
 export interface GenreItemInt {
     name: string,
 }
@@ -147,6 +149,10 @@ export interface ActorInt {
     actor: ActorItemInt
 }
 
+export interface ActorCardInt {
+    item: ActorSimpleItemInt
+}
+
 export interface FactsInt {
     list: Array<ValueInt>
 }
@@ -249,3 +255,135 @@ export interface MainPageInt {
     movieRandom: MovieItemInt
 }
 
+export interface CarouselInt {
+    children: ReactNode,
+    slides?: [number, number, number, number, number] | number,
+    className?: string,
+    loop?: boolean,
+    autoplay?: boolean,
+    navigation?: boolean
+}
+
+export interface DescriptionMovieInt {
+    title: string,
+    info: string | number,
+}
+
+export interface DescriptionMovieItemInt {
+    title: string,
+    info?: string | number,
+}
+
+export interface FilterInt {
+    id: string,
+    title: string,
+    value: string
+}
+
+export interface GenreCardInt {
+    index: number,
+    item: SubmenuItemInt,
+}
+
+export interface GridMoviesInt {
+    children: ReactNode
+}
+
+export interface HeaderInt {
+    onOpenMenu: () => void,
+    onClosePopup: () => void
+}
+
+export interface InfiniteScrollInt {
+    children: ReactNode,
+    callback: () => void,
+    condition: boolean, // условие при котором не будет вызываться функция
+}
+
+type LogoTypes = 'header' | 'footer' | 'menu';
+export interface LogoInt {
+    type: LogoTypes,
+}
+
+export interface MenuMobileInt {
+    onClosePopup: () => void,
+    isOpenPopupMenu: boolean,
+}
+
+type MovieTypesCard = 'small' | 'middle';
+
+export interface MovieCardMainInt {
+    item: MovieBaseInt,
+    type?: MovieTypesCard
+}
+
+export interface MoviesListInt {
+    list: Array<MovieBaseInt>,
+    pages?: number | undefined
+}
+
+type NavigationTypes = 'header' | 'menu';
+
+export interface NavigationInt {
+    type: NavigationTypes,
+    onClosePopup: () => void
+}
+
+export interface NavigationLinkInt {
+    item: MenuItemInt,
+    isActiveSubmenu: boolean,
+    closePopup: () => void,
+}
+
+type RatingRoundTypes = 'yellow' | 'orange';
+
+export interface RatingRoundInt {
+    number: number,
+    type?: RatingRoundTypes,
+}
+
+export interface PersonPageInt {
+    actor: ActorItemInt,
+}
+
+type SocialButtonsTypes = 'footer' | 'menu';
+export interface SocialButtonsInt {
+    type: SocialButtonsTypes
+}
+
+export interface SubmenuInt {
+    item: MenuItemInt,
+    isActiveSubmenu: boolean,
+}
+
+export interface CompilationInt {
+    title: string,
+    moviesList: Array<MovieBaseInt>,
+    link: string
+}
+
+export interface MoviePageInt {
+    movie: MovieItemInt
+}
+
+type ArrowTypes = 'select' | 'menu';
+export interface ArrowIconInt {
+    isActive: boolean,
+    type?: ArrowTypes,
+}
+
+export interface InputSearchInt {
+    searchValue: string,
+    setSearchValue: Dispatch<SetStateAction<string>>
+}
+
+export interface ScrollBarInt {
+    children: ReactNode,
+}
+
+export interface OverlayInt {
+    children: ReactNode
+    isOpenPopup: boolean
+    closePopup?: () => void
+    className?: string
+}

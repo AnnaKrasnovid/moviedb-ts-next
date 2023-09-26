@@ -1,21 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
-import {  SwiperSlide } from 'swiper/react';
+import { SwiperSlide } from 'swiper/react';
 
 import MovieCard from '../MovieCard/MovieCard';
 import Loader from '../../UI/Loader/Loader';
 import Carousel from '../Carousel/Carousel';
 
 import { routes } from '../../settings/routes';
-import { MovieBaseInt } from '../../settings/interfaces';
+import { CompilationInt } from '../../settings/interfaces';
 
 import styles from './Compilation.module.scss';
-
-interface CompilationInt {
-  title: string,
-  moviesList: Array<MovieBaseInt>,
-  link: string
-}
 
 function Compilation({ title, moviesList, link }: CompilationInt) {
   console.log(moviesList)

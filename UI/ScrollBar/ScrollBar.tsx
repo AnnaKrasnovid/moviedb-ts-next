@@ -1,10 +1,6 @@
-import { ReactNode } from 'react';
+import { ScrollBarInt } from '../../settings/interfaces';
 
 import styles from './ScrollBar.module.scss';
-
-export interface ScrollBarInt {
-    children: ReactNode,
-}
 
 function ScrollBar({ children }:ScrollBarInt) {
     return (

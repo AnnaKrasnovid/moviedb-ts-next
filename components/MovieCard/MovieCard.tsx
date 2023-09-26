@@ -2,19 +2,11 @@ import Image from 'next/image';
 
 import Rating from '../Rating/Rating';
 
-import { MovieBaseInt } from '../../settings/interfaces';
+import { MovieCardMainInt } from '../../settings/interfaces';
 
 import styles from './MovieCard.module.scss';
 
-type MovieTypesCard = 'small' | 'middle';
-
-interface MovieCardInt {
-  item: MovieBaseInt,
-  type?: MovieTypesCard
-}
-
-function MovieCard({ item, type = 'middle' }: MovieCardInt) {
-// console.log(item)
+function MovieCard({ item, type = 'middle' }: MovieCardMainInt) {
   return (
     <div className={`${styles['movie']} `} >
       <div className={`${styles['movie__box']} ${styles[`movie__box_type_${type}`]}`}>

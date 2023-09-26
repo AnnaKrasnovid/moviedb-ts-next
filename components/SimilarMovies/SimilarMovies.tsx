@@ -7,10 +7,7 @@ import { SimilarMoviesInt,MovieSemilarItemInt } from '../../settings/interfaces'
 
 import styles from './SimilarMovies.module.scss';
 
-
-
 function SimilarMovies({ list }: SimilarMoviesInt) {
-    console.log(list)
     return (
         <div className={styles['semilar-movies']}>
             <p className='subtitle'>Похожее:</p>

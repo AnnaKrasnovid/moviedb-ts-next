@@ -5,17 +5,9 @@ import Select from '../../UI/Select/Select';
 import Button from '../../UI/Button/Button';
 
 import { getCurrentYear } from '../../tools/utils';
-import { routes } from '../../settings/routes';
+import { FilterInt } from '../../settings/interfaces';
 
 import styles from './Filters.module.scss';
-
-interface FiltersInt {
-    callback: (genre: string, years: string, rating: string) => void,
-}
-
-interface FilterInt {
-    id: string, title: string, value: string
-}
 
 function Filters() {
     const router = useRouter();

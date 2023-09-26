@@ -1,14 +1,8 @@
-import { useState, useEffect, ReactNode, Dispatch, SetStateAction } from "react";
+import { useState, useEffect } from "react";
 
 import Loader from "../../UI/Loader/Loader";
 
-import styles from './InfiniteScroll.module.scss';
-
-interface InfiniteScrollInt {
-    children: ReactNode,
-    callback: () => void,
-    condition: boolean, // условие при котором не будет вызываться функция
-}
+import { InfiniteScrollInt } from "../../settings/interfaces";
 
 function InfiniteScroll({ children, condition, callback }: InfiniteScrollInt) {
     const [loading, setLoading] = useState(false);

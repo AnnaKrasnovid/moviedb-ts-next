@@ -1,15 +1,11 @@
 import Link from "next/link";
 import { useRouter } from 'next/router';
-import { MenuItemInt } from '../../settings/interfaces';
+
 import ArrowIcon from "../../UI/ArrowIcon/ArrowIcon";
 
-import styles from './NavigationLink.module.scss';
+import { NavigationLinkInt } from '../../settings/interfaces';
 
-interface NavigationLinkInt {
-    item: MenuItemInt,
-    isActiveSubmenu: boolean,
-    closePopup: () => void,
-}
+import styles from './NavigationLink.module.scss';
 
 function NavigationLink({ item, isActiveSubmenu, closePopup }: NavigationLinkInt) {
     const { pathname } = useRouter();

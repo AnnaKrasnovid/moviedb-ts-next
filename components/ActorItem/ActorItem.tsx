@@ -1,18 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { routes } from '../../settings/routes';
+import { ActorCardInt } from '../../settings/interfaces';
 
 import styles from './ActorItem.module.scss';
 
-interface ActorInt {
-    item: {
-        id: number,
-        photo: string,
-        name: string,
-    }
-}
-
-function ActorItem({ item }: ActorInt) {
+function ActorItem({ item }: ActorCardInt) {
+    console.log(item)
     return (
         <Link href={`${routes.ACTOR}/${item.id}`} className={styles['actor']}>
             <div className={styles['actor__img']} >

@@ -1,10 +1,6 @@
-import { ReactNode } from 'react';
+import { GridMoviesInt } from '../../settings/interfaces';
 
 import styles from './GridMovies.module.scss';
-
-interface GridMoviesInt {
-    children: ReactNode
-}
 
 function GridMovies({ children }: GridMoviesInt) {
     return (

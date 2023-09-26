@@ -10,7 +10,6 @@ import {  MainPageInt } from '../../../settings/interfaces';
 import styles from './Main.module.scss';
 
 function Main({ movieRating, cartoons, series, movieRandom }: MainPageInt) {
-  console.log(movieRandom)
   return (
     <>
       <Lead />

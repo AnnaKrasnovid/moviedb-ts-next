@@ -1,9 +1,6 @@
-import styles from './DescriptionMovieItem.module.scss';
+import { DescriptionMovieItemInt } from '../../settings/interfaces';
 
-interface DescriptionMovieItemInt {
-    title: string,
-    info?: string | number,
-}
+import styles from './DescriptionMovieItem.module.scss';
 
 function DescriptionMovieItem({ title, info='' }: DescriptionMovieItemInt) {
     return (

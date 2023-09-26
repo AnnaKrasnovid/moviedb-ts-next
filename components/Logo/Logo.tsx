@@ -5,13 +5,9 @@ import Image from 'next/image';
 import LogoVector from '../../images/Logo.svg';
 
 import { routes } from '../../settings/routes';
+import { LogoInt } from '../../settings/interfaces';
 
 import styles from './Logo.module.scss';
-
-type LogoTypes = 'header' | 'footer' | 'menu';
-interface LogoInt {
-  type: LogoTypes,
-}
 
 function Logo({ type }: LogoInt) {
   return (

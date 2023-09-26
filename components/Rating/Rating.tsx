@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
 
 import { getRoundNumber } from '../../tools/utils';
+import { RatingRoundInt } from '../../settings/interfaces';
 
 import styles from './Rating.module.scss';
-
-type RatingRoundTypes = 'yellow' | 'orange';
-
-interface RatingRoundInt {
-    number: number,
-    type: RatingRoundTypes,
-}
 
 function Rating({ number, type }: RatingRoundInt) {
     return (
