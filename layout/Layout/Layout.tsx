@@ -1,4 +1,4 @@
-import { useContext, ReactNode } from 'react';
+import { useContext, ReactNode, useState } from 'react';
 import Head from 'next/head';
 
 import Header from '../../components/Header/Header';
@@ -6,17 +6,17 @@ import Footer from '../../components/Footer/Footer';
 import MenuMobile from '../../components/MenuMobile/MenuMobile';
 import Overlay from '../../UI/Overlay/Overlay';
 import SearchForm from '../../components/SearchForm/SearchForm';
+import Tooltip from '../../components/Tooltip/Tooltip';
 
+import { TooltipContext } from '../../context/TooltipContext';
 import { ModalsContext } from '../../context/ModalsContext';
+import { LayoutInt } from '../../settings/interfaces';
 
 import styles from './Layout.module.scss';
 
-interface LayoutInt {
-  children: ReactNode,
-}
-
 function Layout({ children }: LayoutInt) {
-  const { openMenu, closePopup, isOpenPopupMenu,isOpenPopupSearch } = useContext(ModalsContext);
+  const { openMenu, closePopup, isOpenPopupMenu, isOpenPopupSearch } = useContext(ModalsContext);
+  const { isOpenTooltip, textError } = useContext(TooltipContext);
 
   return (
     <>
@@ -45,8 +45,9 @@ function Layout({ children }: LayoutInt) {
           isOpenPopupMenu={isOpenPopupMenu}
         />
         <Overlay isOpenPopup={isOpenPopupSearch} >
-          <SearchForm/>
+          <SearchForm />
         </Overlay>
+        <Tooltip isOpenTooltip={isOpenTooltip} text={textError}/>
       </div>
     </>
   );

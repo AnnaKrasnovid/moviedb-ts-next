@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { AppProps } from 'next/app';
 
 import { ModalsContext } from '../context/ModalsContext';
+import { TooltipContext } from '../context/TooltipContext';
 
 import 'normalize.css';
 import 'swiper/css/bundle';
@@ -9,8 +10,9 @@ import '../styles/index.scss';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isOpenPopupMenu, setIsOpenPopupMenu] = useState(false);
-  const [isSearchMovie, setIsSearchMovie]= useState(false);
   const [isOpenPopupSearch, setIsOpenPopupSearch] = useState(false);
+  const [isOpenTooltip, setIsOpenTooltip] = useState(false);
+  const [textError, setTextError] = useState('Что-то пошло не так...');
 
   function openMenu() {
     setIsOpenPopupMenu(true);
@@ -20,7 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
   function closePopup() {
-    setIsOpenPopupMenu(false);   
+    setIsOpenPopupMenu(false);
   }
 
   function closePopupSearch() {
@@ -33,12 +35,21 @@ export default function App({ Component, pageProps }: AppProps) {
     isOpenPopupMenu: isOpenPopupMenu,
     openPopupSearch: openPopupSearch,
     isOpenPopupSearch: isOpenPopupSearch,
-    closePopupSearch:closePopupSearch
-  } 
+    closePopupSearch: closePopupSearch
+  }
+
+  const tooltipContextProps = {
+    isOpenTooltip: isOpenTooltip,
+    setIsOpenTooltip: setIsOpenTooltip,
+    textError: textError,
+    setTextError: setTextError
+  }
 
   return (
-    <ModalsContext.Provider value={modalsContextProps}>      
+    <TooltipContext.Provider value={tooltipContextProps}>
+      <ModalsContext.Provider value={modalsContextProps}>
         <Component {...pageProps} />
-    </ModalsContext.Provider>
+      </ModalsContext.Provider>
+    </TooltipContext.Provider>
   )
 }

@@ -252,7 +252,8 @@ export interface MainPageInt {
     movieRating: MoviesInfoInt,
     cartoons: MoviesInfoInt,
     series: MoviesInfoInt,
-    movieRandom: MovieItemInt
+    movieRandom: MovieItemInt,
+    message?: any
 }
 
 export interface CarouselInt {
@@ -387,3 +388,21 @@ export interface OverlayInt {
     closePopup?: () => void
     className?: string
 }
+
+export interface OptionItemInt {
+    id: string,
+    title: string,
+    value: string,
+}
+
+export interface SelectInt {
+    options: Array<OptionItemInt>,
+    label?: string,
+    placeholder?: string,
+    callback: (value: string) => void,
+    defaultValue?: any, 
+}
+
+export interface LayoutInt {
+    children: ReactNode,
+  }

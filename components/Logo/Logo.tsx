@@ -12,7 +12,7 @@ import styles from './Logo.module.scss';
 function Logo({ type }: LogoInt) {
   return (
     <Link href={routes.INDEX} className={`${styles['logo']} ${`logo_type_${type}`}`}>
-      <Image className={`${styles['logo__img']} ${`logo__img_type_${type}`}`} src={LogoVector} alt='Логотип' />
+      <Image className={`${styles['logo__img']} ${`logo__img_type_${type}`}`} src={LogoVector} alt='Логотип'  quality={100}/>
     </Link>
   );
 }

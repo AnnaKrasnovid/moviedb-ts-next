@@ -3,13 +3,16 @@ import Link from 'next/link';
 import Lead from '../../Lead/Lead';
 import Compilation from '../../Сompilation/Compilation';
 import DescriptionMovieCard from '../../DescriptionMovieCard/DescriptionMovieCard';
+import Loader from '../../../UI/Loader/Loader';
 
 import { routes } from '../../../settings/routes';
-import {  MainPageInt } from '../../../settings/interfaces';
+import { MainPageInt } from '../../../settings/interfaces';
+import { checkEmptyObject } from '../../../tools/utils';
 
 import styles from './Main.module.scss';
 
 function Main({ movieRating, cartoons, series, movieRandom }: MainPageInt) {
+  // console.log(checkEmptyObject(movieRandom))
   return (
     <>
       <Lead />
@@ -21,7 +24,6 @@ function Main({ movieRating, cartoons, series, movieRandom }: MainPageInt) {
       <Link href={`${routes.MOVIE}/${movieRandom.id}`}>
         <DescriptionMovieCard movie={movieRandom} />
       </Link>
-
     </>
   )
 }

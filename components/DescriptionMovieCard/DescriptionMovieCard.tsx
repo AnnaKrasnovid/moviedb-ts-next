@@ -1,27 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 
 import RatingRound from '../RatingRound/RatingRound';
 import DescriptionMovieItem from '../DescriptionMovieItem/DescriptionMovieItem';
 import DescriptionMovie from '../DescriptionMovie/DescriptionMovie';
+import Loader from '../../UI/Loader/Loader';
 
-import { getTime, getInfo, getMoviesType } from '../../tools/utils';
-import { MovieItemInt, ActorSimpleItemInt } from '../../settings/interfaces';
+import { getTime, getInfo } from '../../tools/utils';
+import {  ActorSimpleItemInt, DescriptionMovieCardInt } from '../../settings/interfaces';
 
 import styles from './DescriptionMovieCard.module.scss';
 
-
-interface DescriptionMovieCardInt {
-  movie: MovieItemInt
-}
-
 function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
-  const [isShowAllText, setIsShowAllText] = useState<boolean>(false);
 
-  function toggleAllText() {
-    setIsShowAllText(!isShowAllText);
-  }
-  
   function getActors(list: Array<ActorSimpleItemInt>) {
     if (list) {
       let actors: Array<string> = [];
@@ -40,10 +31,11 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
             alt='Постер к фильму'
             width={300}
             height={500}
+            quality={100}
           />
           <div className={styles['about-movie__ratings']}>
-            {movie.rating.kp > 0 && <RatingRound number={movie.rating.kp} />}
-            {movie.rating.imdb > 0 && <RatingRound number={movie.rating.imdb} type='yellow' />}
+            {movie.rating?.kp > 0 && <RatingRound number={movie.rating.kp} />}
+            {movie.rating?.imdb > 0 && <RatingRound number={movie.rating.imdb} type='yellow' />}
           </div>
         </div>
         <div className={styles['about-movie__container']}>
@@ -62,10 +54,10 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
           </ul>
           {movie.description && <DescriptionMovie
             title={`О чем фильм “${movie.name}” ${movie.year ? `(${movie.year})` : ''}`}
-            info={movie.description}            
+            info={movie.description}
           />}
         </div>
-      </div>
+      </div>     
     </section>
   );
 }

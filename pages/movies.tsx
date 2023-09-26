@@ -1,3 +1,5 @@
+import { GetServerSidePropsContext } from 'next';
+
 import Layout from '../layout/Layout/Layout';
 import MoviesList from '../components/MoviesList/MoviesList';
 
@@ -6,6 +8,7 @@ import { MoviesPageInt } from '../settings/interfaces';
 import api from '../tools/api';
 
 function MoviesPage({ movies }: MoviesPageInt) {
+    console.log(movies)
     return (
         <Layout>
             <MoviesList list={movies.docs} pages={movies.pages} />
@@ -13,8 +16,18 @@ function MoviesPage({ movies }: MoviesPageInt) {
     );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(params: GetServerSidePropsContext) {
+    let message: string = '';
     let movies: any = {};
+
+    function getError(movie: any, params: any) {
+        if (movie.status) {
+          if (movie.status < 200 || movie.status >= 300) {
+            params.res.statusCode = movie.status;
+            message = `Ошибка: ${movie.status}, ${movie.message}`;
+          }
+        }
+      }
 
     try {
         movies = await api.getMovies('movie', '2000-2023');

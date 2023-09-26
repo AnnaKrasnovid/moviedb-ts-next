@@ -9,7 +9,7 @@ import styles from './Movie.module.scss';
 
 function Movie({ movie }: any) {
   const actors = movie.persons.filter((i: ActorSimpleItemInt) => i.profession === 'актеры');
-
+console.log(movie)
   return (
     <div className={styles['page-movie']}>
       <DescriptionMovieCard movie={movie} />

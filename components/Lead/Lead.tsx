@@ -17,10 +17,10 @@ function Lead() {
         <SwiperSlide key={index}>
           <Link href={`${routes.MOVIE}/${item.id}`}>
             <div className={styles['movie-banner']}>
-              <Image src={item.backdrop.url} alt='Постер к фильму' className={styles['movie-banner__img']} width={100} height={100} />
+              <Image src={item.backdrop.url} alt='Постер к фильму' className={styles['movie-banner__img']} width={100} height={100} quality={100}/>
               <div className={styles['movie-banner__container']}>
                 <div className={styles['movie-banner__logo']}>
-                  <img src={item.logo.url} alt='Постер к фильму' width={50} height={20} />
+                  <Image src={item.logo.url} alt='Постер к фильму' width={50} height={20} quality={100}/>
                 </div>
               </div>
             </div>

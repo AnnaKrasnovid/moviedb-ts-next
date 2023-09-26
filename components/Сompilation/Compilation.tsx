@@ -12,7 +12,7 @@ import { CompilationInt } from '../../settings/interfaces';
 import styles from './Compilation.module.scss';
 
 function Compilation({ title, moviesList, link }: CompilationInt) {
-  console.log(moviesList)
+  // console.log(moviesList)
   return (
     <section className={styles['compilation']}>
       <h2 className='subtitle'>

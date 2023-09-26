@@ -3,6 +3,8 @@
 .about-movie {
   // padding: 5rem 0;
   color: $color-white;
+  display: flex;
+  flex-direction: column;
 
   &__description {
     display: grid;
