@@ -9,7 +9,7 @@ import styles from './Facts.module.scss';
 function Facts({ list }: FactsInt) {
     const [facts, setFacts] = useState(5);
     const [renderList, setRenderList] = useState<Array<ValueInt>>([]);
-    
+    console.log(renderList.length,facts)
     function showMoreFacts() {
         setFacts(facts + 5);
     }

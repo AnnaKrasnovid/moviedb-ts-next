@@ -19,16 +19,16 @@ function Person({ actor }: PersonPageInt) {
   //   let arr: Array<number> = [];
   //   let movies: any = []
 
-  //   // actor.movies.map((item: any) => {
-  //   //   arr.push(item.id)
-  //   // })
-  //    const uniqueId = Array.from(new Set(arr))
-
-  //   const res=actor.movies.map((item: any, index: number) => {
-  //    const reult= uniqueId.find((i)=> item.id===i)
-  //     return reult
+  //   actor.movies.map((item: any) => {
+  //     arr.push(item.id)
   //   })
-  //   console.log( res)
+  //   const uniqueId = Array.from(new Set(arr))
+  //   console.log(uniqueId)
+  //   const res = actor.movies.map((item: any, index: number) => {
+  //     const result = uniqueId.find((i) => item.id === i)
+  //     return result
+  //   })
+  //   console.log(res)
   // }
 
   // getList()
@@ -45,7 +45,7 @@ function Person({ actor }: PersonPageInt) {
       setRenderList(actor.movies.slice(0, movies))
     }
   }, [movies])
-  console.log(renderList)
+
   return (
     <>
       {checkEmptyObject(actor) ? (
@@ -64,7 +64,7 @@ function Person({ actor }: PersonPageInt) {
             </GridMovies>
             {renderList.length < actor.movies.length && <Button text='Показать еще' callback={showMoreMoviess} className={styles['page-actor-button']} />}
           </div>
-          {actor.facts && <Facts list={actor.facts} />}
+          {actor.facts.length > 0 && <Facts list={actor.facts} />}
         </div>
       )}
     </>

@@ -85,7 +85,8 @@ function MoviesList({ list, pages }: MoviesListInt) {
           </div>
         )
       ) : (
-        <Loader />
+        // <Loader />
+        <p>Что-то-пошло не так...</p>
       )}
     </section>
   );

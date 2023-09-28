@@ -13,7 +13,7 @@ function ActorsList({ list }: ActorsListInt) {
     <div className={styles['actors']}>
       <p className='subtitle'>Актеры:</p>
       <ul className={styles['actors__list']}>
-        <Carousel slides={[8,6,5,3,2]} className="compilation-swiper">
+        <Carousel slides={[8,6,5,3,2]} className="compilation-swiper" loop={false}>
           {list.map((item: ActorSimpleItemInt) => (
             <SwiperSlide key={item.id}>
               <ActorItem item={item} />

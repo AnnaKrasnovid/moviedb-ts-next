@@ -4,7 +4,6 @@
   cursor: pointer;
   list-style: none;
   height: 100%;
-  
 
   &__box {
     display: flex;
@@ -15,9 +14,10 @@
     border-radius: 12px;
     position: relative;
     overflow: hidden;
-    max-width: 200px;
+     max-width: 210px;
     height: 100%;
-    &_type{
+
+    &_type {
       &_small {
         max-width: 130px;
       }
@@ -98,6 +98,7 @@
       font-size: 14px;
       line-height: 20px;
     }
+
     &__description {
       font-size: 14px;
       line-height: 20px;
@@ -112,6 +113,7 @@
       font-size: 12px;
       line-height: 16px;
     }
+
     &__description {
       font-size: 12px;
       line-height: 16px;

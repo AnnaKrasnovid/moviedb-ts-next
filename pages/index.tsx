@@ -9,18 +9,17 @@ import { TooltipContext } from '../context/TooltipContext';
 
 import api from '../tools/api';
 
+function Home({ movieRating, cartoons, series, movieRandom,message }: MainPageInt) {
+  // const { setIsOpenTooltip, setTextError } = useContext(TooltipContext);  
 
-function Home({ movieRating, cartoons, series, movieRandom, message }: MainPageInt) {
-  const { setIsOpenTooltip, setTextError } = useContext(TooltipContext);  
-
-  useEffect(() => {
-    if (message) {
-      setIsOpenTooltip(true)
-      setTextError(message)
-      setTimeout(()=> setIsOpenTooltip(false), 5000)
-    }
-  }, [message])
-
+  // useEffect(() => {
+  //   if (message) {
+  //     setIsOpenTooltip(true)
+  //     setTextError(message)
+  //     setTimeout(()=> setIsOpenTooltip(false), 5000)
+  //   }
+  // }, [message])
+console.log(message)
   return (
     <Layout >
       <Main movieRating={movieRating} cartoons={cartoons} series={series} movieRandom={movieRandom} />
@@ -36,15 +35,15 @@ export async function getServerSideProps(params: GetServerSidePropsContext) {
   let movieRandom: any = {};
 
   function getError(movie: any, params: any) {
-    if (movie.status) {
-      if (movie.status < 200 || movie.status >= 300) {
-        params.res.statusCode = movie.status;
-        message = `Ошибка: ${movie.status}, ${movie.message}`;
+    if (movie) {
+      if (movie < 200 || movie >= 300) {
+        params.res.statusCode = movie;
+        message = `Ошибка: ${movie}`;
       }
     }
   }
 
-  try {
+  // try {
     movieRating = await api.getMovies('movie', '2010-2023');
     movieRandom = await api.getMovieRandom();
     series = await api.getMovies('tv-series', '2000-2023');
@@ -53,16 +52,16 @@ export async function getServerSideProps(params: GetServerSidePropsContext) {
     const responseArray = [movieRating, series, cartoons, movieRandom]
 
     responseArray.map((item) => {
-      getError(item, params)
+      getError(item, params.res.statusCode)
     })
    
-  }
-  catch (error) {
-    console.error('error', error);   
-  }
+  // }
+  // catch (error) {
+  //   console.error('error', error);   
+  // }
 
   return {
-    props: { movieRating, cartoons, series, movieRandom, message },
+    props: { movieRating, cartoons, series, movieRandom ,message},
   }
 }
 

@@ -6,13 +6,12 @@ import DescriptionMovieItem from '../DescriptionMovieItem/DescriptionMovieItem';
 import DescriptionMovie from '../DescriptionMovie/DescriptionMovie';
 import Loader from '../../UI/Loader/Loader';
 
-import { getTime, getInfo } from '../../tools/utils';
+import { getTime, getInfo, checkEmptyObject } from '../../tools/utils';
 import {  ActorSimpleItemInt, DescriptionMovieCardInt } from '../../settings/interfaces';
 
 import styles from './DescriptionMovieCard.module.scss';
 
 function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
-
   function getActors(list: Array<ActorSimpleItemInt>) {
     if (list) {
       let actors: Array<string> = [];
@@ -23,7 +22,7 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
 
   return (
     <section className={styles['about-movie']}>
-      <div className={styles['about-movie__description']}>
+      {!checkEmptyObject(movie)?<div className={styles['about-movie__description']}>
         <div className={styles['about-movie__container']}>
           <Image
             className={styles['about-movie__img']}
@@ -57,7 +56,7 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
             info={movie.description}
           />}
         </div>
-      </div>     
+      </div> : <Loader/>}    
     </section>
   );
 }

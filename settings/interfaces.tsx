@@ -120,7 +120,7 @@ export interface ActorItemInt {
     death: string | null,
     deathPlace: string | null,
     enName: string | null,
-    facts: Array<ValueInt> | null,
+    facts: Array<ValueInt> ,
     growth: number | null,
     id: number,
     isParse: boolean,
@@ -405,4 +405,8 @@ export interface SelectInt {
 
 export interface LayoutInt {
     children: ReactNode,
+  }
+
+  export interface DescriptionMovieCardInt {
+    movie: MovieItemInt
   }

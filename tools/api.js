@@ -64,8 +64,7 @@ class Api {
     if (res.ok ) {
       return res.json();
     }
-   
-    return {status: res.status, message: res.statusText}
+    return res.status;
   }
 }
 

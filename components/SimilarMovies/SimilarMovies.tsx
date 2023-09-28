@@ -12,7 +12,7 @@ function SimilarMovies({ list }: SimilarMoviesInt) {
         <div className={styles['semilar-movies']}>
             <p className='subtitle'>Похожее:</p>
             <div className={styles['semilar-movies__list']}>
-                <Carousel >
+                <Carousel loop={false}>
                     {list.map((item: MovieSemilarItemInt) => (
                         <SwiperSlide key={item.id}>
                             <MovieCardSimple item={item} />

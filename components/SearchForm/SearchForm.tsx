@@ -13,7 +13,7 @@ import { ModalsContext } from '../../context/ModalsContext';
 import { MovieBaseInt } from '../../settings/interfaces';
 import styles from './SearchForm.module.scss';
 
-function SearchForm() {  
+function SearchForm() {
   const { openPopupSearch, closePopupSearch } = useContext(ModalsContext);
   const [searchValue, setSearchValue] = useState('');
   const [moviesList, setMoviesList] = useState<Array<MovieBaseInt>>([]);
@@ -23,12 +23,19 @@ function SearchForm() {
     try {
       const response = await api.searchMovie(searchValue);
       setMoviesList(response.docs);
-      response.docs.length > 0 ? setTextResult('Ничего не найдено') : ''
+      setTextResult(response.docs.length > 0 ? '' : 'Ничего не найдено')
     }
     catch (error) {
       console.error(error);
     }
   }, 1000)
+
+  const closePopup=() => {
+    closePopupSearch();
+    setTextResult('');
+    setMoviesList([]);
+    setSearchValue('')
+  }
 
   useEffect(() => {
     if (searchValue.length > 0) {
@@ -38,7 +45,7 @@ function SearchForm() {
 
   return (
     <section className={styles['section-search']}>
-      <ButtonClose callback={closePopupSearch} className={styles['section-search-button']} />
+      <ButtonClose callback={closePopup} className={styles['section-search-button']} />
       <form className={styles['search']} noValidate onClick={openPopupSearch}>
         <InputSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       </form>

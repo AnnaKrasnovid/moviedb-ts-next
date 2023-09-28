@@ -17,7 +17,6 @@ function MoviePage({ movie }: MoviePageInt) {
 
 export async function getServerSideProps(params: GetServerSidePropsContext) {
   let movie: any = {};
-  movie = await api.getMovieId(params.query.id);
 
   try {
     movie = await api.getMovieId(params.query.id);
