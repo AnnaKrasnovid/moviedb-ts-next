@@ -1,4 +1,4 @@
-import { NameInt } from "../settings/interfaces";
+import { NameInt, OptionInt } from "../settings/interfaces";
 
 export function getRoundNumber(number: number) {
     return Math.round(number * 10) / 10;
@@ -54,12 +54,28 @@ export function getString(item: Array<any>) {
     return array.join(' / ');
 }
 
-export function getError(movie: any, params: any, message:string) {
+export function getError(movie: any, params: any, message: string) {
     if (movie.status) {
-      if (movie.status < 200 || movie.status >= 300) {
-        params = movie.status;
-        message = `Ошибка: ${movie.status}, ${movie.message}`;
-      }
+        if (movie.status < 200 || movie.status >= 300) {
+            params = movie.status;
+            message = `Ошибка: ${movie.status}, ${movie.message}`;
+        }
     }
-  }
+}
+
+const options: OptionInt = {
+    hour12: false,
+    year: 'numeric',
+    month: 'long',
+    day: "numeric",
+    // hour: "numeric",
+    // minute: "numeric",
+    // second: "numeric",
+}
+
+export function getDateFormat(date: string) {
+    let dateParse = new Date(Date.parse(date));
+    const RuDate = new Intl.DateTimeFormat('ru', options);
+    return RuDate.format(dateParse);
+}
 

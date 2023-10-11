@@ -1,15 +1,16 @@
-import { useEffect, useState, SyntheticEvent } from 'react';
+import { useEffect, useState, SyntheticEvent, memo } from 'react';
 
 import ScrollBar from '../ScrollBar/ScrollBar';
 import ArrowIcon from '../ArrowIcon/ArrowIcon';
- import { SelectInt } from '../../settings/interfaces';
+
+import { SelectInt } from '../../settings/interfaces';
 
 import styles from './Select.module.scss';
 
 function Select({ options, label, placeholder = 'Выберите...', callback, defaultValue }: SelectInt) {
     const [isActiveDropdown, setIsActiveDropdown] = useState(false);
     const [selectedItem, setSelectedItem] = useState<string>(placeholder);
-
+    console.log('render :', defaultValue)
     const openDropdown = () => {
         setIsActiveDropdown(true);
     }
@@ -33,12 +34,12 @@ function Select({ options, label, placeholder = 'Выберите...', callback,
             setSelectedItem(item.title);
             callback(item.value);
         }
-    }   
+    }
 
-    useEffect(() => {      
-       const value= defaultValue === options[0].title ? options[0].title : defaultValue;   
-       // @ts-ignore
-       setSelectedItem(value);
+    useEffect(() => {
+        const value = defaultValue === options[0].title ? options[0].title : defaultValue;
+        // @ts-ignore
+        setSelectedItem(value);
     }, [defaultValue])
 
     useEffect(() => {
@@ -46,7 +47,7 @@ function Select({ options, label, placeholder = 'Выберите...', callback,
     }, [isActiveDropdown])
 
     return (
-        <div className=''>
+        <div>
             <p className={styles['label-input']}>{label}</p>
             <div className={`${styles['dropdown-select']} ${isActiveDropdown ? styles['dropdown-select_active'] : ''}`} onClick={(e) => toggleDropdown(e)}>
                 <div className={styles['dropdown-select__button']}>
@@ -71,4 +72,4 @@ function Select({ options, label, placeholder = 'Выберите...', callback,
     )
 }
 
-export default Select;
+export default memo(Select);

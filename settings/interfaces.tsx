@@ -1,4 +1,4 @@
-import { ReactNode,Dispatch,SetStateAction } from "react";
+import { ReactNode, Dispatch, SetStateAction } from "react";
 
 export interface GenreItemInt {
     name: string,
@@ -120,7 +120,7 @@ export interface ActorItemInt {
     death: string | null,
     deathPlace: string | null,
     enName: string | null,
-    facts: Array<ValueInt> ,
+    facts: Array<ValueInt>,
     growth: number | null,
     id: number,
     isParse: boolean,
@@ -400,13 +400,25 @@ export interface SelectInt {
     label?: string,
     placeholder?: string,
     callback: (value: string) => void,
-    defaultValue?: any, 
+    defaultValue?: any,
 }
 
 export interface LayoutInt {
     children: ReactNode,
-  }
+}
 
-  export interface DescriptionMovieCardInt {
+export interface DescriptionMovieCardInt {
     movie: MovieItemInt
-  }
+}
+
+export interface OptionInt {
+    hour12?: boolean,
+    weekday?: "long" | "short" | "narrow" | undefined,
+    year?: "numeric" | "2-digit" | undefined,
+    month?: "long" | "short" | "narrow" | "numeric" | "2-digit" | undefined,
+    day?: "numeric" | "2-digit" | undefined,
+    hour?: "numeric" | "2-digit" | undefined,
+    minute?: "numeric" | "2-digit" | undefined,
+    second?: "numeric" | "2-digit" | undefined,
+    timeZoneName?: "long" | "short" | "shortOffset" | "longOffset" | "shortGeneric" | "longGeneric" | undefined,
+}

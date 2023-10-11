@@ -19,7 +19,7 @@ function Home({ movieRating, cartoons, series, movieRandom,message }: MainPageIn
   //     setTimeout(()=> setIsOpenTooltip(false), 5000)
   //   }
   // }, [message])
-console.log(message)
+  
   return (
     <Layout >
       <Main movieRating={movieRating} cartoons={cartoons} series={series} movieRandom={movieRandom} />

@@ -17,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
   function openMenu() {
     setIsOpenPopupMenu(true);
   }
+  
   function openPopupSearch() {
     setIsOpenPopupSearch(true);
   }

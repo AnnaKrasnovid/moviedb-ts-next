@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import Select from '../../UI/Select/Select';
@@ -19,8 +19,8 @@ function Filters() {
     const [defaultValueYears, setDefaultValueYears] = useState<string>('');
     // const [sort, setSort] = useState<string>('');
 
-    const selectGenresList: Array<FilterInt> = [
-        { id: '0', title: 'Все', value: '' },
+    const selectGenresList: Array<FilterInt> = useMemo(() => [
+        { id: '0', title: 'Все жанры', value: '' },
         { id: '1', title: 'Боевик', value: 'боевик' },
         { id: '2', title: 'Военный', value: 'военный' },
         { id: '3', title: 'Детектив', value: 'детектив' },
@@ -33,9 +33,9 @@ function Filters() {
         { id: '10', title: 'Ужасы', value: 'ужасы' },
         { id: '11', title: 'Фантастика', value: 'фантастика' },
         { id: '12', title: 'Фэнтези', value: 'фэнтези' },
-    ]
-
-    const selectYearsList:Array<FilterInt> = [
+    ], [genre])
+    
+    const selectYearsList: Array<FilterInt> = [
         { id: '0', title: 'Все годы', value: '' },
         { id: '1', title: `2022-${getCurrentYear()}`, value: `2022-${getCurrentYear()}` },
         { id: '2', title: '2020-2023', value: '2020-2023' },
@@ -48,7 +48,7 @@ function Filters() {
         { id: '9', title: 'до 1960', value: `1900-1960` },
     ]
 
-    const selectRatingList:Array<FilterInt> = [
+    const selectRatingList: Array<FilterInt> = [
         { id: '0', title: 'Любой рейтинг', value: '' },
         { id: '1', title: 'Больше 9', value: '9-10' },
         { id: '2', title: 'Больше 8', value: '8-10' },
@@ -57,20 +57,20 @@ function Filters() {
         { id: '5', title: 'Больше 5', value: '5-10' },
     ]
 
-    const selectSortList:Array<FilterInt> = [
+    const selectSortList: Array<FilterInt> = [
         { id: '0', title: 'Рекомендуемые', value: '-' },
         { id: '1', title: 'По рейтингу', value: '' },
         { id: '2', title: 'По дате выхода', value: '' },
     ]
 
-    function getFiltersMovies() {     
+    function getFiltersMovies() {
         router.query.genre = genre;
         router.query.year = years;
         router.query.rating = rating;
         router.push(router);
     }
 
-    function getGenre(list: Array<FilterInt>, param: (string| undefined), setState: any) {
+    function getGenre(list: Array<FilterInt>, param: (string | undefined), setState: any) {
         list.find((i: FilterInt, index: number) => {
             if (i.value === param) {
                 setState(list[index].title)
@@ -99,9 +99,14 @@ function Filters() {
         }
     }, [])
 
+    const changeFilter = useCallback(
+        (value: any) => {
+            setGenre(value)
+        }, [genre])
+
     return (
         <div className={styles['filters']}>
-            <Select options={selectGenresList} callback={(value) => setGenre(value)} placeholder='Жанры' defaultValue={defaultValueGenre} />
+            <Select options={selectGenresList} callback={(value) => changeFilter(value)} placeholder='Жанры' defaultValue={defaultValueGenre} />
             <Select options={selectYearsList} callback={(value) => setYears(value)} placeholder='Годы выхода' defaultValue={defaultValueYears} />
             <Select options={selectRatingList} callback={(value) => setRaiting(value)} placeholder='Рейтинг' defaultValue={defaultValueRating} />
             {/* <Select options={selectSortList} callback={(value) => setSort(value)} placeholder='Рекомендуемые' defaultValue={selectSortList[0].title} /> */}

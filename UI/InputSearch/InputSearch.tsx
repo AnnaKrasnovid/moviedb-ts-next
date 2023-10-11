@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 
 import Error from '../Error/Error';
 
@@ -10,6 +10,7 @@ function InputSearch({searchValue,setSearchValue }:InputSearchInt) {
     const [isActiveSearchClass, setIsActiveSearchClass] = useState(false);
     const [isActiveInput, setIsActiveInput] = useState(false);
 
+    // console.log('InputSearch render')
     function handleMouseEnter() {
         setIsActiveSearchClass(true);
     }
@@ -56,4 +57,4 @@ function InputSearch({searchValue,setSearchValue }:InputSearchInt) {
     )
 }
 
-export default InputSearch;
+export default memo(InputSearch);

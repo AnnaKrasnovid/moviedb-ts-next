@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect,memo } from 'react';
 
 import Actor from '../../Actor/Actor';
 import MovieCardSimple from '../../MovieCardSimple/MovieCardSimple';
@@ -14,7 +14,7 @@ import styles from './Person.module.scss';
 function Person({ actor }: PersonPageInt) {
   const [movies, setMovies] = useState(12);
   const [renderList, setRenderList] = useState<Array<MovieSimpleInt>>([]);
-
+console.log('render')
   // function getList() {
   //   let arr: Array<number> = [];
   //   let movies: any = []
@@ -71,4 +71,4 @@ function Person({ actor }: PersonPageInt) {
   );
 }
 
-export default Person;
+export default memo(Person);

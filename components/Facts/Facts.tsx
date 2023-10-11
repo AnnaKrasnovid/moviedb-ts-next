@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 
 import ButtonText from '../../UI/ButtonText/ButtonText';
 
@@ -9,7 +9,7 @@ import styles from './Facts.module.scss';
 function Facts({ list }: FactsInt) {
     const [facts, setFacts] = useState(5);
     const [renderList, setRenderList] = useState<Array<ValueInt>>([]);
-    console.log(renderList.length,facts)
+    
     function showMoreFacts() {
         setFacts(facts + 5);
     }
@@ -33,4 +33,4 @@ function Facts({ list }: FactsInt) {
     );
 }
 
-export default Facts;
+export default memo(Facts);
