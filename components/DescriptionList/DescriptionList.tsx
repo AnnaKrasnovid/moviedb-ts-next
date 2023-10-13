@@ -8,17 +8,23 @@ import { DescriptionMovieCardInt } from '../../settings/interfaces';
 import styles from './DescriptionList.module.scss';
 
 function DescriptionList({ movie }: DescriptionMovieCardInt) {
+    const descriptions = [
+        { title: 'Год выпускa', info: movie.year, text: movie.year },
+        { title: 'Страна', info: movie.countries, text: getInfo(movie.countries) },
+        { title: 'Жанр', info: movie.genres, text: getInfo(movie.genres) },
+        { title: 'Актеры', info: movie.persons, text: getActors(movie.persons) },
+    ]
+
     return (
         <ul className={styles['movie-list']}>
-            {movie.type === 'tv-series' &&(movie.seriesLength ||movie.movieLength)  ? (
+            {movie.type === 'tv-series' ? (
                 movie.seriesLength && <DescriptionMovieItem title='Продолжительность' info={getTime(movie.seriesLength)} />
             ) : (
                 movie.movieLength && <DescriptionMovieItem title='Продолжительность' info={getTime(movie.movieLength)} />
             )}
-            {movie.year && <DescriptionMovieItem title='Год выпускa' info={movie.year} />}
-            {movie.countries && <DescriptionMovieItem title='Страна' info={getInfo(movie.countries)} />}
-            {movie.genres && <DescriptionMovieItem title='Жанр' info={getInfo(movie.genres)} />}
-            {movie.persons && <DescriptionMovieItem title='Актеры' info={getActors(movie.persons)} />}
+            {descriptions.map((item) => (
+                item.info && <DescriptionMovieItem title={item.title} info={item.text} key={item.title} />
+            ))}
         </ul>
     );
 }

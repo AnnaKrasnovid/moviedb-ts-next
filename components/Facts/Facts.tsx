@@ -8,7 +8,7 @@ import { useShowMore } from '../../hooks/useShowMore'
 import styles from './Facts.module.scss';
 
 function Facts({ list }: FactsInt) {
-    const [renderList, numberItem, showMoreItems] = useShowMore(list, 5);
+    const {renderList, numberItem, showMoreItems} = useShowMore(list, 5);
 
     return (
         <div className={styles['facts']}>

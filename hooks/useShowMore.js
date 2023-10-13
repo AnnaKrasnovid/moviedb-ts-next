@@ -5,12 +5,13 @@ export function useShowMore(list, number) {
     const [renderList, setRenderList] = useState([]);
 
     function showMoreItems() {
-        setNumberItem(numberItem + number);
+        // console.log(numberItem + number)
+         setNumberItem(numberItem + number);
     }
 
     useEffect(() => {
         setRenderList(list.slice(0, numberItem));
     }, [numberItem])
 
-    return [renderList, numberItem, showMoreItems]
+    return {renderList, numberItem, showMoreItems}
 }

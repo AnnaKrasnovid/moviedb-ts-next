@@ -1,4 +1,4 @@
-import { useState, useEffect,memo } from 'react';
+import { memo } from 'react';
 
 import Actor from '../../Actor/Actor';
 import MovieCardSimple from '../../MovieCardSimple/MovieCardSimple';
@@ -6,27 +6,13 @@ import GridMovies from '../../GridMovies/GridMovies';
 import Facts from '../../Facts/Facts';
 import Button from '../../../UI/Button/Button';
 
+import { useShowMore } from '../../../hooks/useShowMore';
 import { checkEmptyObject } from '../../../tools/utils';
-import { MovieSimpleInt, PersonPageInt } from '../../../settings/interfaces';
+import { PersonPageInt } from '../../../settings/interfaces';
 import styles from './Person.module.scss';
 
-
 function Person({ actor }: PersonPageInt) {
-  const [movies, setMovies] = useState(12);
-  const [renderList, setRenderList] = useState<Array<MovieSimpleInt>>([]);
-
-  function showMoreMoviess() {
-    setMovies(movies + 6);
-  }
-  useEffect(() => {
-    setRenderList(actor.movies)
-  }, [])
-
-  useEffect(() => {
-    if (actor.movies.length > 0) {
-      setRenderList(actor.movies.slice(0, movies))
-    }
-  }, [movies])
+  const { renderList, showMoreItems } = useShowMore(actor.movies, 12);
 
   return (
     <>
@@ -44,7 +30,7 @@ function Person({ actor }: PersonPageInt) {
                 </li>
               ))}
             </GridMovies>
-            {renderList.length < actor.movies.length && <Button text='Показать еще' callback={showMoreMoviess} className={styles['page-actor-button']} />}
+            {renderList.length < actor.movies.length && <Button text='Показать еще' callback={showMoreItems} className={styles['page-actor-button']} />}
           </div>
           {actor.facts.length > 0 && <Facts list={actor.facts} />}
         </div>

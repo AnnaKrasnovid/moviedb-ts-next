@@ -17,12 +17,12 @@ function Actor({ actor }: ActorInt) {
                 </div>
                 <div className={styles['actor-info__content']}>
                     <h2 className={styles['actor-info__title']}>{actor.name}</h2>
-                    <div className={styles['actor-info__wrapper']}>
+                    <ul className={styles['actor-info__wrapper']}>
                         {actor.profession && <DescriptionMovieItem title="Карьера:" info={getString(actor.profession)} />}
                         {actor.age && <DescriptionMovieItem title="Возраст:" info={actor.age} />}
                         {actor.birthday && <DescriptionMovieItem title="Дата рождения:" info={getDateFormat(actor.birthday)} />}
                         {actor.birthPlace && <DescriptionMovieItem title="Место рождения:" info={getString(actor.birthPlace)} />}
-                    </div>
+                    </ul>
                 </div>
             </div>
         </div>
