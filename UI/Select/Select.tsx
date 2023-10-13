@@ -10,7 +10,7 @@ import styles from './Select.module.scss';
 function Select({ options, label, placeholder = 'Выберите...', callback, defaultValue }: SelectInt) {
     const [isActiveDropdown, setIsActiveDropdown] = useState(false);
     const [selectedItem, setSelectedItem] = useState<string>(placeholder);
-    console.log('render :', defaultValue)
+    // console.log('render :', defaultValue)
     const openDropdown = () => {
         setIsActiveDropdown(true);
     }

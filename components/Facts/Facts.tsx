@@ -1,33 +1,25 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, {  memo } from 'react';
 
 import ButtonText from '../../UI/ButtonText/ButtonText';
 
 import { FactsInt, ValueInt } from '../../settings/interfaces';
+import { useShowMore } from '../../hooks/useShowMore'
 
 import styles from './Facts.module.scss';
 
 function Facts({ list }: FactsInt) {
-    const [facts, setFacts] = useState(5);
-    const [renderList, setRenderList] = useState<Array<ValueInt>>([]);
-    
-    function showMoreFacts() {
-        setFacts(facts + 5);
-    }
-
-    useEffect(() => {
-        setRenderList(list.slice(0, facts));
-    }, [facts])
+    const [renderList, numberItem, showMoreItems] = useShowMore(list, 5);
 
     return (
         <div className={styles['facts']}>
             <p className='subtitle'>Факты:</p>
             <ul className={styles['facts__list']}>
-                {renderList?.map((item: ValueInt, index: number) => (
-                    <li key={index} className={`${styles['facts__item']}`} dangerouslySetInnerHTML={{ __html: item.value }}></li>
+                {renderList?.map((item: ValueInt) => (
+                    <li key={item.value} className={`${styles['facts__item']}`} dangerouslySetInnerHTML={{ __html: item.value }}></li>
                 ))}
             </ul>
             <div className={styles['facts__button']}>
-                {renderList.length >= facts && <ButtonText text='Показать еще' callback={showMoreFacts} />}
+                {renderList.length >= numberItem && <ButtonText text='Показать еще' callback={showMoreItems} />}
             </div>
         </div>
     );
