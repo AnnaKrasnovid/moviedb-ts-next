@@ -1,35 +1,28 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
-export function useInfiniteScroll(targetRef:any) {
-    const [isVisible, setIsVisible] = useState<boolean>(false);
-    const [options, setOptions] = useState({})
+export function useInfiniteScroll(callback: any, condition:any) {
+    const [isFetching, setIsFetching] = useState<boolean>(false);
 
-    const callback = (entries: any) => {
-        const res = entries[0];
-        setIsVisible(res.isIntersecting);
-    };
-
-    useEffect(() => {
-        setOptions({
-            root: targetRef.current,
-            rootMargin: "0px",
-            threshold: 0.1,
-        })
-    }, [targetRef])
+    function handleScroll() {
+        if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || isFetching) return;
+        setIsFetching(true);
+    }
 
     useEffect(() => {
-        const observer = new IntersectionObserver(callback, options);
-        const currentTarget = targetRef.current;
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
-        if (currentTarget) {
-            observer.observe(targetRef.current)
-        }
+    useEffect(() => {
+        if (!isFetching) return;
+        if (condition) return;
 
-        return () => {
-            if (currentTarget) { observer.unobserve(targetRef.current) }
-        }
+        setTimeout(() => {
+            callback();
+            setIsFetching(false);
+        }, 500)
+       
+    }, [isFetching]);
 
-    }, [targetRef,options])
-
-    return { isVisible };
+    return [isFetching, setIsFetching];
 }

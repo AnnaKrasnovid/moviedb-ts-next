@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import MovieCard from '../MovieCard/MovieCard';
 import ButtonText from '../../UI/ButtonText/ButtonText';
 import Filters from '../Filters/Filters';
-import InfiniteScroll from '../InfiniteScroll/InfiniteScroll';
 import Loader from '../../UI/Loader/Loader';
 import GridMovies from '../GridMovies/GridMovies';
 
@@ -19,73 +18,62 @@ import { useInfiniteScroll } from '../../hooks/useInfiniteScroll';
 
 import styles from './MoviesList.module.scss';
 
-function MoviesList({ list, pages }: MoviesListInt) {
-  const listRef = useRef<any>();
-  const { isVisible } = useInfiniteScroll(listRef);
+function MoviesList({ list, pages }: MoviesListInt) { 
   const { pathname, back, query } = useRouter();
   const [renderList, setRenderList] = useState<Array<MovieBaseInt>>(list);
-  const [page, setPage] = useState<number>(1);
-  const [pagesFilters, setPagesFilters] = useState<any>(pages);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<any>(pages);
+  const [isFetching] = useInfiniteScroll(changePage, totalPages === 1);
 
   async function getfiltersMovies() {
     const genreFilter = query.genre ? `genres.name=${query.genre}` : '';
     const yearFilter = query.year ? `year=${query.year}` : '';
     const ratingFilter = query.rating ? `rating.kp=${query.rating}` : '';
     const movieType = `type=${getMoviesType(pathname)}`;
-
-    try {
-      const response = await api.filtersMovies(genreFilter, yearFilter, ratingFilter, movieType, page * MOVIES_LIMIT);
-      setRenderList(response.docs);
-      setPagesFilters(response.pages);
-    } catch (err) {
-      console.error(err)
-    }
+    
+      try {
+        const response = await api.filtersMovies(genreFilter, yearFilter, ratingFilter, movieType, currentPage * MOVIES_LIMIT);
+        setRenderList(response.docs);
+        setTotalPages(response.pages);
+      } catch (err) {
+        console.error(err)
+      }  
   }
 
   function changePage() {
-    setPage(page + 1);
+    setCurrentPage(currentPage + 1);
   }
 
   useEffect(() => {
     if (!checkEmptyObject(query)) {
       getfiltersMovies();
-    } else if (page > 1 && checkEmptyObject(query)) {
+    } else if (currentPage > 1 && checkEmptyObject(query)) {
       getfiltersMovies();
     }
-  }, [query, page])
+  }, [query, currentPage])
 
   useEffect(() => {
-    if (page !== 1 && checkEmptyObject(query)) {
-      setPage(1);
+    if (currentPage !== 1 && checkEmptyObject(query)) {
+      setCurrentPage(1);
     }
   }, [query])
 
-  // useEffect(() => {
-  //   if (isVisible) {
-  //     changePage()
-  //   }
-  // }, [isVisible])
-
   return (
-    <section className={`movies ${styles['movies']}`} ref={listRef}>
+    <section className={`movies ${styles['movies']}`} >
+       <Filters />   
       {renderList ? (
         renderList.length > 0 ? (
-          <>
-            <Filters />
-            <InfiniteScroll
-              condition={pagesFilters === 1}
-              callback={changePage}
-            >
-              <GridMovies>
-                {renderList.length > 0 && renderList.map((item: MovieBaseInt) => (
-                  <li key={item.id}>
-                    <Link href={`${routes.MOVIE}/${item.id}`} className='link'>
-                      <MovieCard item={item} />
-                    </Link>
-                  </li>
-                ))}
-              </GridMovies>
-            </InfiniteScroll>
+          <>                  
+            <GridMovies>
+              {renderList.length > 0 && renderList.map((item: MovieBaseInt) => (
+                <li key={item.id}>
+                  <Link href={`${routes.MOVIE}/${item.id}`} className='link'>
+                    <MovieCard item={item} />
+                  </Link>
+                </li>
+              ))}
+            </GridMovies>
+            {(isFetching && currentPage<=totalPages)&& <Loader />}           
           </>
         ) : (
           <div className={styles['movies__box']}>
@@ -93,8 +81,7 @@ function MoviesList({ list, pages }: MoviesListInt) {
             <ButtonText text='Назад' callback={back} />
           </div>
         )
-      ) : (
-        // <Loader />
+      ) : (       
         <p>Что-то-пошло не так...</p>
       )}
     </section>
