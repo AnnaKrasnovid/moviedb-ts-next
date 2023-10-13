@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext } from 'next';
 
 import Layout from '../../layout/Layout/Layout';
-import MoviesList from '../../components/MoviesList/MoviesList';
+import Movies from '../../components/Movies/Movies';
 
 import api from '../../tools/api';
 import { MoviesPageInt } from '../../settings/interfaces';
@@ -9,7 +9,7 @@ import { MoviesPageInt } from '../../settings/interfaces';
 function MoviesPage({ movies }: MoviesPageInt) {
     return (
         <Layout>
-            <MoviesList list={movies.docs} pages={movies.pages} /> 
+            <Movies list={movies.docs} pages={movies.pages} /> 
         </Layout>
     );
 }
