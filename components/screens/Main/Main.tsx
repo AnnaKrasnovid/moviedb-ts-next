@@ -12,7 +12,6 @@ import { checkEmptyObject } from '../../../tools/utils';
 import styles from './Main.module.scss';
 
 function Main({ movieRating, cartoons, series, movieRandom }: MainPageInt) {
-  // console.log(checkEmptyObject(movieRandom))
   return (
     <>
       <Lead />

@@ -1,12 +1,9 @@
 import { useRouter } from 'next/router';
 import ButtonText from '../../UI/ButtonText/ButtonText';
 
-import styles from './NotFound.module.scss';
+import { NotFoundInt } from '../../settings/interfaces';
 
-interface NotFoundInt {
-  status?: string,
-  message?: string
-}
+import styles from './NotFound.module.scss';
 
 function NotFound({ status='', message='' }: NotFoundInt) {
   const router = useRouter();

@@ -9,8 +9,7 @@ import styles from './InputSearch.module.scss';
 function InputSearch({searchValue,setSearchValue }:InputSearchInt) {
     const [isActiveSearchClass, setIsActiveSearchClass] = useState(false);
     const [isActiveInput, setIsActiveInput] = useState(false);
-
-    // console.log('InputSearch render')
+    
     function handleMouseEnter() {
         setIsActiveSearchClass(true);
     }

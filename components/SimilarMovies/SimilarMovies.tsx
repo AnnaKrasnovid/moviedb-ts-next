@@ -10,7 +10,7 @@ import styles from './SimilarMovies.module.scss';
 function SimilarMovies({ list }: SimilarMoviesInt) {
     return (
         <div className={styles['semilar-movies']}>
-            <p className='subtitle'>Похожее:</p>
+            <h3 className='subtitle'>Похожее:</h3>
             <div className={styles['semilar-movies__list']}>
                 <Carousel loop={false}>
                     {list.map((item: MovieSemilarItemInt) => (

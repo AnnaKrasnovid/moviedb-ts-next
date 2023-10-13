@@ -422,3 +422,18 @@ export interface OptionInt {
     second?: "numeric" | "2-digit" | undefined,
     timeZoneName?: "long" | "short" | "shortOffset" | "longOffset" | "shortGeneric" | "longGeneric" | undefined,
 }
+
+export interface TooltipInt {
+    isOpenTooltip: boolean,
+    text?: string,
+}
+
+
+export interface NotFoundInt {
+    status?: string,
+    message?: string
+}
+
+export interface InformationInt {
+    text: string
+}

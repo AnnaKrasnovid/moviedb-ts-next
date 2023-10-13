@@ -11,17 +11,19 @@ import { SocialButtonsInt } from '../../settings/interfaces';
 import styles from './SocialButtons.module.scss';
 
 function SocialButtons({ type = 'footer' }: SocialButtonsInt) {
+  const socialNetworks = [
+    { title: 'Facebook', href: links.FACEBOOK, image: Facebook },
+    { title: 'Instagram', href: links.INSTAGRAM, image: Instagram },
+    { title: 'Twitter', href: links.TWITTER, image: Twitter }
+  ]
+
   return (
     <div className={`${styles['social-buttons']} ${styles[`social-buttons_type_${type}`]}`}>
-      <Link className={styles['social-buttons__link']} href={links.FACEBOOK} target='_blank'>
-        <Image className={styles['social-buttons__icon']} src={Facebook} alt='Facebook' quality={100} />
-      </Link>
-      <Link className={styles['social-buttons__link']} href={links.INSTAGRAM} target='_blank'>
-        <Image className={styles['social-buttons__icon']} src={Instagram} alt='Instagram' quality={100} />
-      </Link>
-      <Link className={styles['social-buttons__link']} href={links.TWITTER} target='_blank'>
-        <Image className={styles['social-buttons__icon']} src={Twitter} alt='Twitter' quality={100} />
-      </Link>
+      {socialNetworks.map((item) => (
+        <Link className={styles['social-buttons__link']} href={item.href} target='_blank' key={item.title}>
+          <Image className={styles['social-buttons__icon']} src={item.image} alt={item.title} quality={100} />
+        </Link>
+      ))}
     </div>
   );
 }

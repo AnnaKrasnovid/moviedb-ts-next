@@ -1,8 +1,6 @@
-import styles from './Information.module.scss';
+import { InformationInt } from '../../settings/interfaces';
 
-interface InformationInt {
-    text: string
-}
+import styles from './Information.module.scss';
 
 function Information({text}:InformationInt) {
   return (

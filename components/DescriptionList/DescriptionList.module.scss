@@ -1,0 +1,15 @@
+@import '../../styles/variables.scss';
+
+.movie-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    min-height: 204px;
+    background: $background;
+    border: 1px solid #2B2B2B;
+    box-shadow: $box-shadow;
+    backdrop-filter: blur(20px);
+    border-radius: 5px;
+}

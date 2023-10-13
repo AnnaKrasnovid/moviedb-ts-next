@@ -1,4 +1,4 @@
-import { NameInt, OptionInt } from "../settings/interfaces";
+import { NameInt, OptionInt,ActorSimpleItemInt } from "../settings/interfaces";
 
 export function getRoundNumber(number: number) {
     return Math.round(number * 10) / 10;
@@ -79,3 +79,10 @@ export function getDateFormat(date: string) {
     return RuDate.format(dateParse);
 }
 
+export function getActors(list: Array<ActorSimpleItemInt>) {
+    if (list) {
+      let actors: Array<string> = [];
+      list.map((i: ActorSimpleItemInt) => i.profession === 'актеры' ? actors.push(i.name) : '');
+      return actors.join(", ");
+    }
+  }

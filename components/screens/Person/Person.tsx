@@ -14,24 +14,6 @@ import styles from './Person.module.scss';
 function Person({ actor }: PersonPageInt) {
   const [movies, setMovies] = useState(12);
   const [renderList, setRenderList] = useState<Array<MovieSimpleInt>>([]);
-console.log('render')
-  // function getList() {
-  //   let arr: Array<number> = [];
-  //   let movies: any = []
-
-  //   actor.movies.map((item: any) => {
-  //     arr.push(item.id)
-  //   })
-  //   const uniqueId = Array.from(new Set(arr))
-  //   console.log(uniqueId)
-  //   const res = actor.movies.map((item: any, index: number) => {
-  //     const result = uniqueId.find((i) => item.id === i)
-  //     return result
-  //   })
-  //   console.log(res)
-  // }
-
-  // getList()
 
   function showMoreMoviess() {
     setMovies(movies + 6);

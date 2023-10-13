@@ -1,7 +1,4 @@
-interface TooltipInt {
-    isOpenTooltip: boolean,
-    text?: string,
-}
+import { TooltipInt } from '../../settings/interfaces';
 
 import styles from './Tooltip.module.scss'
 

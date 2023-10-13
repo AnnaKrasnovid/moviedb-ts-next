@@ -12,7 +12,7 @@ function Facts({ list }: FactsInt) {
 
     return (
         <div className={styles['facts']}>
-            <p className='subtitle'>Факты:</p>
+            <h3 className='subtitle'>Факты:</h3>
             <ul className={styles['facts__list']}>
                 {renderList?.map((item: ValueInt) => (
                     <li key={item.value} className={`${styles['facts__item']}`} dangerouslySetInnerHTML={{ __html: item.value }}></li>
