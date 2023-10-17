@@ -17,6 +17,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "tools/api.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "tools/api.js", "store/Filters.js"],
   "exclude": ["node_modules"]
 }

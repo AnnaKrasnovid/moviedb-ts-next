@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import type { AppProps } from 'next/app';
+import { Provider } from 'react-redux';
+import store from '../store/index';
 
 import { ModalsContext } from '../context/ModalsContext';
 import { TooltipContext } from '../context/TooltipContext';
@@ -49,10 +51,12 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
   return (
-    <TooltipContext.Provider value={tooltipContextProps}>
-      <ModalsContext.Provider value={modalsContextProps}>
-        <Component {...pageProps} />
-      </ModalsContext.Provider>
-    </TooltipContext.Provider>
+    <Provider store={store}>
+      <TooltipContext.Provider value={tooltipContextProps}>
+        <ModalsContext.Provider value={modalsContextProps}>
+          <Component {...pageProps} />
+        </ModalsContext.Provider>
+      </TooltipContext.Provider>
+    </Provider>
   )
 }
