@@ -1,0 +1,17 @@
+@import '../../styles/variables.scss';
+
+.subtitle {
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 47px;
+    padding: 0 0 5px;
+    border-bottom: 1px solid $color-primary;
+    margin-bottom: 2rem;
+}
+
+@media screen and (max-width: $breakpoint-md) {
+    .subtitle {
+        font-size: 20px;
+        line-height: 26px;
+    }
+}

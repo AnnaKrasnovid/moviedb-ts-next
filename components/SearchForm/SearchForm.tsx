@@ -1,16 +1,15 @@
 import { useEffect, useState, useContext } from 'react';
-import Link from 'next/link';
 
 import InputSearch from '../../UI/InputSearch/InputSearch';
-import MovieCard from '../MovieCard/MovieCard';
 import ButtonClose from '../../UI/ButtonClose/ButtonClose';
-import GridMovies from '../GridMovies/GridMovies';
+import Information from '../../UI/Information/Information';
+import MoviesList from '../MoviesList/MoviesList';
 
-import { useDebounce } from '../../hooks/useDebounce';
 import api from '../../tools/api';
-import { routes } from '../../settings/routes';
+import { useDebounce } from '../../hooks/useDebounce';
 import { ModalsContext } from '../../context/ModalsContext';
 import { MovieBaseInt } from '../../settings/interfaces';
+
 import styles from './SearchForm.module.scss';
 
 function SearchForm() {
@@ -23,7 +22,7 @@ function SearchForm() {
     try {
       const response = await api.searchMovie(searchValue);
       setMoviesList(response.docs);
-      setTextResult(response.docs.length > 0 ? '' : 'Ничего не найдено')
+      setTextResult(response.docs.length > 0 ? '' : 'Ничего не найдено');
     }
     catch (error) {
       console.error(error);
@@ -34,7 +33,7 @@ function SearchForm() {
     closePopupSearch();
     setTextResult('');
     setMoviesList([]);
-    setSearchValue('')
+    setSearchValue('');
   }
 
   useEffect(() => {
@@ -46,21 +45,13 @@ function SearchForm() {
   return (
     <section className={styles['section-search']}>
       <ButtonClose callback={closePopup} className={styles['section-search-button']} />
-      <form className={styles['search']} noValidate onClick={openPopupSearch}>
+      <div className={styles['search']} onClick={openPopupSearch}>
         <InputSearch searchValue={searchValue} setSearchValue={setSearchValue} />
-      </form>
-      {moviesList.length > 0 ? (
-        <GridMovies>
-          {moviesList.map((item: any) => (
-            <li key={item.id} onClick={closePopupSearch}>
-              <Link href={`${routes.MOVIE}/${item.id}`} className='link'>
-                <MovieCard item={item} />
-              </Link>
-            </li>
-          ))}
-        </GridMovies>
+      </div>
+      {moviesList.length > 0 ? (       
+        <MoviesList list={moviesList}/>
       ) : (
-        <p>{textResult}</p>
+        <Information text={textResult}/>
       )}
     </section >
   );

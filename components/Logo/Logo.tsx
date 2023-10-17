@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-// @ts-ignore
+
 import LogoVector from '../../images/Logo.svg';
 
 import { routes } from '../../settings/routes';

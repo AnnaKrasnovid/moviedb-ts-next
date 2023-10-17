@@ -428,12 +428,11 @@ export interface TooltipInt {
     text?: string,
 }
 
-
 export interface NotFoundInt {
     status?: string,
     message?: string
 }
 
 export interface InformationInt {
-    text: string
+    text: string | ReactNode
 }

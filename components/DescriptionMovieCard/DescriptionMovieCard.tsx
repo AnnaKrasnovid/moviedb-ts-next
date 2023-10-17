@@ -25,7 +25,7 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
             <RatingBox movie={movie} />
           </div>
           <div className={styles['about-movie__container']}>
-            <h2 className={styles['about-movie__title']}>{movie.name} {movie.year && `(${movie.year})`}</h2>
+            <h1 className={styles['about-movie__title']}>{movie.name} {movie.year && `(${movie.year})`}</h1>
             {movie.alternativeName !== null ? <p className={styles['about-movie__title-en']}>{movie.alternativeName} {movie.year && `(${movie.year})`}</p> : <></>}
             <DescriptionList movie={movie} />
             {movie.description && (

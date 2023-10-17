@@ -3,8 +3,7 @@ import { MOVIES_LIMIT } from '../settings/constants';
 class Api {
   constructor({ baseUrl, token }) {
     this._baseUrl = baseUrl;
-    this._token = token;
-    
+    this._token = token;    
   }
 
   searchMovie(word) {

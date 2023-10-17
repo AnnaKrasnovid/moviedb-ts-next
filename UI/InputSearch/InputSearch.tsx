@@ -36,7 +36,8 @@ function InputSearch({searchValue,setSearchValue }:InputSearchInt) {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             onFocus={handleOnFocusInput}
-            onBlur={handleOnBlurInput}>
+            onBlur={handleOnBlurInput}
+            >
             <div className={`${styles['input-box__box']} ${isActiveSearchClass || isActiveInput ? styles['input-box__box_active'] : ''}`}>
                 <input
                     id='search'

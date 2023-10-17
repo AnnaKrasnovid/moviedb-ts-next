@@ -12,7 +12,9 @@ function MovieCard({ item, type = 'middle' }: MovieCardMainInt) {
       <div className={`${styles['movie__box']} ${styles[`movie__box_type_${type}`]}`}>
         {item.poster?.url ? <Image className={styles['movie__img']} src={item.poster.url} alt='Фильм' width={500} height={300} quality={100} /> : <></>}
         {type !== 'small' && <div className={styles['movie__container']}>
-          {item.rating.kp && <Rating number={item.rating.kp} type='orange' />}
+          {item.rating.kp && (
+            <Rating number={item.rating.kp} type='orange' />
+          )}
           {item.rating.imdb && (
             <Rating number={item.rating.imdb} type='yellow' />
           )}

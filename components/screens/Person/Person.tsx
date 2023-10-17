@@ -5,10 +5,13 @@ import MovieCardSimple from '../../MovieCardSimple/MovieCardSimple';
 import GridMovies from '../../GridMovies/GridMovies';
 import Facts from '../../Facts/Facts';
 import Button from '../../../UI/Button/Button';
+import Information from '../../../UI/Information/Information';
+import Subtitle from '../../Subtitle/Subtitle';
 
 import { useShowMore } from '../../../hooks/useShowMore';
 import { checkEmptyObject } from '../../../tools/utils';
 import { PersonPageInt } from '../../../settings/interfaces';
+
 import styles from './Person.module.scss';
 
 function Person({ actor }: PersonPageInt) {
@@ -17,12 +20,12 @@ function Person({ actor }: PersonPageInt) {
   return (
     <>
       {checkEmptyObject(actor) ? (
-        <div>Что-то пошло не так...</div>
+        <Information text='Что-то пошло не так...' />
       ) : (
         <div className={styles['page-actor']}>
           <Actor actor={actor} />
           <div className={styles['page-actor__container']}>
-            <p className='subtitle'>Фильмы ({actor.movies.length})</p>
+            <Subtitle text={`Фильмы (${actor.movies.length})`} />
             <GridMovies>
               {renderList.map((item: any) => (
                 <li key={item.id}>

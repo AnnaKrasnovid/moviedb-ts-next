@@ -10,7 +10,7 @@ import styles from './Select.module.scss';
 function Select({ options, label, placeholder = 'Выберите...', callback, defaultValue }: SelectInt) {
     const [isActiveDropdown, setIsActiveDropdown] = useState(false);
     const [selectedItem, setSelectedItem] = useState<string>(placeholder);
-    // console.log('render :', defaultValue)
+
     const openDropdown = () => {
         setIsActiveDropdown(true);
     }
@@ -37,8 +37,7 @@ function Select({ options, label, placeholder = 'Выберите...', callback,
     }
 
     useEffect(() => {
-        const value = defaultValue === options[0].title ? options[0].title : defaultValue;
-        // @ts-ignore
+        const value = defaultValue === options[0].title ? options[0].title : defaultValue;       
         setSelectedItem(value);
     }, [defaultValue])
 
