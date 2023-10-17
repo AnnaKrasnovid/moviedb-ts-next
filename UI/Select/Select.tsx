@@ -9,8 +9,8 @@ import styles from './Select.module.scss';
 
 function Select({ options, label, placeholder = 'Выберите...', callback, defaultValue }: SelectInt) {
     const [isActiveDropdown, setIsActiveDropdown] = useState(false);
-    const [selectedItem, setSelectedItem] = useState<string>(placeholder);
-
+    const [selectedItem, setSelectedItem] = useState<string>(options[0].title);
+console.log(selectedItem)
     const openDropdown = () => {
         setIsActiveDropdown(true);
     }
@@ -29,7 +29,8 @@ function Select({ options, label, placeholder = 'Выберите...', callback,
     }
 
     const choiceOption = (id: string | number) => {
-        const item = options.find((i) => i.id === id)
+        const item = options.find((i) => i.id === id);
+
         if (item) {
             setSelectedItem(item.title);
             callback(item.value);
@@ -37,8 +38,10 @@ function Select({ options, label, placeholder = 'Выберите...', callback,
     }
 
     useEffect(() => {
-        const value = defaultValue === options[0].title ? options[0].title : defaultValue;       
+        const value = defaultValue === options[0].title ? options[0].title : defaultValue;
         setSelectedItem(value);
+
+        
     }, [defaultValue])
 
     useEffect(() => {
@@ -59,7 +62,10 @@ function Select({ options, label, placeholder = 'Выберите...', callback,
                     <ScrollBar>
                         <ul className={styles['dropdown-select__list']}>
                             {options.map((item) => (
-                                <li className={`${styles['dropdown-select__item']} ${item.title === selectedItem ? styles['dropdown-select__item_active'] : ''}`} key={item.id} onClick={() => choiceOption(item.id)}>
+                                <li
+                                    className={`${styles['dropdown-select__item']} ${item.title === selectedItem ? styles['dropdown-select__item_active'] : ''}`}
+                                    key={item.id}
+                                    onClick={() => choiceOption(item.id)}>
                                     <span className={styles['dropdown-select__title']}>{item.title}</span>
                                 </li>
                             ))}

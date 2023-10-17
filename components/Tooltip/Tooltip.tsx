@@ -1,6 +1,6 @@
 import { TooltipInt } from '../../settings/interfaces';
 
-import styles from './Tooltip.module.scss'
+import styles from './Tooltip.module.scss';
 
 function Tooltip({ isOpenTooltip, text = 'Что-то пошло не так...' }: TooltipInt) {
     return (

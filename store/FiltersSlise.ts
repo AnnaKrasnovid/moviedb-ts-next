@@ -11,13 +11,13 @@ const filtersSlice = createSlice({
     },
     reducers: {
         filterYears(state, action) {
-            console.log(action)
+            state.year = action.payload.years;
         },
         filterRating(state, action) {
-            console.log(action)
+            state.rating = action.payload.rating;
         },
         filterGenre(state, action) {
-            console.log(action)
+            state.genre = action.payload.genre;
         },
     }
 });
