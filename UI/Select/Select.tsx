@@ -7,17 +7,12 @@ import { SelectInt } from '../../settings/interfaces';
 
 import styles from './Select.module.scss';
 
-function Select({ options, label, placeholder = 'Выберите...', callback, defaultValue }: SelectInt) {
+function Select({ options, label, callback, defaultValue }: SelectInt) {
     const [isActiveDropdown, setIsActiveDropdown] = useState(false);
     const [selectedItem, setSelectedItem] = useState<string>(options[0].title);
-console.log(selectedItem)
-    const openDropdown = () => {
-        setIsActiveDropdown(true);
-    }
 
-    const closeDropdown = () => {
-        setIsActiveDropdown(false);
-    }
+    const openDropdown = () => setIsActiveDropdown(true);
+    const closeDropdown = () => setIsActiveDropdown(false);
 
     const toggleDropdown = (e: SyntheticEvent) => {
         if (isActiveDropdown) {
@@ -37,14 +32,19 @@ console.log(selectedItem)
         }
     }
 
-    useEffect(() => {
-        const value = defaultValue === options[0].title ? options[0].title : defaultValue;
+    const getTitle = () => {
+        const defaultTitle = options.find((item) => item.value === defaultValue);
+        const value = defaultValue && defaultTitle ? defaultTitle.title : options[0].title;
         setSelectedItem(value);
+    }
 
-        
+    useEffect(() => {
+        getTitle();
     }, [defaultValue])
 
     useEffect(() => {
+        const dropdowns = document.querySelectorAll('.select-button');
+        dropdowns.forEach(item => item.addEventListener('click', closeDropdown));
         document.addEventListener('click', closeDropdown);
     }, [isActiveDropdown])
 
@@ -52,7 +52,7 @@ console.log(selectedItem)
         <div>
             <p className={styles['label-input']}>{label}</p>
             <div className={`${styles['dropdown-select']} ${isActiveDropdown ? styles['dropdown-select_active'] : ''}`} onClick={(e) => toggleDropdown(e)}>
-                <div className={styles['dropdown-select__button']}>
+                <div className={`select-button ${styles['dropdown-select__button']}`}>
                     <span className={`${styles['dropdown-select__title']} ${styles['dropdown-select__title-button']}`}>{selectedItem}</span>
                     <span className={`${styles['arrow']} ${isActiveDropdown ? styles['arrow_up'] : ''}`}>
                         <ArrowIcon isActive={isActiveDropdown} />

@@ -1,12 +1,10 @@
-import { getCurrentYear } from '../tools/utils';
-
 import { createSlice } from "@reduxjs/toolkit";
 
 const filtersSlice = createSlice({
     name: 'filters',
     initialState: {
-        year: `1960-${getCurrentYear()}`,
-        rating: '1-10',
+        year: '',
+        rating: '',
         genre: '',
     },
     reducers: {

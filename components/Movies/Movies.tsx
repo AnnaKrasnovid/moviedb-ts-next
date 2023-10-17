@@ -17,8 +17,7 @@ import { useInfiniteScroll } from '../../hooks/useInfiniteScroll';
 import styles from './Movies.module.scss';
 
 function Movies({ list, pages }: MoviesListInt) {
-const filters = useSelector((state:any)=> state.filters)
-console.log(filters)
+const filters = useSelector((state:any)=> state.filters);
   const { pathname, query } = useRouter();
   const [renderList, setRenderList] = useState<Array<MovieBaseInt>>(list);
   const [currentPage, setCurrentPage] = useState<number>(1);

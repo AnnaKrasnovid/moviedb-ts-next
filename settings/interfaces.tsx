@@ -398,7 +398,6 @@ export interface OptionItemInt {
 export interface SelectInt {
     options: Array<OptionItemInt>,
     label?: string,
-    placeholder?: string,
     callback: (value: string) => void,
     defaultValue?: any,
 }
