@@ -29,7 +29,7 @@ function SearchForm() {
     }
   }, 1000)
 
-  const closePopup=() => {
+  const closePopup = () => {
     closePopupSearch();
     setTextResult('');
     setMoviesList([]);
@@ -48,10 +48,10 @@ function SearchForm() {
       <div className={styles['search']} onClick={openPopupSearch}>
         <InputSearch searchValue={searchValue} setSearchValue={setSearchValue} />
       </div>
-      {moviesList.length > 0 ? (       
-        <MoviesList list={moviesList}/>
+      {moviesList.length > 0 ? (
+        <MoviesList list={moviesList} />
       ) : (
-        <Information text={textResult}/>
+        <Information text={textResult} />
       )}
     </section >
   );

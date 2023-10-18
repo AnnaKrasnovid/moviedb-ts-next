@@ -44,7 +44,7 @@ function InputSearch({searchValue,setSearchValue }:InputSearchInt) {
                     name='search'
                     className={styles['input-box__input']}
                     type='text'
-                    placeholder='Поиск'
+                    placeholder='Поиск фильма...'
                     minLength={1}
                     autoComplete='off'
                     value={searchValue}

@@ -28,7 +28,7 @@ function Home({ movieRating, cartoons, series, movieRandom,message }: MainPageIn
 }
 
 export async function getServerSideProps(params: GetServerSidePropsContext) {
-  let message: Array<string> = [];
+  let message: string = '';
   let movieRating: any = {};
   let cartoons: any = {};
   let series: any = {};
@@ -38,7 +38,7 @@ export async function getServerSideProps(params: GetServerSidePropsContext) {
     if (movie) {
       if (movie < 200 || movie >= 300) {
         params.res.statusCode = movie;
-        message.push(movie);
+        message = `Ошибка: ${movie}`;
       }
     }
   }
@@ -52,7 +52,7 @@ export async function getServerSideProps(params: GetServerSidePropsContext) {
     const responseArray = [movieRating, series, cartoons, movieRandom]
 
     responseArray.map((item) => {
-      getError(item, params.res.statusCode)
+      // getError(item, params.res.statusCode)
     })
    
   // }

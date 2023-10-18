@@ -28,27 +28,27 @@ function Layout({ children }: LayoutInt) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className='page'>
-        <Header
-          onOpenMenu={openMenu}
-          onClosePopup={closePopup}
-        />
-        <div className={styles['main']}>
-          <main className={styles['main-page']}>
-            {children}
-          </main>
-        </div>
-        <Footer />
+        <div className='page'>
+          <Header
+            onOpenMenu={openMenu}
+            onClosePopup={closePopup}
+          />
+          <div className={styles['main']}>
+            <main className={styles['main-page']}>
+              {children}
+            </main>
+          </div>
+          <Footer />
 
-        <MenuMobile
-          onClosePopup={closePopup}
-          isOpenPopupMenu={isOpenPopupMenu}
-        />
-        <Overlay isOpenPopup={isOpenPopupSearch} >
-          <SearchForm />
-        </Overlay>
-        <Tooltip isOpenTooltip={isOpenTooltip} text={textError}/>
-      </div>
+          <MenuMobile
+            onClosePopup={closePopup}
+            isOpenPopupMenu={isOpenPopupMenu}
+          />
+          <Overlay isOpenPopup={isOpenPopupSearch} >
+            <SearchForm />
+          </Overlay>
+          <Tooltip isOpenTooltip={isOpenTooltip} text={textError} />
+        </div>
     </>
   );
 }

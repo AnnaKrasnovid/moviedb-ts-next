@@ -1,15 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState= {
+    years: '',
+    rating: '',
+    genre: '',
+}
+
 const filtersSlice = createSlice({
     name: 'filters',
-    initialState: {
-        year: '',
-        rating: '',
-        genre: '',
-    },
+    initialState,
     reducers: {
         filterYears(state, action) {
-            state.year = action.payload.years;
+            state.years = action.payload.years;
         },
         filterRating(state, action) {
             state.rating = action.payload.rating;

@@ -17,6 +17,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "tools/api.js", "store/Filters.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "tools/api.js", "store/Filters.js", "hooks/useDebounce.js"],
   "exclude": ["node_modules"]
 }
