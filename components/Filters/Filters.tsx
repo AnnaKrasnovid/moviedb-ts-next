@@ -6,13 +6,18 @@ import Select from '../../UI/Select/Select';
 import Button from '../../UI/Button/Button';
 
 import { selectGenresList, selectYearsList, selectRatingList } from '../../assets/appData/filters';
-import { filterYears, filterGenre, filterRating } from '../../store/FiltersSlise';
+import { filterYears, filterGenre, filterRating } from '../../store/reducers/FiltersSlise';
+import { useActions } from '../../hooks/useActions';
 
 import styles from './Filters.module.scss';
 
 function Filters() {
+    // console.log(useActions())
+    // @ts-ignore
+    // const {filterGenre, filterRating, filterYears}=useActions()
     const dispatch = useDispatch();
     const filters = useSelector((state: any) => state.filters)
+    console.log(filters)
     const router = useRouter();
     const [genre, setGenre] = useState<any>('');
     const [years, setYears] = useState<any>('');
@@ -20,6 +25,9 @@ function Filters() {
     // const [sort, setSort] = useState<string>('');
 
     function getFiltersMovies() {
+        //  filterGenre({ genre })
+        //  filterRating({ rating })
+        //  filterYears({ years })
         dispatch(filterYears({ years }))
         dispatch(filterGenre({ genre }))
         dispatch(filterRating({ rating }))

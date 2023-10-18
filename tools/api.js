@@ -32,7 +32,7 @@ class Api {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'access-control-allow-origin': '*' 
+        // 'access-control-allow-origin': '*' 
         // 'X-API-KEY': this._key,
       }
     })

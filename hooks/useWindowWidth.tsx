@@ -5,8 +5,8 @@ function getWidth() {
     return width;
 };
 
-export function useWindowWidth() {    
-    const [windowWidth, setWindowWidth] = useState(0);
+export function useWindowWidth():number {    
+    const [windowWidth, setWindowWidth] = useState<number>(0);
 
     useEffect(() => {
         setWindowWidth(getWidth());

@@ -6,7 +6,7 @@ import ScrollBar from '../../UI/ScrollBar/ScrollBar';
 import Logo from '../Logo/Logo';
 import ButtonClose from '../../UI/ButtonClose/ButtonClose';
 
-import {useWindowWidth} from '../../hooks/useWindowWidth';
+import { useWindowWidth } from '../../hooks/useWindowWidth';
 import { hideScroll } from '../../tools/utils';
 import { MenuMobileInt } from '../../settings/interfaces';
 

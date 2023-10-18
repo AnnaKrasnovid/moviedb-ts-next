@@ -23,7 +23,7 @@ const filters = useSelector((state:any)=> state.filters);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<any>(pages);
   const [isFetching] = useInfiniteScroll(changePage, totalPages === 1);
-console.log(list)
+  
   async function getfiltersMovies() {
     const genreFilter = filters.genre ? `genres.name=${filters.genre}` : '';
     const yearFilter = filters.year ? `year=${filters.year}` : '';
