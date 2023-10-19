@@ -31,4 +31,4 @@ function Header({ onOpenMenu, onClosePopup }: HeaderInt) {
   );
 }
 
-export default Header;
+export default  Header;

@@ -13,7 +13,7 @@ function Select({ options, label, callback, defaultValue }: SelectInt) {
     const [selectedItem, setSelectedItem] = useState<string>(options[0].title);
 
     const choiceOption = (id: string | number) => {
-        closeModal()
+        closeModal();
         const item = options.find((i) => i.id === id);
 
         if (item) {

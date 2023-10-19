@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{memo} from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -17,5 +17,5 @@ function Logo({ type }: LogoInt) {
   );
 }
 
-export default Logo;
+export default memo(Logo);
 

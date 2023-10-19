@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useCallback } from 'react';
 import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 
@@ -16,19 +16,19 @@ import { useInfiniteScroll } from '../../hooks/useInfiniteScroll';
 import styles from './Movies.module.scss';
 
 function Movies({ list, pages }: MoviesListInt) {
+  const {pathname} = useRouter();
   const filters = useSelector((state: any) => state.filters);
-  const { pathname } = useRouter();
   const [renderList, setRenderList] = useState<Array<MovieBaseInt>>(list);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<any>(pages);
-  const [isFetching] = useInfiniteScroll(changePage);
+  const [isFetching] = useInfiniteScroll(changePage, totalPages === 1);
 
   async function getfiltersMovies() {
     const genreFilter = filters.genre ? `genres.name=${filters.genre}` : '';
     const yearFilter = filters.years ? `year=${filters.years}` : '';
     const ratingFilter = filters.rating ? `rating.kp=${filters.rating}` : '';
     const movieType = `type=${getMoviesType(pathname)}`;
-    
+
     try {
       const response = await api.filtersMovies(genreFilter, yearFilter, ratingFilter, movieType, currentPage * MOVIES_LIMIT);
       setRenderList(response.docs);
@@ -43,14 +43,17 @@ function Movies({ list, pages }: MoviesListInt) {
   }
 
   useEffect(() => {
-    getfiltersMovies();
+    if (currentPage !== 1) {
+      getfiltersMovies();
+    }
   }, [currentPage])
 
   useEffect(() => {
-    getfiltersMovies();
-    setCurrentPage(1);
+    if (filters.genre || filters.years || filters.rating) {
+      getfiltersMovies();
+    }
   }, [filters])
-
+  
   return (
     <section className={`movies ${styles['movies']}`} >
       <Filters />
