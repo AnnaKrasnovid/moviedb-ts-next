@@ -34,31 +34,31 @@ export async function getServerSideProps(params: GetServerSidePropsContext) {
   let series: any = {};
   let movieRandom: any = {};
 
-  function getError(movie: any, params: any) {
-    if (movie) {
-      if (movie < 200 || movie >= 300) {
-        params.res.statusCode = movie;
-        message = `Ошибка: ${movie}`;
-      }
-    }
-  }
+  // function getError(movie: any, params: any) {
+  //   if (movie) {
+  //     if (movie < 200 || movie >= 300) {
+  //       params.res.statusCode = movie;
+  //       message = `Ошибка: ${movie}`;
+  //     }
+  //   }
+  // }
 
-  // try {
-    movieRating = await api.getMovies('movie', '2010-2023');
-    movieRandom = await api.getMovieRandom();
-    series = await api.getMovies('tv-series', '2000-2023');
-    cartoons = await api.getMovies('cartoon', '2010-2023');
+  // // try {
+  //   movieRating = await api.getMovies('movie', '2010-2023');
+  //   movieRandom = await api.getMovieRandom();
+  //   series = await api.getMovies('tv-series', '2000-2023');
+  //   cartoons = await api.getMovies('cartoon', '2010-2023');
 
-    const responseArray = [movieRating, series, cartoons, movieRandom]
+  //   const responseArray = [movieRating, series, cartoons, movieRandom]
 
-    responseArray.map((item) => {
-      // getError(item, params.res.statusCode)
-    })
+  //   responseArray.map((item) => {
+  //     // getError(item, params.res.statusCode)
+  //   })
    
-  // }
-  // catch (error) {
-  //   console.error('error', error);   
-  // }
+  // // }
+  // // catch (error) {
+  // //   console.error('error', error);   
+  // // }
 
   return {
     props: { movieRating, cartoons, series, movieRandom ,message},

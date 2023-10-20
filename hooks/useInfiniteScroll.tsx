@@ -20,7 +20,7 @@ export function useInfiniteScroll(callback: any, condition:any) {
         setTimeout(() => {
             callback();
             setIsFetching(false);
-        }, 500)
+        }, 300)
        
     }, [isFetching]);
 

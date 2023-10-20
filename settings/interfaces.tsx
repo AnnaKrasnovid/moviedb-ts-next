@@ -244,9 +244,9 @@ export interface MoviesInfoInt {
     total: number,
 }
 
-export interface MoviesPageInt {
-    movies: MoviesInfoInt,
-}
+// export interface MoviesPageInt {
+//     movies: MoviesInfoInt,
+// }
 
 export interface MainPageInt {
     movieRating: MoviesInfoInt,
