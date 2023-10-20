@@ -5,8 +5,9 @@ import Select from '../../UI/Select/Select';
 import Button from '../../UI/Button/Button';
 
 import { selectGenresList, selectYearsList, selectRatingList } from '../../assets/appData/filters';
-
+import { useActions } from '../../hooks/useActions';
 import styles from './Filters.module.scss';
+
 
 function Filters() {
     const router = useRouter();   

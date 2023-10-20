@@ -15,19 +15,20 @@ import styles from './Movies.module.scss';
 
 function Movies() {
   const router = useRouter();
-  const movieType = `type=${getMoviesType(router.pathname)}`;
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<any>(1);
+  // const [movieType,setMovieType] = useState<string>('');
+  const [filters, setFilters]= useState({genre:'', years:'year=2000-2023', rating:'rating.kp=7-10', movieType:'', limit:MOVIES_LIMIT})
   const [isFetching] = useInfiniteScroll(changePage, totalPages === 1);
-  const { data, isLoading, isError } = useFiltersMoviesQuery(filters());
+  const movieType = `type=${getMoviesType(router.pathname)}`; 
+  const { data, isLoading, isError } = useFiltersMoviesQuery(getFilters());
 
-  function filters() {
+  function getFilters() {
     const genre = router.query.genre ? `genres.name=${router.query.genre}` : '';
     const years = router.query.years ? `year=${router.query.years}` : 'year=2000-2023';
     const rating = router.query.rating ? `rating.kp=${router.query.rating}` : 'rating.kp=7-10';
     const limit = currentPage * MOVIES_LIMIT;
-
-    return { genre, years, rating, movieType, limit }
+   return {genre, years, rating, movieType, limit}
   }
 
   function changePage() {
@@ -36,21 +37,30 @@ function Movies() {
 
   useEffect(() => {
     if (!isLoading && !isError) {
-      setTotalPages(data.pages)
+      setTotalPages(data.pages);
     }
   }, [data])
 
   useEffect(() => {
-    setCurrentPage(1)
+    setCurrentPage(1);
   }, [router.query])
+
+  
+  useEffect(() => {
+    // getFilters()
+  }, [router.query])
+
+  useEffect(() => {
+    // setMovieType(`type=${getMoviesType(router.pathname)}`)
+  }, [])
 
   return (
     <section className={`movies ${styles['movies']}`} >
       <Filters />
-      {!isError
+       {!isError
         ? isLoading
           ? <Loader />
-          : (data.docs.length > 0
+          : (data?.docs.length > 0
             ? (
               <>
                 <MoviesList list={data.docs} />
@@ -58,7 +68,7 @@ function Movies() {
               </>
             )
             : <Information text='Ничего не найдено' />)
-        : <Information text='Что-то-пошло не так...' />}
+        : <Information text='Что-то-пошло не так...' />} 
     </section>
   );
 }

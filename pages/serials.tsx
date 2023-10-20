@@ -1,7 +1,6 @@
 import Layout from '../layout/Layout/Layout';
 import Movies from '../components/Movies/Movies';
 
-// import { MoviesPageInt } from '../settings/interfaces';
 
 import api from '../tools/api';
 

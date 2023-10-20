@@ -24,7 +24,7 @@ function Header({ onOpenMenu, onClosePopup }: HeaderInt) {
           </div>
         </div>
         <div className={styles['search']} onClick={openPopupSearch}>
-          <InputSearch searchValue={''} setSearchValue={() => { }} />
+          {/* <InputSearch searchValue={''} setSearchValue={() => { }} /> */}
         </div>
       </div>
     </header>
