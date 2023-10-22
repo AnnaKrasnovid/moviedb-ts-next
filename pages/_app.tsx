@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import type { AppProps } from 'next/app';
 import { Provider } from 'react-redux';
-import store from '../store/index';
+// import {store} from '../store/index';
+import { wrapper } from '../store/index';
 
 import { ModalsContext } from '../context/ModalsContext';
 import { TooltipContext } from '../context/TooltipContext';
@@ -10,12 +11,12 @@ import 'normalize.css';
 import 'swiper/css/bundle';
 import '../styles/index.scss';
 
-export default function App({ Component, pageProps }: AppProps) {
+ function App({ Component, pageProps }: AppProps) {//...rest
+  // const { store, props } = wrapper.useWrappedStore(rest);
   const [isOpenPopupMenu, setIsOpenPopupMenu] = useState(false);
   const [isOpenPopupSearch, setIsOpenPopupSearch] = useState(false);
   const [isOpenTooltip, setIsOpenTooltip] = useState(false);
   const [textError, setTextError] = useState('Что-то пошло не так...');
-
   function openMenu() {
     setIsOpenPopupMenu(true);
   }
@@ -51,12 +52,15 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
   return (
-    <Provider store={store}>
+    // <Provider store={store}>
       <TooltipContext.Provider value={tooltipContextProps}>
         <ModalsContext.Provider value={modalsContextProps}>
           <Component {...pageProps} />
         </ModalsContext.Provider>
       </TooltipContext.Provider>
-    </Provider>
+    // </Provider>
   )
 }
+
+
+export default wrapper.withRedux(App);

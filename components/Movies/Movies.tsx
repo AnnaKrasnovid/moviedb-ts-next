@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
 
 import Filters from '../Filters/Filters';
 import Loader from '../../UI/Loader/Loader';
@@ -15,31 +16,28 @@ import styles from './Movies.module.scss';
 
 function Movies() {
   const router = useRouter();
+  const filters = useSelector((state: any) => state.filters)
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<any>(1);
   // const [movieType,setMovieType] = useState<string>('');
-  const [filters, setFilters]= useState({genre:'', years:'year=2000-2023', rating:'rating.kp=7-10', movieType:'', limit:MOVIES_LIMIT})
+  const filtersRedux = useSelector((state: any) => state.filters)
+  //  const [filters, setFilters]= useState({genre:'', years:'year=2000-2023', rating:'rating.kp=7-10', movieType:'', limit:MOVIES_LIMIT})
   const [isFetching] = useInfiniteScroll(changePage, totalPages === 1);
-  const movieType = `type=${getMoviesType(router.pathname)}`; 
-  const { data, isLoading, isError } = useFiltersMoviesQuery(getFilters());
 
-  function getFilters() {
-    const genre = router.query.genre ? `genres.name=${router.query.genre}` : '';
-    const years = router.query.years ? `year=${router.query.years}` : 'year=2000-2023';
-    const rating = router.query.rating ? `rating.kp=${router.query.rating}` : 'rating.kp=7-10';
-    const limit = currentPage * MOVIES_LIMIT;
-   return {genre, years, rating, movieType, limit}
-  }
+   const { data, isLoading, isError, refetch } = useFiltersMoviesQuery({filters});
+   
+   console.log(data, isError)
+
 
   function changePage() {
     setCurrentPage(currentPage + 1);
   }
 
-  useEffect(() => {
-    if (!isLoading && !isError) {
-      setTotalPages(data.pages);
-    }
-  }, [data])
+  // useEffect(() => {
+  //   if (!isLoading && !isError) {
+  //     setTotalPages(data.pages);
+  //   }
+  // }, [data])
 
   useEffect(() => {
     setCurrentPage(1);
@@ -47,7 +45,7 @@ function Movies() {
 
   
   useEffect(() => {
-    // getFilters()
+    // refetch()
   }, [router.query])
 
   useEffect(() => {
@@ -56,11 +54,13 @@ function Movies() {
 
   return (
     <section className={`movies ${styles['movies']}`} >
-      <Filters />
-       {!isError
+       <Filters />
+      {
+      !isError
         ? isLoading
           ? <Loader />
-          : (data?.docs.length > 0
+          : 
+          (data?.docs.length > 0
             ? (
               <>
                 <MoviesList list={data.docs} />
@@ -68,7 +68,8 @@ function Movies() {
               </>
             )
             : <Information text='Ничего не найдено' />)
-        : <Information text='Что-то-пошло не так...' />} 
+        : <Information text='Что-то-пошло не так...' />
+      } 
     </section>
   );
 }
