@@ -246,6 +246,7 @@ export interface MoviesInfoInt {
 
 export interface MoviesPageInt {
     movies: MoviesInfoInt,
+    message?: any
 }
 
 export interface MainPageInt {

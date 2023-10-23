@@ -9,14 +9,11 @@ import { FilterInt } from '../../settings/interfaces';
 
 import styles from './Filters.module.scss';
 
-function Filters() {
+function Filters({callback,currentPage}:any) {
     const router = useRouter();
     const [genre, setGenre] = useState<any>('');
     const [years, setYears] = useState<any>('');
     const [rating, setRaiting] = useState<any>('');
-    const [defaultValueGenre, setDefaultValueGenre] = useState<string>('');
-    const [defaultValueRating, setDefaultValueRating] = useState<string>('');
-    const [defaultValueYears, setDefaultValueYears] = useState<string>('');
     // const [sort, setSort] = useState<string>('');
 
     const selectGenresList: Array<FilterInt> = useMemo(() => [
@@ -34,7 +31,7 @@ function Filters() {
         { id: '11', title: 'Фантастика', value: 'фантастика' },
         { id: '12', title: 'Фэнтези', value: 'фэнтези' },
     ], [genre])
-    
+
     const selectYearsList: Array<FilterInt> = [
         { id: '0', title: 'Все годы', value: '' },
         { id: '1', title: `2022-${getCurrentYear()}`, value: `2022-${getCurrentYear()}` },
@@ -64,51 +61,31 @@ function Filters() {
     ]
 
     function getFiltersMovies() {
-        router.query.genre = genre;
-        router.query.year = years;
-        router.query.rating = rating;
-        router.push(router);
-    }
-
-    function getGenre(list: Array<FilterInt>, param: (string | undefined), setState: any) {
-        list.find((i: FilterInt, index: number) => {
-            if (i.value === param) {
-                setState(list[index].title)
-            } else if (param === undefined) {
-                setState(list[0].title)
-            }
-        })
+        router.push({
+            ...router,
+            query: {
+                ...router.query,
+                genre: genre,
+                years: years,
+                rating: rating,
+            },
+        }, undefined, { shallow: true }
+        );
+        callback(genre, years,rating)
     }
 
     useEffect(() => {
-        // для селектов если уже была фильтрация
-        // @ts-ignore
-        getGenre(selectGenresList, router.query.genre, setDefaultValueGenre)
-        // @ts-ignore
-        getGenre(selectYearsList, router.query.year, setDefaultValueYears)
-        // @ts-ignore
-        getGenre(selectRatingList, router.query.rating, setDefaultValueRating)
-    }, [router.query])
-
-    useEffect(() => {
-        // при монтировании если есть query параметры
-        if (router.query.genre || router.query.year || router.query.rating) {
-            setGenre(router.query.genre)
-            setYears(router.query.year)
-            setRaiting(router.query.rating)
-        }
+        setGenre(router.query.genre ? router.query.genre : '')
+        setYears(router.query.years ? router.query.years : '')
+        setRaiting(router.query.rating ? router.query.rating : '')
     }, [])
 
-    const changeFilter = useCallback(
-        (value: any) => {
-            setGenre(value)
-        }, [genre])
 
     return (
         <div className={styles['filters']}>
-            <Select options={selectGenresList} callback={(value) => changeFilter(value)} placeholder='Жанры' defaultValue={defaultValueGenre} />
-            <Select options={selectYearsList} callback={(value) => setYears(value)} placeholder='Годы выхода' defaultValue={defaultValueYears} />
-            <Select options={selectRatingList} callback={(value) => setRaiting(value)} placeholder='Рейтинг' defaultValue={defaultValueRating} />
+            <Select options={selectGenresList} callback={(value) => setGenre(value)} placeholder='Жанры' defaultValue={genre} />
+            <Select options={selectYearsList} callback={(value) => setYears(value)} placeholder='Годы выхода' defaultValue={years} />
+            <Select options={selectRatingList} callback={(value) => setRaiting(value)} placeholder='Рейтинг' defaultValue={rating} />
             {/* <Select options={selectSortList} callback={(value) => setSort(value)} placeholder='Рекомендуемые' defaultValue={selectSortList[0].title} /> */}
             <Button text='Найти' callback={getFiltersMovies} />
         </div>

@@ -16,20 +16,21 @@ import { useInfiniteScroll } from '../../hooks/useInfiniteScroll';
 import styles from './Movies.module.scss';
 
 function Movies({ list, pages }: MoviesListInt) {
-  const { pathname, query } = useRouter();
+  const router = useRouter();
   const [renderList, setRenderList] = useState<Array<MovieBaseInt>>(list);
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>( 1);
   const [totalPages, setTotalPages] = useState<any>(pages);
   const [isFetching] = useInfiniteScroll(changePage, totalPages === 1);
 
-  async function getfiltersMovies() {
-    const genreFilter = query.genre ? `genres.name=${query.genre}` : '';
-    const yearFilter = query.year ? `year=${query.year}` : '';
-    const ratingFilter = query.rating ? `rating.kp=${query.rating}` : '';
-    const movieType = `type=${getMoviesType(pathname)}`;
+  async function getfiltersMovies(genre: string, years: string, rating: string) {
+    const genreFilter = genre ? `genres.name=${genre}` : '';
+    const yearFilter = years ? `year=${years}` : '';
+    const ratingFilter = rating ? `rating.kp=${rating}` : '';
+    const movieType = `type=${getMoviesType(router.pathname)}`;
+    const limit = currentPage * MOVIES_LIMIT
 
     try {
-      const response = await api.filtersMovies(genreFilter, yearFilter, ratingFilter, movieType, currentPage * MOVIES_LIMIT);
+      const response = await api.filtersMovies(genreFilter, yearFilter, ratingFilter, movieType, limit);
       setRenderList(response.docs);
       setTotalPages(response.pages);
     } catch (err) {
@@ -42,26 +43,22 @@ function Movies({ list, pages }: MoviesListInt) {
   }
 
   useEffect(() => {
-    if (!checkEmptyObject(query)) {
-      getfiltersMovies();
-    } else if (currentPage > 1 && checkEmptyObject(query)) {
-      getfiltersMovies();
+    if (currentPage > 1) {
+      const genreFilter = router.query.genre ? router.query.genre : '';
+      const yearFilter = router.query.years ? router.query.years : '';
+      const ratingFilter = router.query.rating ? router.query.rating : '';
+      //@ts-ignore
+      getfiltersMovies(genreFilter, yearFilter, ratingFilter)
     }
-  }, [query, currentPage])
-
-  useEffect(() => {
-    if (currentPage !== 1 && checkEmptyObject(query)) {
-      setCurrentPage(1);
-    }
-  }, [query])
+  }, [currentPage])
 
   return (
     <section className={`movies ${styles['movies']}`} >
-      <Filters />
+      <Filters callback={getfiltersMovies} currentPage={currentPage} />
       {renderList ? (
         renderList.length > 0 ? (
           <>
-           <MoviesList list={renderList}/>
+            <MoviesList list={renderList} />
             {(isFetching && currentPage <= totalPages) && <Loader />}
           </>
         ) : (

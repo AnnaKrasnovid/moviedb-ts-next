@@ -52,7 +52,7 @@ export async function getServerSideProps(params: GetServerSidePropsContext) {
     const responseArray = [movieRating, series, cartoons, movieRandom]
 
     responseArray.map((item) => {
-      getError(item, params.res.statusCode)
+      getError(item, params)
     })
    
   // }

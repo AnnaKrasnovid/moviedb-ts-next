@@ -4,10 +4,14 @@ import Layout from '../layout/Layout/Layout';
 import Movies from '../components/Movies/Movies';
 
 import { MoviesPageInt } from '../settings/interfaces';
+import { checkEmptyObject } from '../tools/utils';
+import { MOVIES_LIMIT } from '../settings/constants';
 
 import api from '../tools/api';
 
-function MoviesPage({ movies }: MoviesPageInt) {
+function MoviesPage({ movies, message }: MoviesPageInt) {
+    // console.log(movies)
+    console.log(message)
     return (
         <Layout>
             <Movies list={movies.docs} pages={movies.pages} />
@@ -20,22 +24,24 @@ export async function getServerSideProps(params: GetServerSidePropsContext) {
     let movies: any = {};
 
     function getError(movie: any, params: any) {
-        if (movie.status) {
-          if (movie.status < 200 || movie.status >= 300) {
-            params.res.statusCode = movie.status;
-            message = `Ошибка: ${movie.status}, ${movie.message}`;
-          }
-        }
-      }
+        if (movie < 200 || movie >= 300) {
+            params.res.statusCode = movie;
+            message = `Ошибка: ${movies}`;
 
-    try {
-        movies = await api.getMovies('movie', '2000-2023');
-    } catch (error) {
-        console.log(error);
+        }
+    }
+    
+    const queryParams = {
+        genre: params.query.genre ? `genres.name=${params.query.genre}` : '',
+        years: params.query.years ? `year=${params.query.years}` : 'year=2000-2023',
+        rating: params.query.rating ? `rating.kp=${params.query.rating}` : 'rating.kp=7-10'
     }
 
+    movies = await api.filtersMovies(queryParams.genre, queryParams.years, queryParams.rating, 'type=movie', MOVIES_LIMIT);
+    getError(movies, params)
+
     return {
-        props: { movies },
+        props: { movies, message },
     }
 }
 
