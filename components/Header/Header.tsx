@@ -19,7 +19,7 @@ function Header({ onOpenMenu, onClosePopup }: HeaderInt) {
         <div className={styles['header__wrapper']}>
           <Logo type='header' />
           <div className={styles['header__box']}>
-            <ButtonBurger callback={onOpenMenu} />
+            <ButtonBurger callback={onOpenMenu}/>
             <Navigation type='header' onClosePopup={onClosePopup} />
           </div>
         </div>

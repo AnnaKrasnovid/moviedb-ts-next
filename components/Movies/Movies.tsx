@@ -9,9 +9,9 @@ import MoviesList from '../MoviesList/MoviesList';
 import api from '../../tools/api';
 import { getMoviesType } from '../../tools/utils';
 import { MOVIES_LIMIT } from '../../settings/constants';
-import { checkEmptyObject } from '../../tools/utils';
 import { MovieBaseInt, MoviesListInt } from '../../settings/interfaces';
 import { useInfiniteScroll } from '../../hooks/useInfiniteScroll';
+import { getQueryParams } from '../../tools/utils';
 
 import styles from './Movies.module.scss';
 
@@ -22,15 +22,13 @@ function Movies({ list, pages }: MoviesListInt) {
   const [totalPages, setTotalPages] = useState<any>(pages);
   const [isFetching] = useInfiniteScroll(changePage, totalPages === 1);
 
-  async function getfiltersMovies(genre: string, years: string, rating: string) {
-    const genreFilter = genre ? `genres.name=${genre}` : '';
-    const yearFilter = years ? `year=${years}` : '';
-    const ratingFilter = rating ? `rating.kp=${rating}` : '';
+  async function getfiltersMovies(genre: string, years: string, rating: string) {   
+    const queryFilters = getQueryParams(genre, years, rating)
     const movieType = `type=${getMoviesType(router.pathname)}`;
     const limit = currentPage * MOVIES_LIMIT
 
     try {
-      const response = await api.filtersMovies(genreFilter, yearFilter, ratingFilter, movieType, limit);
+      const response = await api.filtersMovies(queryFilters, movieType, limit);
       setRenderList(response.docs);
       setTotalPages(response.pages);
     } catch (err) {
@@ -48,13 +46,13 @@ function Movies({ list, pages }: MoviesListInt) {
       const yearFilter = router.query.years ? router.query.years : '';
       const ratingFilter = router.query.rating ? router.query.rating : '';
       //@ts-ignore
-      getfiltersMovies(genreFilter, yearFilter, ratingFilter)
+      getfiltersMovies(genreFilter, yearFilter, ratingFilter);
     }
   }, [currentPage])
 
   return (
     <section className={`movies ${styles['movies']}`} >
-      <Filters callback={getfiltersMovies} currentPage={currentPage} />
+      <Filters callback={getfiltersMovies} />
       {renderList ? (
         renderList.length > 0 ? (
           <>
@@ -65,7 +63,7 @@ function Movies({ list, pages }: MoviesListInt) {
           <Information text='Ничего не найдено' />
         )
       ) : (
-        <Information text='Что-то-пошло не так...' />
+        <Information text='Что-то пошло не так...' />
       )}
     </section>
   );

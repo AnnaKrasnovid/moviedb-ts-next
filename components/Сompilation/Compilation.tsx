@@ -17,19 +17,19 @@ function Compilation({ title, moviesList, link }: CompilationInt) {
     <section className={styles['compilation']}>
       <Subtitle text={<Link href={link} className='link'>{title}</Link>} />
       <div className={styles['compilation__movies']}>
-        {moviesList ? (
-          <Carousel loop={false} className="compilation-swiper">
-            {moviesList && moviesList.map((item) => (
-              <SwiperSlide key={item.id}>
-                <Link href={`${routes.MOVIE}/${item.id}`} className='link link-card'>
-                  <MovieCard item={item} />
-                </Link>
-              </SwiperSlide>
-            ))}
-          </Carousel>
-        ) : (
-          <Loader />
-        )
+        {moviesList
+          ? (
+            <Carousel loop={false} className="compilation-swiper">
+              {moviesList && moviesList.map((item) => (
+                <SwiperSlide key={item.id}>
+                  <Link href={`${routes.MOVIE}/${item.id}`} className='link link-card'>
+                    <MovieCard item={item} />
+                  </Link>
+                </SwiperSlide>
+              ))}
+            </Carousel>
+          )
+          : <Loader />
         }
       </div>
     </section>

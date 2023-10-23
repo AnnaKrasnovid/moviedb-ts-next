@@ -3,12 +3,13 @@ import Image from "next/image";
 
 import DescriptionMovieItem from "../DescriptionMovieItem/DescriptionMovieItem";
 
-import { getString, getDateFormat } from "../../tools/utils";
+import { getString, getDateFormat, getTextYear } from "../../tools/utils";
 import { ActorInt } from "../../settings/interfaces";
 
 import styles from './Actor.module.scss';
 
 function Actor({ actor }: ActorInt) {
+    console.log(typeof actor.age)
     return (
         <div className={styles['page-actor']}>
             <div className={styles['actor-info']}>
@@ -19,7 +20,7 @@ function Actor({ actor }: ActorInt) {
                     <h2 className={styles['actor-info__title']}>{actor.name}</h2>
                     <ul className={styles['actor-info__wrapper']}>
                         {actor.profession && <DescriptionMovieItem title="Карьера:" info={getString(actor.profession)} />}
-                        {actor.age && <DescriptionMovieItem title="Возраст:" info={actor.age} />}
+                        {actor.age && <DescriptionMovieItem title="Возраст:" info={`${actor.age} ${getTextYear(51)}`} />}
                         {actor.birthday && <DescriptionMovieItem title="Дата рождения:" info={getDateFormat(actor.birthday)} />}
                         {actor.birthPlace && <DescriptionMovieItem title="Место рождения:" info={getString(actor.birthPlace)} />}
                     </ul>

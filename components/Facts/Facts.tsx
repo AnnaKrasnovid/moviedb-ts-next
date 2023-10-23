@@ -4,7 +4,7 @@ import ButtonText from '../../UI/ButtonText/ButtonText';
 import Subtitle from '../Subtitle/Subtitle';
 
 import { FactsInt, ValueInt } from '../../settings/interfaces';
-import { useShowMore } from '../../hooks/useShowMore'
+import { useShowMore } from '../../hooks/useShowMore';
 
 import styles from './Facts.module.scss';
 

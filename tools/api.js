@@ -46,8 +46,8 @@ class Api {
       .then(this._checkResponseStatus);
   }
 
-  filtersMovies(genre = '', years = 'year=2000-2023', rating = 'rating.kp=7-10', movieType, limit = 24) {
-    return fetch(`${this._baseUrl}/v1.3/movie?${movieType}&${genre}&${years}&${rating}&limit=${limit}&sort=year&sort=rating.kp&page=1&token=${this._token}`, {
+  filtersMovies(filters, movieType, limit = 24) {
+    return fetch(`${this._baseUrl}/v1.3/movie?${movieType}&${filters.genre}&${filters.years}&${filters.rating}&limit=${limit}&sort=year&sort=rating.kp&page=1&token=${this._token}`, {
       method: 'GET',
     })
       .then(this._checkResponseStatus);

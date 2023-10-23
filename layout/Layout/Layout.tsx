@@ -12,6 +12,7 @@ import { TooltipContext } from '../../context/TooltipContext';
 import { ModalsContext } from '../../context/ModalsContext';
 import { LayoutInt } from '../../settings/interfaces';
 
+
 import styles from './Layout.module.scss';
 
 function Layout({ children }: LayoutInt) {

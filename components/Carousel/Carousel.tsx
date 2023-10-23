@@ -6,7 +6,15 @@ import { Autoplay, Pagination, Navigation } from "swiper";
 import { useWindowWidth } from '../../hooks/useWindowWidth';
 import { CarouselInt } from '../../settings/interfaces';
 
-function Carousel({ children, slides = [6, 5, 4, 3, 2], className, loop = true, autoplay = false, navigation = false }: CarouselInt) {
+function Carousel({
+    children,
+    slides = [6, 5, 4, 3, 2],
+    className,
+    loop = true,
+    autoplay = false,
+    navigation = false
+}: CarouselInt) {
+    
     const windowWidth = useWindowWidth();
     const [slidesDefault, setSlidesDefault] = useState(0);
 

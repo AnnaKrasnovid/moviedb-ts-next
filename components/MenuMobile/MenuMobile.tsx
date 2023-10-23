@@ -29,7 +29,7 @@ function MenuMobile({ onClosePopup, isOpenPopupMenu }: MenuMobileInt) {
     <div className={`${styles['menu-mobile']} ${isOpenPopupMenu ? styles['menu-mobile_opened'] : ''}`} >
       <div className={styles['menu-mobile__box']}>
         <Logo type='menu' />
-        <ButtonClose callback={onClosePopup}/>        
+        <ButtonClose callback={onClosePopup} position='right'/>        
       </div>
       <div className={styles['menu-mobile__box-nav']}>
         <ScrollBar>

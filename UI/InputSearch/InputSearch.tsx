@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 
 import Error from '../Error/Error';
 
@@ -10,21 +10,21 @@ function InputSearch({searchValue,setSearchValue }:InputSearchInt) {
     const [isActiveSearchClass, setIsActiveSearchClass] = useState(false);
     const [isActiveInput, setIsActiveInput] = useState(false);
     
-    function handleMouseEnter() {
+    const handleMouseEnter=useCallback(()=> {
         setIsActiveSearchClass(true);
-    }
+    },[isActiveSearchClass])
 
-    function handleMouseLeave() {
+    const handleMouseLeave=useCallback(()=>{
         setIsActiveSearchClass(false);
-    }
+    },[isActiveSearchClass])
 
-    function handleOnFocusInput() {
+    const handleOnFocusInput=useCallback(()=>{
         setIsActiveInput(true);
-    }
+    },[isActiveInput])
 
-    function handleOnBlurInput() {
+    const  handleOnBlurInput=useCallback(()=>{
         setIsActiveInput(false);
-    }
+    },[isActiveInput])
 
     function handleChange(e: any) {
         setSearchValue(e.target.value)

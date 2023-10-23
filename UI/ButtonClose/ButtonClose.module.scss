@@ -2,9 +2,6 @@
 
 .button-close {
     display: flex;
-    // position: absolute;
-    // top: 16px;
-    // right: 16px;
     background-image: url(../../images/icon-close-menu.svg);
     background-repeat: no-repeat;
     background-position: center;
@@ -19,5 +16,8 @@
 
     &:hover {
       transform: rotate(360deg);
+    }
+    &_right {
+align-self: flex-end;
     }
   }

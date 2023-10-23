@@ -1,5 +1,4 @@
 import { ReactNode, Dispatch, SetStateAction } from "react";
-
 export interface GenreItemInt {
     name: string,
 }
@@ -9,6 +8,10 @@ export interface ButtonInt {
     type?: ButtonTypes,
     callback: () => void,
     className?: string,
+}
+
+export interface ButtonCloseInt extends ButtonInt {
+    position?: 'left' | 'right',
 }
 
 export interface ButtonTextInt extends ButtonInt {
