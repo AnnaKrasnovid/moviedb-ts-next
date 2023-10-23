@@ -14,18 +14,20 @@ const filtersSlice = createSlice({
     reducers: {
         filterYears(state, action) {
             state.years = action.payload.years;
+           
         },
         filterRating(state, action) {
             state.rating = action.payload.rating;
         },
         filterGenre(state, action) {
             state.genre = action.payload.genre;
+            console.log('filterGenre',action)
         },
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
             if (action.type === HYDRATE) {
-                // console.log( 'action.payload::::::',action.payload.ServerRouter);
+                 console.log( 'HYDRATE',action.payload.filters);
                 return {
                     ...state,
                     ...action.payload.filters

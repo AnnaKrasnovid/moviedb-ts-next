@@ -12,6 +12,9 @@ import api from '../tools/api';
 
 function MoviesPage({ initialReduxState }: any) {
     console.log(initialReduxState)
+    const res= wrapper.useWrappedStore(initialReduxState)
+    // const res2= res.store.dispatch()
+    console.log(res)
     return (
         <Layout>
             <Movies />
@@ -45,31 +48,22 @@ function MoviesPage({ initialReduxState }: any) {
 
 
 export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps((store) => async (ctx) => {
-   
+
     const limit = 24;
     const states = store.getState()
-     const { filters } = states;
-   
-    if (ctx.query.genre || ctx.query.years || ctx.query.rating) {
-        const filtersNew = {
-            genre: ctx.query.genre ? `genres.name=${ctx.query.genre}` : filters.genre,
-            years: ctx.query.years ? `year=${ctx.query.years}` : filters.years,
-            rating: ctx.query.rating ? `rating.kp=${ctx.query.rating}` : filters.rating,
-        }
-        await store.dispatch(filtersMovies.initiate({ filters:{
-            genre: ctx.query.genre ? `genres.name=${ctx.query.genre}` : filters.genre,
-            years: ctx.query.years ? `year=${ctx.query.years}` : filters.years,
-            rating: ctx.query.rating ? `rating.kp=${ctx.query.rating}` : filters.rating,
-        }, limit }));
-        await store.dispatch(filterGenre({ genre: filters.genre }))
-        await store.dispatch(filterRating({ rating: filters.rating }))
-        await store.dispatch(filterYears({ years: filters.years }))
-        return { props: { initialReduxState: store.getState() } };
+    const { filters } = states;
+console.log('filters:',filters)
+    const res = {
+        genre: ctx.query.genre ? `genres.name=${ctx.query.genre}` : filters.genre,
+        years: ctx.query.years ? `year=${ctx.query.years}` : filters.years,
+        rating: ctx.query.rating ? `rating.kp=${ctx.query.rating}` : filters.rating,
     }
-    else {
-        await store.dispatch(filtersMovies.initiate({ filters, limit }));
-        return { props: { initialReduxState: store.getState() } };
-    }
+     await store.dispatch(filtersMovies.initiate({ filters: res, limit }));
+    await store.dispatch(filterGenre({ genre: res.genre }))
+    await store.dispatch(filterRating({ rating: res.rating }))
+    await store.dispatch(filterYears({ years: res.years }))
+    return { props: { initialReduxState: store.getState() } };
+
 
 })
 

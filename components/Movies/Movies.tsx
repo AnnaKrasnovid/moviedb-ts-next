@@ -26,7 +26,7 @@ function Movies() {
 
    const { data, isLoading, isError, refetch } = useFiltersMoviesQuery({filters});
    
-   console.log(data, isError)
+  //  console.log(data, isError)
 
 
   function changePage() {
