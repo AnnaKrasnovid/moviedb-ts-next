@@ -5,7 +5,7 @@ import Movies from '@/components/Movies/Movies';
 
 import { MoviesPageInt } from '@/settings/interfaces';
 import { MOVIES_LIMIT } from '@/settings/constants';
-import { getQueryParams } from '../tools/utils';
+import { getQueryParams } from '@/helpers/getQueryParams/getQueryParams';
 
 import api from '../tools/api';
 

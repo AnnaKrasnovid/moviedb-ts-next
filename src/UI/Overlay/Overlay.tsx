@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect } from 'react';
 
-import { hideScroll } from '../../tools/utils';
+import { hideScroll } from '@/helpers/hideScroll/hideScroll.test';
 import { OverlayInt } from '@/settings/interfaces';
 
 import styles from './Overlay.module.scss';

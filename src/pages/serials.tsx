@@ -4,7 +4,7 @@ import Layout from '@/layout/Layout/Layout';
 import Movies from '@/components/Movies/Movies';
 
 import { MoviesPageInt } from '@/settings/interfaces';
-import { getQueryParams } from 'src/tools/utils';
+import { getQueryParams } from '@/helpers/getQueryParams/getQueryParams';
 import { MOVIES_LIMIT } from '@/settings/constants';
 
 import api from '../tools/api';

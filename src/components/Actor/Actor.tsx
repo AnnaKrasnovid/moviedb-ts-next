@@ -3,7 +3,9 @@ import Image from "next/image";
 
 import DescriptionMovieItem from "../DescriptionMovieItem/DescriptionMovieItem";
 
-import { getString, getDateFormat, getTextYear } from "../../tools/utils";
+import { getTextYear } from "@/helpers/getTextYear/getTextYear";
+import { getString } from "@/helpers/getString/getString";
+import { getDateFormat } from "@/helpers/getDateFormat/getDateFormat";
 import { ActorInt } from "@/settings/interfaces";
 
 import styles from './Actor.module.scss';

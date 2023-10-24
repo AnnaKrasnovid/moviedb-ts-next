@@ -6,7 +6,7 @@ import DescriptionList from '@/components/DescriptionList/DescriptionList';
 import RatingBox from '@/components/RatingBox/RatingBox';
 import Loader from '@/UI/Loader/Loader';
 
-import { checkEmptyObject } from '../../tools/utils';
+import { checkEmptyObject } from '@/helpers/checkEmptyObject/checkEmptyObject';
 import { DescriptionMovieCardInt } from '@/settings/interfaces';
 
 import styles from './DescriptionMovieCard.module.scss';

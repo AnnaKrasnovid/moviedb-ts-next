@@ -2,7 +2,9 @@ import React from 'react';
 
 import DescriptionMovieItem from '../DescriptionMovieItem/DescriptionMovieItem';
 
-import { getTime, getInfo, getActors } from '../../tools/utils';
+import { getActors } from '@/helpers/getActors.ts/getActors';
+import { getTime } from '@/helpers/getTime/getTime';
+import { getInfo } from '@/helpers/getInfo/getInfo';
 import { DescriptionMovieCardInt } from '@/settings/interfaces';
 
 import styles from './DescriptionList.module.scss';

@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import Select from '@/UI/Select/Select';
 import Button from '@/UI/Button/Button';
 
-import { addQueryParams } from '../../tools/utils';
+import { addQueryParams } from '@/helpers/addQueryParams/addQueryParams';
 import { selectGenresList, selectYearsList, selectRatingList } from '@/assets/appData/filters';
 
 import styles from './Filters.module.scss';
