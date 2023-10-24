@@ -3,7 +3,7 @@ import { MOVIES_LIMIT } from '@/settings/constants';
 class Api {
   constructor({ baseUrl, token }) {
     this._baseUrl = baseUrl;
-    this._token = token;    
+    this._token = token;
   }
 
   searchMovie(word) {
@@ -32,13 +32,13 @@ class Api {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'access-control-allow-origin': '*' 
+        'access-control-allow-origin': '*'
         // 'X-API-KEY': this._key,
       }
     })
-    .then(this._checkResponseStatus);
+      .then(this._checkResponseStatus);
   }
-  
+
   getMoviesByGenre(genre, years = '2000-2023', rating = '7-10') {
     return fetch(`${this._baseUrl}/v1.3/movie?type=movie&genres.name=${genre}&year=${years}&rating.kp=${rating}&limit=${MOVIES_LIMIT}&sort=year&sort=rating.kp&token=${this._token}`, {
       method: 'GET',
@@ -61,10 +61,10 @@ class Api {
   }
 
   _checkResponseStatus(res) {
-    if (res.ok ) {
+    if (res.ok) {
       return res.json();
     }
-    return res.status;
+    return `${res.status} ${res.statusText}`;
   }
 }
 
@@ -73,4 +73,4 @@ const api = new Api({
   token: API_KEY
 })
 
-export default  api; 
+export default api; 

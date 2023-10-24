@@ -33,7 +33,7 @@ function Person({ actor }: PersonPageInt) {
                 </li>
               ))}
             </GridMovies>
-            {renderList.length < actor.movies.length && <Button text='Показать еще' callback={showMoreItems} className={styles['page-actor-button']} />}
+            {renderList.length > 0 && renderList.length < actor.movies.length && <Button text='Показать еще' callback={showMoreItems} className={styles['page-actor-button']} />}
           </div>
           {actor.facts.length > 0 && <Facts list={actor.facts} />}
         </div>

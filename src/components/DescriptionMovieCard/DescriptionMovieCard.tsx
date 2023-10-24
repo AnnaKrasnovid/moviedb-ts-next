@@ -14,7 +14,7 @@ import styles from './DescriptionMovieCard.module.scss';
 function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
   return (
     <section className={styles['about-movie']}>
-      {!checkEmptyObject(movie) ? (
+      {typeof movie !== 'string' ? (
         <div className={styles['about-movie__description']}>
           <div className={styles['about-movie__container']}>
             <Image
@@ -26,7 +26,10 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
           </div>
           <div className={styles['about-movie__container']}>
             <h1 className={styles['about-movie__title']}>{movie.name} {movie.year && `(${movie.year})`}</h1>
-            {movie.alternativeName !== null ? <p className={styles['about-movie__title-en']}>{movie.alternativeName} {movie.year && `(${movie.year})`}</p> : <></>}
+            {movie.alternativeName !== null
+              ? <p className={styles['about-movie__title-en']}>{movie.alternativeName} {movie.year && `(${movie.year})`}</p>
+              : <></>
+            }
             <DescriptionList movie={movie} />
             {movie.description && (
               <DescriptionMovie

@@ -2,30 +2,36 @@ import { GetServerSidePropsContext } from 'next';
 
 import Layout from '@/layout/Layout/Layout';
 import Movie from '@/components/screens/Movie/Movie';
+import Information from '@/UI/Information/Information';
 
 import { MoviePageInt } from '@/settings/interfaces';
 
 import api from '../../tools/api';
 
-function MoviePage({ movie }: MoviePageInt) {
+function MoviePage({ movie, error }: MoviePageInt) {
   return (
-    <Layout>      
-      <Movie movie={movie}/>
+    <Layout>
+      {error
+        ? <Information text={`Ошибка: ${error}`} />
+        : <Movie movie={movie} />
+      }
     </Layout>
   );
 }
 
 export async function getServerSideProps(params: GetServerSidePropsContext) {
   let movie: any = {};
+  let error: string = '';
+  const response = await api.getMovieId(params.query.id);
 
-  try {
-    movie = await api.getMovieId(params.query.id);
-  } catch (error) {
-    console.log(error);
+  if (typeof response === 'string') {
+    error = response;
+  } else {
+    movie = response;
   }
 
   return {
-    props: { movie },
+    props: { movie, error },
   }
 }
 

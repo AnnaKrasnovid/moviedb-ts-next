@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 import type { AppProps } from 'next/app';
 
 import { ModalsContext } from '@/context/ModalsContext';
@@ -10,11 +10,10 @@ import 'swiper/css/bundle';
 import '../styles/index.scss';
 
 export default function App({ Component, pageProps }: AppProps) {
-  const menuPopup = useToggleVisibility(false)
-  const searchPopup = useToggleVisibility(false)
-  const tooltip = useToggleVisibility(false)
-  const [isOpenTooltip, setIsOpenTooltip] = useState(false);
-  const [textError, setTextError] = useState('Что-то пошло не так...');
+  const menuPopup = useToggleVisibility(false);
+  const searchPopup = useToggleVisibility(false);
+  const tooltip = useToggleVisibility(false);
+  const [textError, setTextError] = useState<string>('Что-то пошло не так...');
 
 
   const modalsContextProps = {
@@ -28,6 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const tooltipContextProps = {
     isOpenTooltip: tooltip.isActive,
+    openTooltip: tooltip.openModal,
     closeTooltip: tooltip.closeModal,
     textError: textError,
     setTextError: setTextError

@@ -149,7 +149,8 @@ export interface ActorsListInt {
     list: Array<ActorSimpleItemInt>,
 }
 export interface ActorInt {
-    actor: ActorItemInt
+    actor: ActorItemInt,
+    error?: string
 }
 
 export interface ActorCardInt {
@@ -249,7 +250,7 @@ export interface MoviesInfoInt {
 
 export interface MoviesPageInt {
     movies: MoviesInfoInt,
-    message?: any
+    error?: string
 }
 
 export interface MainPageInt {
@@ -257,7 +258,7 @@ export interface MainPageInt {
     cartoons: MoviesInfoInt,
     series: MoviesInfoInt,
     movieRandom: MovieItemInt,
-    message?: any
+    error?: Array<string>
 }
 
 export interface CarouselInt {
@@ -324,7 +325,8 @@ export interface MovieCardMainInt {
 
 export interface MoviesListInt {
     list: Array<MovieBaseInt>,
-    pages?: number | undefined
+    pages?: number | undefined,
+    error?: string
 }
 
 type NavigationTypes = 'header' | 'menu';
@@ -368,7 +370,8 @@ export interface CompilationInt {
 }
 
 export interface MoviePageInt {
-    movie: MovieItemInt
+    movie: MovieItemInt,
+    error?: string
 }
 
 type ArrowTypes = 'select' | 'menu';
@@ -429,7 +432,7 @@ export interface OptionInt {
 
 export interface TooltipInt {
     isOpenTooltip: boolean,
-    text?: string,
+    text?: string| ReactNode,
 }
 
 export interface NotFoundInt {

@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { GetServerSidePropsContext } from 'next';
 
 import Layout from '@/layout/Layout/Layout';
@@ -9,59 +9,59 @@ import { TooltipContext } from '@/context/TooltipContext';
 
 import api from '../tools/api';
 
-function Home({ movieRating, cartoons, series, movieRandom,message }: MainPageInt) {
-  // const { setIsOpenTooltip, setTextError } = useContext(TooltipContext);  
+function Home({ movieRating, cartoons, series, movieRandom, error = [] }: MainPageInt) {
+  console.log(movieRating, cartoons, series, movieRandom, error);
 
-  // useEffect(() => {
-  //   if (message) {
-  //     setIsOpenTooltip(true)
-  //     setTextError(message)
-  //     setTimeout(()=> setIsOpenTooltip(false), 5000)
-  //   }
-  // }, [message])
-  
+  const arrayError = Array.from(new Set(error));
+  const message = arrayError.join(' / ');
+
+  const { openTooltip, closeTooltip, setTextError } = useContext(TooltipContext);
+
+  useEffect(() => {
+    if (message) {
+      openTooltip();
+      setTextError(message);
+      setTimeout(() => closeTooltip(), 5000);
+    }
+  }, [message])
+
   return (
-    <Layout >
+    <Layout>
       <Main movieRating={movieRating} cartoons={cartoons} series={series} movieRandom={movieRandom} />
     </Layout>
   )
 }
 
 export async function getServerSideProps(params: GetServerSidePropsContext) {
-  let message: string = '';
+  let error: Array<string> = [];
   let movieRating: any = {};
   let cartoons: any = {};
   let series: any = {};
   let movieRandom: any = {};
 
-  function getError(movie: any, params: any) {
-    if (movie) {
-      if (movie < 200 || movie >= 300) {
-        params.res.statusCode = movie;
-        message = `Ошибка: ${movie}`;
-      }
+  function getError(res: string) {
+    const statusCode = Number(res.split(' ')[0]);
+
+    if (statusCode < 200 || statusCode >= 300) {
+      error.push(`${res}`);
     }
   }
 
-  // try {
-    movieRating = await api.getMovies('movie', '2010-2023');
-    movieRandom = await api.getMovieRandom();
-    series = await api.getMovies('tv-series', '2000-2023');
-    cartoons = await api.getMovies('cartoon', '2010-2023');
+  movieRating = await api.getMovies('movie', '2010-2023');
+  movieRandom = await api.getMovieRandom();
+  series = await api.getMovies('tv-series', '2000-2023');
+  cartoons = await api.getMovies('cartoon', '2010-2023');
 
-    const responseArray = [movieRating, series, cartoons, movieRandom]
+  const responseArray = [movieRating, series, cartoons, movieRandom]
 
-    responseArray.map((item) => {
-      getError(item, params)
-    })
-   
-  // }
-  // catch (error) {
-  //   console.error('error', error);   
-  // }
+  responseArray.map((item) => {
+    if (typeof item === 'string') {
+      getError(item)
+    }
+  });
 
   return {
-    props: { movieRating, cartoons, series, movieRandom ,message},
+    props: { movieRating, cartoons, series, movieRandom, error },
   }
 }
 

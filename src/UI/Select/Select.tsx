@@ -4,7 +4,7 @@ import ScrollBar from '@/UI/ScrollBar/ScrollBar';
 import ArrowIcon from '@/UI/ArrowIcon/ArrowIcon';
 
 import { SelectInt } from '@/settings/interfaces';
-import { useToggleVisibility } from '@/hooks/useToggleVisibillity';
+import { useToggleVisibility } from '../../hooks/useToggleVisibillity';
 
 import styles from './Select.module.scss';
 
