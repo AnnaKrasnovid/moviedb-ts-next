@@ -13,8 +13,22 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    // "paths": {
+    //   "@/*": ["./src/*"]
+    // }
+    "baseUrl": ".",
+    // Using "paths" allows you to configure module path aliases
     "paths": {
-      "@/*": ["./src/*"]
+      "@/assets/*": ["src/assets/*"],
+      "@/components/*": ["src/components/*"],
+      "@/context/*": ["src/context/*"],
+      "@/helpers/*": ["src/helpers/*"],
+      "@/hooks/*": ["src/hooks/*"],		
+			"@/layout/*": ["src/layout/*"],		
+			"@/UI/*": ["src/UI/*"],
+      "@/settings/*": ["src/settings/*"],
+      "@/styles/*": ["src/styles/*"],		
+			"@/services/*": ["src/services/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "tools/api.js"],
