@@ -1,5 +1,5 @@
 import { FilterInt } from "@/settings/interfaces";
-import { getCurrentYear } from "src/tools/utils";
+import { getCurrentYear } from "@/helpers/getCurrentYear/getCurrentYear";
 
 export const selectGenresList: Array<FilterInt> =  [
     { id: '0', title: 'Все жанры', value: '' },

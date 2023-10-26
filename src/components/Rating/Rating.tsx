@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { getRoundNumber } from '../../tools/utils';
+import {getRoundNumber} from '@/helpers/getRoundNumber/getRoundNumber';
 import { RatingRoundInt } from '@/settings/interfaces';
 
 import styles from './Rating.module.scss';

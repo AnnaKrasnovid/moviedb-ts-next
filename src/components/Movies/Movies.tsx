@@ -7,8 +7,8 @@ import Information from '@/UI/Information/Information';
 import MoviesList from '@/components/MoviesList/MoviesList';
 
 import api from '../../tools/api';
-import { getMoviesType } from '../../tools/utils';
-import { getQueryParams } from '../../tools/utils';
+import { getMoviesType } from '@/helpers/getMoviesType/getMoviesType';
+import { getQueryParams } from '@/helpers/getQueryParams/getQueryParams';
 import { MOVIES_LIMIT } from '@/settings/constants';
 import { MovieBaseInt, MoviesListInt } from '@/settings/interfaces';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';

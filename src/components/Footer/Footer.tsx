@@ -4,7 +4,7 @@ import Logo from '@/components/Logo/Logo';
 import SocialButtons from '@/components/SocialButtons/SocialButtons';
 
 import { footerText } from '@/assets/appData/footerText';
-import { getCurrentYear } from '../../tools/utils';
+import { getCurrentYear } from '@/helpers/getCurrentYear/getCurrentYear';
 
 import styles from './Footer.module.scss';
 

@@ -137,7 +137,7 @@ export interface ActorItemInt {
 }
 
 export interface ActorSimpleItemInt {
-    description: string,
+    description: string | null,
     enName: string | null,
     enProfession: string | null,
     id: number,

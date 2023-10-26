@@ -7,7 +7,7 @@ import Logo from '@/components/Logo/Logo';
 import ButtonClose from '@/UI/ButtonClose/ButtonClose';
 
 import { useWindowWidth } from '@/hooks/useWindowWidth';
-import { hideScroll } from '../../tools/utils';
+import { hideScroll } from '@/helpers/hideScroll/hideScroll';
 import { MenuMobileInt } from '@/settings/interfaces';
 
 import styles from './MenuMobile.module.scss';

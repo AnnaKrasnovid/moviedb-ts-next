@@ -9,7 +9,7 @@ import Information from '@/UI/Information/Information';
 import Subtitle from '@/components/Subtitle/Subtitle';
 
 import { useShowMore } from '@/hooks/useShowMore';
-import { checkEmptyObject } from '../../../tools/utils';
+import { checkEmptyObject } from '@/helpers/checkEmptyObject/checkEmptyObject';
 import { PersonPageInt } from '@/settings/interfaces';
 
 import styles from './Person.module.scss';

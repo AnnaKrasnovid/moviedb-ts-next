@@ -1,6 +1,6 @@
-import Facebook from '@/src/assets/images/facebook.svg';
-import Instagram from '@/src/assets/images/instagram.svg';
-import Twitter from '@/src/assets/images/twitter.svg';
+import Facebook from '@/assets/images/facebook.svg';
+import Instagram from '@/assets/images/instagram.svg';
+import Twitter from '@/assets/images/twitter.svg';
 
 import { links } from '@/settings/contacts';
 
