@@ -1,6 +1,6 @@
 export const getTextYear = (num: number) => {
     const remains = num % 10;
-    console.log(remains, 'remains')
+    
     if (!num) {
         return 'нет данных'
     } else if (num < 0) {
