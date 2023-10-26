@@ -2,7 +2,7 @@ import React from 'react';
 
 import DescriptionMovieItem from '../DescriptionMovieItem/DescriptionMovieItem';
 
-import { getActors } from '@/helpers/getActors.ts/getActors';
+import { getActors } from '@/helpers/getActors/getActors';
 import { getTime } from '@/helpers/getTime/getTime';
 import { getInfo } from '@/helpers/getInfo/getInfo';
 import { DescriptionMovieCardInt } from '@/settings/interfaces';
@@ -16,7 +16,7 @@ function DescriptionList({ movie }: DescriptionMovieCardInt) {
         { title: 'Жанр', info: movie.genres, text: getInfo(movie.genres) },
         { title: 'Актеры', info: movie.persons, text: getActors(movie.persons) },
     ]
-
+console.log((movie.persons))
     return (
         <ul className={styles['movie-list']}>
             {movie.type === 'tv-series' ? (
