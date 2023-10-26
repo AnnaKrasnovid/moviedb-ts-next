@@ -22,4 +22,18 @@ describe('получение query params', () => {
             rating: 'rating.kp=7-10'
         });
     });
+    test('получение функцией аргументов c undefined', () => {
+        expect(getQueryParams(undefined, '', '')).toMatchObject({
+            genre: '',
+            years: 'year=2000-2023',
+            rating: 'rating.kp=7-10'
+        });
+    });
+    test('получение функцией аргументов undefined', () => {
+        expect(getQueryParams(undefined, undefined, undefined)).toMatchObject({
+            genre: '',
+            years: 'year=2000-2023',
+            rating: 'rating.kp=7-10'
+        });
+    });   
 });

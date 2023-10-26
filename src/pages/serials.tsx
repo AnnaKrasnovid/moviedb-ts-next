@@ -9,7 +9,7 @@ import { MOVIES_LIMIT } from '@/settings/constants';
 
 import api from '../tools/api';
 
-function SerialsPage({ movies,error }: MoviesPageInt) {
+function SerialsPage({ movies, error }: MoviesPageInt) {
     return (
         <Layout>
             <Movies list={movies.docs} pages={movies.pages} error={error} />
@@ -18,7 +18,7 @@ function SerialsPage({ movies,error }: MoviesPageInt) {
 }
 
 export async function getServerSideProps(params: GetServerSidePropsContext) {
-     let movies: any = {};
+    let movies: any = {};
     let error: string = '';
 
     const queryFilters = getQueryParams(params.query.genre, params.query.years, params.query.rating);

@@ -1,7 +1,11 @@
 export const getTextYear = (num: number) => {
     const remains = num % 10;
-
-    if (num === 1 || remains === 1) {
+    console.log(remains, 'remains')
+    if (!num) {
+        return 'нет данных'
+    } else if (num < 0) {
+        return 'некорректные данные'
+    } else if (num === 1 || remains === 1) {
         return 'год';
     } else if (num > 1 && num < 5) {
         return 'года';
@@ -11,7 +15,5 @@ export const getTextYear = (num: number) => {
         return 'года';
     } else if ((remains > 4 && remains <= 9) || remains === 0) {
         return 'лет';
-    } else {
-        return '';
-    }
+    } 
 }

@@ -16,7 +16,7 @@ function DescriptionList({ movie }: DescriptionMovieCardInt) {
         { title: 'Жанр', info: movie.genres, text: getInfo(movie.genres) },
         { title: 'Актеры', info: movie.persons, text: getActors(movie.persons) },
     ]
-console.log((movie.persons))
+console.log(getTime(-100))
     return (
         <ul className={styles['movie-list']}>
             {movie.type === 'tv-series' ? (
