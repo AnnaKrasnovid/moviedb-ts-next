@@ -6,8 +6,9 @@ import { OverlayInt } from '@/settings/interfaces';
 import styles from './Overlay.module.scss';
 
 export default function Overlay({ children, isOpenPopup, closePopup, className }: OverlayInt) {
+    
     useEffect(() => {
-        hideScroll(isOpenPopup)
+        hideScroll(isOpenPopup);
     }, [isOpenPopup])
 
     return (

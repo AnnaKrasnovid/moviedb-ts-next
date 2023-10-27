@@ -11,7 +11,7 @@ import { ActorInt } from "@/settings/interfaces";
 import styles from './Actor.module.scss';
 
 function Actor({ actor }: ActorInt) {
-    console.log(getTextYear(-100))
+    console.log(actor)
     return (
         <div className={styles['page-actor']}>
             <div className={styles['actor-info']}>
