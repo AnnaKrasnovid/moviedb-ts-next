@@ -1,11 +1,10 @@
 import '@testing-library/jest-dom';
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 import InputSearch from './InputSearch';
 import userEvent from '@testing-library/user-event';
 
 const onChange = jest.fn();
-const mockSetTodos = ''
 
 describe('InputSearch', () => {
     it('Рендер компонента', () => {
@@ -16,10 +15,19 @@ describe('InputSearch', () => {
     });
 
     it('добавить текст в инпут', async () => {
-        render(<InputSearch searchValue={''} setSearchValue={onChange} />);
+        render(<InputSearch searchValue='' setSearchValue={onChange} />);
 
         const input = screen.getByRole('textbox');
         await userEvent.type(input, 'фильм');
         expect(onChange).toHaveBeenCalledTimes(5);
+    });
+
+    it('рендер комполента с value !== пустой строке', () => {
+        render(<InputSearch searchValue='сериал' setSearchValue={onChange} />);
+
+        const input = screen.getByRole('textbox');
+        expect(input).toHaveValue('сериал');
+        // await userEvent.clear(input);
+        // expect(input).toHaveValue('');
     });
 })

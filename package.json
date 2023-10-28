@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch",
+    "test": "jest --detectOpenHandles --watch",
     "coverage": "npx jest --watchAll=false --coverage"
   },
   "dependencies": { 

@@ -5,24 +5,70 @@ import Overlay from './Overlay';
 
 const onClick = jest.fn();
 
-// describe('Overlay', () => {
-//     it('Рендер кнопки со всеми пропсами', async () => {
-//         render(
-//             <Overlay
-//                 callback={onClick}
-//                 className='button-test'
-//                 isOpenPopup={false}
-//             >
-//                 <div>Popup</div>
-//             </Overlay>
-//         );
-//         const button = screen.getByRole('button')
+describe('Overlay', () => {
+    it('Рендер компонента', async () => {
+        render(
+            <Overlay
+                closePopup={onClick}
+                className='overlay-test'
+                isOpenPopup={false}
+            >
+                <div className='popup'>Popup</div>
+            </Overlay>
+        );
 
-//         expect(button).toBeInTheDocument();
-//         expect(button).toHaveClass('button-test');
-//         expect(screen.getByText(/отправить/i)).toBeInTheDocument();
-//         userEvent.click(button);
-//         // !!!
-//         // expect(onClick).toHaveBeenCalledTimes(1);       
-//     });
-// })
+        const overlay = screen.getByTestId('overlay');
+        const children = screen.getByText('Popup');
+
+        expect(overlay).toBeInTheDocument();
+        expect(overlay).toHaveClass('overlay-test');
+        expect(children).toBeInTheDocument();
+    });
+
+    it('Рендер компонента с пустым children', async () => {
+        render(
+            <Overlay
+                closePopup={onClick}
+                isOpenPopup={false}
+            >
+                <></>
+            </Overlay>
+        );
+
+        const overlay = screen.getByTestId('overlay');
+
+        expect(overlay).toBeInTheDocument();
+    });
+
+    it('Проверка невидимости Overlay', async () => {
+        render(
+            <Overlay
+                closePopup={onClick}
+                isOpenPopup={false}
+            >
+                <div className='popup'>Popup</div>
+            </Overlay>
+        );
+
+        const overlay = screen.getByTestId('overlay');
+
+        expect(overlay).toBeInTheDocument();
+        expect(overlay).not.toHaveClass('overlay_active');
+    });
+
+    it('Проверка видимости Overlay', async () => {
+        render(
+            <Overlay
+                closePopup={onClick}
+                isOpenPopup={true}
+            >
+                <div className='popup'>Popup</div>
+            </Overlay>
+        );
+
+        const overlay = screen.getByTestId('overlay');
+
+        expect(overlay).toBeInTheDocument();
+        expect(overlay).toHaveClass('overlay_active');
+    });
+})
