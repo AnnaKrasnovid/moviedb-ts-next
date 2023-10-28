@@ -8,7 +8,7 @@ import styles from './ActorItem.module.scss';
 
 function ActorItem({ item }: ActorCardInt) {
     return (
-        <Link href={`${routes.ACTOR}/${item.id}`} className={styles['actor']}>
+        <Link href={`${routes.ACTOR}/${item.id}`} className={styles['actor']} data-testid='link-actor-item'>
             <div className={styles['actor__img']} >
                 <Image src={item.photo} alt={`Фотография ${item.name}`} height={500} width={300} quality={100}/>
             </div>
