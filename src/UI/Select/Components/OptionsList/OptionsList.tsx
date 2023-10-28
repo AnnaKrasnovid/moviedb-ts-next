@@ -9,19 +9,22 @@ interface OptionsListInt {
 function OptionsList({ options, choiceOption, selectedItem }: OptionsListInt) {
 
     return (
-        <ul className={styles['dropdown-select-list']}>
-            {options.map((item) => (
-                <li
-                    className={`
+        <>
+            {options.length > 0 && <ul className={styles['dropdown-select-list']}>
+                {options.map((item) => (
+                    <li
+                        className={`
                         ${styles['dropdown-select-list__item']} 
                         ${item.title === selectedItem ? styles['dropdown-select-list__item_active'] : ''}
                     `}
-                    key={item.id}
-                    onClick={() => choiceOption(item.id)}>
-                    <span className={styles['dropdown-select-list__title']}>{item.title}</span>
-                </li>
-            ))}
-        </ul>
+                        key={item.id}
+                        onClick={() => choiceOption(item.id)}
+                    >
+                        {item.title}
+                    </li>
+                ))}
+            </ul>}
+        </>
     )
 }
 
