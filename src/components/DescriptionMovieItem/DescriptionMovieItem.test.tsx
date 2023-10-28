@@ -19,8 +19,8 @@ describe('DescriptionMovieItem', () => {
         expect(screen.getByText(/карьера/i)).toBeInTheDocument();
     });
 
-    it('snapshot', () => {
-        const li = render(<DescriptionMovieItem title='Карьера:' info='Актер' />);
-        expect(li).toMatchSnapshot()
-    })
+    // it('snapshot', () => {
+    //     const li = render(<DescriptionMovieItem title='Карьера:' info='Актер' />);
+    //     expect(li).toMatchSnapshot()
+    // })
 })

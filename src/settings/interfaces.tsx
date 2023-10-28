@@ -15,7 +15,7 @@ export interface ButtonCloseInt extends ButtonInt {
 }
 
 export interface ButtonTextInt extends ButtonInt {
-    text?: string,
+    text: string,
 }
 
 export interface SubmenuItemInt {

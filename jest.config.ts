@@ -34,10 +34,13 @@ const customConfig = {
   // The directory where Jest should output its coverage files
   'coverageDirectory': '.coverage',
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  'setupFilesAfterEnv': ['./jest.setup.js'],
+  // 'setupFilesAfterEnv': ['./jest.setup.js'],
   // By default jest will use a node environment, so DOM elements (like document) will be undefined without this
-  'testEnvironment': 'jest-environment-jsdom',
+  // 'testEnvironment': 'jest-environment-jsdom',
   'moduleDirectories': ['node_modules', '<rootDir>/'],
+  'setupFilesAfterEnv': ['<rootDir>/jest.setup.js'],
+  'testEnvironment': 'jest-environment-jsdom',
+  'preset': 'ts-jest',
 }
 // const customJestConfig = {
 //     moduleDirectories: ['node_modules', '<rootDir>/'],
