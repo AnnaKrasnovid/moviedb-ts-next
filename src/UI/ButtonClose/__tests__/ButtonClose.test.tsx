@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
-import ButtonClose from './ButtonClose';
+import ButtonClose from '../ButtonClose';
 
 const onClick = jest.fn();
 
@@ -13,9 +13,10 @@ describe('ButtonClose', () => {
                 callback={onClick}
                 type='button'
             />
-        )
+        );
 
         const button = screen.getByRole('button');
+
         expect(button).toBeInTheDocument();
         await userEvent.click(button);
         expect(onClick).toHaveBeenCalledTimes(1);        
@@ -28,9 +29,10 @@ describe('ButtonClose', () => {
                 type='button'
                 className='button-class'
             />
-        )
+        );
 
         const button = screen.getByRole('button');
+
         expect(button).toBeInTheDocument(); 
         expect(button).toHaveClass('button-class'); 
     });
@@ -42,9 +44,10 @@ describe('ButtonClose', () => {
                 type='button'
                 position = 'right'
             />
-        )
+        );
 
         const button = screen.getByRole('button');
+
         expect(button).toBeInTheDocument(); 
         expect(button).toHaveClass('button-close_right'); 
     });
@@ -56,10 +59,23 @@ describe('ButtonClose', () => {
                 type='button'
                 position = 'left'
             />
-        )
+        );
 
         const button = screen.getByRole('button');
+
         expect(button).toBeInTheDocument(); 
         expect(button).not.toHaveClass('button-close_left'); 
     });
+
+    it('Snapshot', () => {
+        const button = render(
+            <ButtonClose
+                callback={onClick}
+                type='button'
+                position = 'right'
+            />
+        );
+
+        expect(button).toMatchSnapshot();
+    })
 })

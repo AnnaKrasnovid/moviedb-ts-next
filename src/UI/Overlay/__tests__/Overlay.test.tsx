@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, screen } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
-import Overlay from './Overlay';
+import Overlay from '../Overlay';
 
 const onClick = jest.fn();
 
@@ -36,7 +36,6 @@ describe('Overlay', () => {
         );
 
         const overlay = screen.getByTestId('overlay');
-
         expect(overlay).toBeInTheDocument();
     });
 
@@ -71,4 +70,18 @@ describe('Overlay', () => {
         expect(overlay).toBeInTheDocument();
         expect(overlay).toHaveClass('overlay_active');
     });
+
+    it('Snapshot', () => {
+        const overlay = render(
+            <Overlay
+                closePopup={onClick}
+                className='overlay-test'
+                isOpenPopup={false}
+            >
+                <div className='popup'>Popup</div>
+            </Overlay>
+        );
+
+        expect(overlay).toMatchSnapshot();
+    })
 })
