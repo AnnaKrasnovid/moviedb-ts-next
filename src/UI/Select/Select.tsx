@@ -1,7 +1,6 @@
 import { useEffect, useState, memo } from 'react';
 
 import ScrollBar from '@/UI/ScrollBar/ScrollBar';
-import ArrowIcon from '@/UI/ArrowIcon/ArrowIcon';
 import OptionsList from './Components/OptionsList/OptionsList';
 import SelectButton from './Components/SelectButton/SelectButton';
 
@@ -10,7 +9,7 @@ import { useToggleVisibility } from '../../hooks/useToggleVisibillity';
 
 import styles from './Select.module.scss';
 
-function Select({ options, label, callback, defaultValue }: SelectInt) {
+function Select({ options, label = '', callback, defaultValue }: SelectInt) {
     const { ref, isActive, openModal, closeModal } = useToggleVisibility(false);
     const [selectedItem, setSelectedItem] = useState<string>(options[0].title);
 
@@ -36,13 +35,18 @@ function Select({ options, label, callback, defaultValue }: SelectInt) {
 
     return (
         <div className={styles['dropdown']}>
-            <p className={styles['dropdown__label']}>{label}</p>
+            {label &&
+                <p className={styles['dropdown__label']} data-testid='select-label'>
+                    {label}
+                </p>
+            }
             <div className={`${styles['dropdown__select']} ${isActive ? styles['dropdown__select_active'] : ''}`} >
                 <SelectButton isActive={isActive} openModal={openModal} selectedItem={selectedItem} />
                 <div className={`
                     ${styles['dropdown__options']} 
                     ${isActive ? styles['dropdown__options_active'] : ''}`}
                     ref={ref}
+                    data-testid='dropdown-options'
                 >
                     <ScrollBar>
                         <OptionsList options={options} choiceOption={choiceOption} selectedItem={selectedItem} />

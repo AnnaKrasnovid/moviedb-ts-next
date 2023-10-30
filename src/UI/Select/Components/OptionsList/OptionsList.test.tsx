@@ -10,7 +10,7 @@ const mockOptionsList: Array<FilterInt> = [
     { id: '0', title: 'Все жанры', value: '' },
     { id: '1', title: 'Боевик', value: 'боевик' },
     { id: '2', title: 'Военный', value: 'военный' },
-]
+];
 
 describe('OptionsList', () => {
     it('Рендер компонента по умолчанию', async () => {
@@ -23,8 +23,7 @@ describe('OptionsList', () => {
         );
         mockOptionsList.forEach((item) => {
             expect(screen.getByText(`${item.title}`)).toBeInTheDocument();
-        })
-        // screen.debug()
+        })       
     });
 
     it('Рендер компонента с выбранной опцией', async () => {
@@ -35,6 +34,7 @@ describe('OptionsList', () => {
                 selectedItem={mockOptionsList[1].title}
             />
         );
+        
         mockOptionsList.forEach((item) => {
             expect(screen.getByText(`${item.title}`)).toBeInTheDocument();
         })

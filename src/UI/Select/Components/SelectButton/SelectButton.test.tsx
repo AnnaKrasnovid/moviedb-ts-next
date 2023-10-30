@@ -19,7 +19,7 @@ describe('SelectButton', () => {
         const arrow = screen.getByTestId('arrow');
 
         expect(element).toBeInTheDocument();
-        expect(arrow).not.toHaveClass('arrow_up')
+        expect(arrow).not.toHaveClass('arrow_up');
     });
 
     it('Проверка активного компонента', () => {
@@ -50,6 +50,6 @@ describe('SelectButton', () => {
         const element = screen.getByTestId('select-button');
 
         await userEvent.click(element);
-        expect(onClick).toHaveBeenCalledTimes(1)
+        expect(onClick).toHaveBeenCalledTimes(1);
     });
 })

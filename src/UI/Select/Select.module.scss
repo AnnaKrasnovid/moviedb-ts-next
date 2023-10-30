@@ -1,7 +1,9 @@
 @import '../../styles/variables.scss';
 
 .dropdown {
-    &__label {}
+    &__label {
+        margin-bottom: 8px;
+    }
 
     &__select {
         width: 100%;
