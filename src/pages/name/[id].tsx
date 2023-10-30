@@ -4,14 +4,13 @@ import Layout from '@/layout/Layout/Layout';
 import Person from '@/components/screens/Person/Person';
 import Information from '@/UI/Information/Information';
 
-import { ActorInt } from '@/settings/interfaces';
+import { ActorPageInt } from '@/settings/interfaces';
 
 import api from '../../tools/api';
 
-function ActorPage({ actor, error }: ActorInt) {
- 
+function ActorPage({ actor, error }: ActorPageInt) { 
   return (
-    <Layout>
+    <Layout heading={actor.name}>
       {error
         ? <Information text={`Ошибка: ${error}`} />
         : <Person actor={actor} />

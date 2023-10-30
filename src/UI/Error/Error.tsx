@@ -1,8 +1,6 @@
-import styles from './Error.module.scss';
+import { ErrorInt } from '@/settings/interfaces';
 
-interface ErrorInt{
-    text: string
-}
+import styles from './Error.module.scss';
 
 function Error({text}:ErrorInt) {    
     return (

@@ -1,12 +1,8 @@
 import ArrowIcon from '@/UI/ArrowIcon/ArrowIcon';
 
-import styles from './SelectButton.module.scss';
+import { SelectButtonInt } from '@/settings/interfaces';
 
-interface SelectButtonInt {
-    isActive: boolean,
-    openModal: () => void,
-    selectedItem: string
-}
+import styles from './SelectButton.module.scss';
 
 function SelectButton({ isActive, openModal, selectedItem }: SelectButtonInt) {
     return (

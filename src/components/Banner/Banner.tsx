@@ -1,11 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 
-import styles from './Banner.module.scss';
+import { BannerInt } from '@/settings/interfaces';
 
-interface BannerInt{
-    image:string, logo:string
-}
+import styles from './Banner.module.scss';
 
 function Banner({ image, logo }: BannerInt) {
     return (

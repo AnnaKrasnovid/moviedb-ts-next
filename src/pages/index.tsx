@@ -24,7 +24,7 @@ function Home({ movieRating, cartoons, series, movieRandom, error = [] }: MainPa
   }, [message])
 
   return (
-    <Layout>
+    <Layout heading='MovieDB'>
       <Main movieRating={movieRating} cartoons={cartoons} series={series} movieRandom={movieRandom} />
     </Layout>
   )

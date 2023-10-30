@@ -1,12 +1,8 @@
 import React from 'react';
 
-import styles from './HeadingMovie.module.scss';
+import { HeadingMovieInt } from '@/settings/interfaces';
 
-interface HeadingMovieInt {
-    title: string,
-    year:number,
-    alternativeName: string |null
-}
+import styles from './HeadingMovie.module.scss';
 
 function HeadingMovie({ title, year,alternativeName }: HeadingMovieInt) {
     return (

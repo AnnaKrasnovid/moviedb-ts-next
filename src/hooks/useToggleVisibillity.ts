@@ -1,11 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-interface ToggleVisibilityInt {
-    ref: any,
-    isActive: boolean,
-    openModal: () => void,
-    closeModal: () => void,
-}
+import { ToggleVisibilityInt } from "@/settings/interfaces";
 
 export function useToggleVisibility(initiaLIsVisible: boolean): ToggleVisibilityInt {
     const ref = useRef<HTMLElement>(null);

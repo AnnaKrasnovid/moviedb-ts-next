@@ -12,8 +12,8 @@ import api from '../tools/api';
 
 function SerialsPage({ movies, error }: MoviesPageInt) {
     return (
-        <Layout>
-              {!error
+        <Layout heading='Сериалы'>
+            {!error
                 ? <Movies list={movies.docs} pages={movies.pages} error={error} />
                 : <Information text={error} />
             }

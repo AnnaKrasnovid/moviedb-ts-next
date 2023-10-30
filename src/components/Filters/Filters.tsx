@@ -6,11 +6,9 @@ import Button from '@/UI/Button/Button';
 
 import { addQueryParams } from '@/helpers/addQueryParams/addQueryParams';
 import { selectGenresList, selectYearsList, selectRatingList } from '@/assets/appData/filters';
+import { FiltersInt } from '@/settings/interfaces';
 
 import styles from './Filters.module.scss';
-interface FiltersInt {
-    callback: (genre: string, years: string, rating: string) => void
-}
 
 function Filters({ callback }: FiltersInt) {
     const router = useRouter();

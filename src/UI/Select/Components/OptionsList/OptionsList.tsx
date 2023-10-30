@@ -1,10 +1,6 @@
-import styles from './OptionsList.module.scss';
+import { OptionsListInt } from '@/settings/interfaces';
 
-interface OptionsListInt {
-    options: Array<any>,
-    choiceOption: (id: string | number) => void,
-    selectedItem?: string,
-}
+import styles from './OptionsList.module.scss';
 
 function OptionsList({ options, choiceOption, selectedItem='' }: OptionsListInt) {
 
@@ -14,9 +10,9 @@ function OptionsList({ options, choiceOption, selectedItem='' }: OptionsListInt)
                 {options.map((item) => (
                     <li
                         className={`
-                        ${styles['dropdown-select-list__item']} 
-                        ${item.title === selectedItem ? styles['dropdown-select-list__item_active'] : ''}
-                    `}
+                            ${styles['dropdown-select-list__item']} 
+                            ${item.title === selectedItem ? styles['dropdown-select-list__item_active'] : ''}
+                        `}
                         key={item.id}
                         onClick={() => choiceOption(item.id)}
                     >

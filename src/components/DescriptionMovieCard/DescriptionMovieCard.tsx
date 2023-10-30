@@ -25,6 +25,7 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
           />
           <RatingBox movie={movie} />
         </div>
+        
         <div className={styles['about-movie__container']}>
           <HeadingMovie
             title={movie.name}

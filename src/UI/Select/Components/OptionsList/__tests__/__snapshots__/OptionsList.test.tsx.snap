@@ -10,25 +10,25 @@ exports[`OptionsList Snapshot 1`] = `
       >
         <li
           class="
-                        dropdown-select-list__item 
-                        
-                    "
+                            dropdown-select-list__item 
+                            
+                        "
         >
           Все жанры
         </li>
         <li
           class="
-                        dropdown-select-list__item 
-                        
-                    "
+                            dropdown-select-list__item 
+                            
+                        "
         >
           Боевик
         </li>
         <li
           class="
-                        dropdown-select-list__item 
-                        
-                    "
+                            dropdown-select-list__item 
+                            
+                        "
         >
           Военный
         </li>
@@ -41,25 +41,25 @@ exports[`OptionsList Snapshot 1`] = `
     >
       <li
         class="
-                        dropdown-select-list__item 
-                        
-                    "
+                            dropdown-select-list__item 
+                            
+                        "
       >
         Все жанры
       </li>
       <li
         class="
-                        dropdown-select-list__item 
-                        
-                    "
+                            dropdown-select-list__item 
+                            
+                        "
       >
         Боевик
       </li>
       <li
         class="
-                        dropdown-select-list__item 
-                        
-                    "
+                            dropdown-select-list__item 
+                            
+                        "
       >
         Военный
       </li>

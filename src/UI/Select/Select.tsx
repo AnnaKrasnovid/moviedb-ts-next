@@ -4,8 +4,8 @@ import ScrollBar from '@/UI/ScrollBar/ScrollBar';
 import OptionsList from './Components/OptionsList/OptionsList';
 import SelectButton from './Components/SelectButton/SelectButton';
 
-import { SelectInt } from '@/settings/interfaces';
 import { useToggleVisibility } from '../../hooks/useToggleVisibillity';
+import { SelectInt } from '@/settings/interfaces';
 
 import styles from './Select.module.scss';
 

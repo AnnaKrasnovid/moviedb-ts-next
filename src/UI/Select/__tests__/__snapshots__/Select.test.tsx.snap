@@ -56,25 +56,25 @@ exports[`Select snapshot 1`] = `
               >
                 <li
                   class="
-                        dropdown-select-list__item 
-                        dropdown-select-list__item_active
-                    "
+                            dropdown-select-list__item 
+                            dropdown-select-list__item_active
+                        "
                 >
                   Все жанры
                 </li>
                 <li
                   class="
-                        dropdown-select-list__item 
-                        
-                    "
+                            dropdown-select-list__item 
+                            
+                        "
                 >
                   Боевик
                 </li>
                 <li
                   class="
-                        dropdown-select-list__item 
-                        
-                    "
+                            dropdown-select-list__item 
+                            
+                        "
                 >
                   Военный
                 </li>
@@ -137,25 +137,25 @@ exports[`Select snapshot 1`] = `
             >
               <li
                 class="
-                        dropdown-select-list__item 
-                        dropdown-select-list__item_active
-                    "
+                            dropdown-select-list__item 
+                            dropdown-select-list__item_active
+                        "
               >
                 Все жанры
               </li>
               <li
                 class="
-                        dropdown-select-list__item 
-                        
-                    "
+                            dropdown-select-list__item 
+                            
+                        "
               >
                 Боевик
               </li>
               <li
                 class="
-                        dropdown-select-list__item 
-                        
-                    "
+                            dropdown-select-list__item 
+                            
+                        "
               >
                 Военный
               </li>

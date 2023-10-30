@@ -10,7 +10,7 @@ import api from '../../tools/api';
 
 function MoviePage({ movie, error }: MoviePageInt) {
   return (
-    <Layout>
+    <Layout heading={movie.name}>
       {error
         ? <Information text={`Ошибка: ${error}`} />
         : <Movie movie={movie} />

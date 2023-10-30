@@ -12,7 +12,7 @@ import api from '../tools/api';
 
 function MoviesPage({ movies, error }: MoviesPageInt) {
     return (
-        <Layout>
+        <Layout heading='Фильмы'>
             {!error
                 ? <Movies list={movies.docs} pages={movies.pages} error={error} />
                 : <Information text={error} />

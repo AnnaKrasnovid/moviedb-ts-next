@@ -4,7 +4,7 @@ import SectionGenres from '@/components/SectionGenres/SectionGenres';
 
 function GenresPage() {
   return (
-    <Layout >
+    <Layout heading={''}>
       <SectionGenres />
       <AboutMovieDB />
     </Layout>
