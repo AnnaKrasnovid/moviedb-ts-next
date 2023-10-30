@@ -9,7 +9,7 @@ import styles from './DescriptionActorList.module.scss';
 
 function DescriptionActorList({ actor }: ActorInt) {
     return (
-        <ul className={styles['actor-info__wrapper']}>
+        <ul className={styles['actor-info-wrapper']}>
             {actor.profession.length > 0 &&
                 <DescriptionMovieItem
                     title="Карьера:"

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import DescriptionMovie from '@/components/DescriptionMovie/DescriptionMovie';
 import DescriptionList from '@/components/DescriptionList/DescriptionList';
 import RatingBox from '@/components/RatingBox/RatingBox';
+import HeadingMovie from '../HeadingMovie/HeadingMovie';
 
 import { DescriptionMovieCardInt } from '@/settings/interfaces';
 
@@ -25,14 +26,11 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
           <RatingBox movie={movie} />
         </div>
         <div className={styles['about-movie__container']}>
-          <h1 className={styles['about-movie__title']}>
-            {movie.name} {movie.year && `(${movie.year})`}
-          </h1>
-          {movie.alternativeName && (
-            <p className={styles['about-movie__title-en']}>
-              {movie.alternativeName} {movie.year && `(${movie.year})`}
-            </p>
-          )}
+          <HeadingMovie
+            title={movie.name}
+            year={movie.year}
+            alternativeName={movie.alternativeName}
+          />
           <DescriptionList movie={movie} />
           {movie.description && (
             <DescriptionMovie

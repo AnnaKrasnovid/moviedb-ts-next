@@ -1,0 +1,74 @@
+@import '../../styles/variables.scss';
+
+.movie-banner {
+    // max-height: 600px;
+    overflow: hidden;
+    border-radius: 12px;
+    position: relative;
+    // border: 2px solid $color-dark;
+    border-radius: 12px;
+
+    &__img {
+        min-height: 600px;
+        width: 100%;
+        position: relative;
+        object-position: center;
+        object-fit: cover;
+        transition: transform 0.3s linear;
+
+        &:hover {
+            transform: scale(1.01);
+            transition: transform 0.3s linear;
+        }
+    }
+
+    &__logo {
+        background-color: transparent;
+        max-width: 30%;
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    &__container {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        padding: 2rem;
+    }
+}
+
+@media screen and (max-width: $breakpoint-xl) {
+    .movie-banner {
+        &__img {
+            min-height: 500px;
+        }
+    }
+}
+
+@media screen and (max-width: $breakpoint-lg) {
+    .movie-banner {
+        &__img {
+            min-height: 400px;
+        }
+    }
+}
+
+@media screen and (max-width: $breakpoint-md) {
+    .movie-banner {
+        &__img {
+            min-height: 300px;
+        }
+    }
+}
+
+@media screen and (max-width: $breakpoint-sm) {
+    .movie-banner {
+        &__img {
+            min-height: 200px;
+        }
+    }
+}
