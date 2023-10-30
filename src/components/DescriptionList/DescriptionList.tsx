@@ -10,24 +10,40 @@ import { DescriptionMovieCardInt } from '@/settings/interfaces';
 import styles from './DescriptionList.module.scss';
 
 function DescriptionList({ movie }: DescriptionMovieCardInt) {
-
-    const movieType = movie.type !== 'tv-series'
-    const descriptions = [
-        {
-            title: 'Продолжительность',
-            info: movieType ? movie.year : movie.seriesLength,
-            text: movieType ? getTime(movie.movieLength) : getTime(movie.seriesLength)
-        },
-        { title: 'Страна', info: movie.countries, text: getInfo(movie.countries) },
-        { title: 'Жанр', info: movie.genres, text: getInfo(movie.genres) },
-        { title: 'Актеры', info: movie.persons, text: getActors(movie.persons) },
-    ]
+    const movieType = movie.type !== 'tv-series';
+    const movieLength = movieType ? getTime(movie.movieLength) : getTime(movie.seriesLength);
 
     return (
         <ul className={styles['movie-list']}>
-            {descriptions.map((item) => (
-                item.info && <DescriptionMovieItem title={item.title} info={item.text} key={item.title} />
-            ))}
+            {movieLength &&
+                <DescriptionMovieItem
+                    title='Продолжительность'
+                    info={movieLength}
+                />
+            }
+            {movie.year &&
+                <DescriptionMovieItem
+                    title='Год выпускa'
+                    info={movie.year}
+                />
+            }
+            {movie.countries.length > 0 &&
+                <DescriptionMovieItem
+                    title='Страна'
+                    info={getInfo(movie.countries)}
+                />
+            }
+            {movie.genres.length > 0 &&
+                <DescriptionMovieItem
+                    title='Жанр'
+                    info={getInfo(movie.genres)}
+                />
+            }
+            {movie.persons.length > 0 &&
+                <DescriptionMovieItem title='Актеры'
+                    info={getActors(movie.persons)}
+                />
+            }
         </ul>
     );
 }
