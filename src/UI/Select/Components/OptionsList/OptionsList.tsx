@@ -3,10 +3,10 @@ import styles from './OptionsList.module.scss';
 interface OptionsListInt {
     options: Array<any>,
     choiceOption: (id: string | number) => void,
-    selectedItem: string,
+    selectedItem?: string,
 }
 
-function OptionsList({ options, choiceOption, selectedItem }: OptionsListInt) {
+function OptionsList({ options, choiceOption, selectedItem='' }: OptionsListInt) {
 
     return (
         <>

@@ -131,7 +131,7 @@ export interface ActorItemInt {
     name: string,
     photo: string | null,
     profession: Array<ValueInt>,
-    sex: number,
+    sex: string,
     spouses: Array<SpousesInt> | null,
     updatedAt: string,
 }

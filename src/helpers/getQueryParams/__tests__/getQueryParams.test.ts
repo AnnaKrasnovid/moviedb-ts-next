@@ -1,4 +1,4 @@
-import { getQueryParams } from "./getQueryParams";
+import { getQueryParams } from "../getQueryParams";
 
 describe('получение query params', () => {
     test('получение функцией аргументов !== "" ', () => {

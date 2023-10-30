@@ -1,4 +1,4 @@
-import { getDateFormat } from "./getDateFormat";
+import { getDateFormat } from "../getDateFormat";
 
 describe('проверка корректроного формата данных и возвращаемого формата', () => {
     test('корректное значение', () => {

@@ -14,7 +14,6 @@ import styles from './DescriptionMovieCard.module.scss';
 function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
   return (
     <section className={styles['about-movie']}>
-      {typeof movie !== 'string' ? (
         <div className={styles['about-movie__description']}>
           <div className={styles['about-movie__container']}>
             <Image
@@ -38,10 +37,7 @@ function DescriptionMovieCard({ movie }: DescriptionMovieCardInt) {
               />
             )}
           </div>
-        </div>
-      ) : (
-        <Loader />
-      )}
+        </div>     
     </section>
   );
 }

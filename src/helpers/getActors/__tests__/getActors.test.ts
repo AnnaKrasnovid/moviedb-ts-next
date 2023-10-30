@@ -1,4 +1,5 @@
-import { ActorSimpleItemInt } from "@/settings/interfaces"
+import { getActors } from "../getActors";
+import { ActorSimpleItemInt } from "@/settings/interfaces";
 
 export const actorsListOne: Array<ActorSimpleItemInt> = [
     {
@@ -50,4 +51,16 @@ export const actorsListTwo: Array<ActorSimpleItemInt> = [
         profession: "продюсеры",
     }
 ]
-export const actorsListThree: Array<ActorSimpleItemInt> = []
+
+
+describe('перечисление актеров', () => {
+    test('в массиве данных есть актеры', () => {
+        expect(getActors(actorsListOne)).toBe('Мэттью МакКонахи, Чарли Ханнэм');
+    });
+    test('в массиве данных нет актеров', () => {
+        expect(getActors(actorsListTwo)).toBe('');
+    });
+    test('пустой массив данных', () => {
+        expect(getActors([])).toBe('');
+    });
+});

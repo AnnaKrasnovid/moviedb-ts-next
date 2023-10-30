@@ -1,4 +1,4 @@
-import { getRoundNumber } from "./getRoundNumber";
+import { getRoundNumber } from "../getRoundNumber";
 
 describe('верное округление числа', () => {
     test('корректное значение', () => {

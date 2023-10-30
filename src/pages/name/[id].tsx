@@ -9,7 +9,7 @@ import { ActorInt } from '@/settings/interfaces';
 import api from '../../tools/api';
 
 function ActorPage({ actor, error }: ActorInt) {
-  console.log(actor, error)
+ 
   return (
     <Layout>
       {error

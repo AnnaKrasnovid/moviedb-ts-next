@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 
 import userEvent from '@testing-library/user-event';
 
-import ActorItem from './ActorItem';
+import ActorItem from '../ActorItem';
 import { ActorSimpleItemInt } from '@/settings/interfaces';
 
 const mockItem: ActorSimpleItemInt = {

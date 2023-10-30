@@ -1,4 +1,4 @@
-import { getMoviesType } from "./getMoviesType";
+import { getMoviesType } from "../getMoviesType";
 
 describe('получить тип фильма', () => {
     test('корректное значение-serials', () => {

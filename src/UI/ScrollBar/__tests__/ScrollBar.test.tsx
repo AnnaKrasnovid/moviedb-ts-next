@@ -22,5 +22,5 @@ describe('ScrollBar', () => {
         );
 
         expect(scrollBar).toMatchSnapshot();
-    })
+    });
 })

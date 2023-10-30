@@ -1,22 +1,29 @@
 import '@testing-library/jest-dom';
 import { render, screen } from "@testing-library/react";
 
-import DescriptionMovieItem from './DescriptionMovieItem';
+import DescriptionMovieItem from '../DescriptionMovieItem';
 
 describe('DescriptionMovieItem', () => {
     it('Рендер компонента с 2 пропсами', async () => {
         render(<DescriptionMovieItem title='Карьера:' info='Актер' />);
 
-        expect(screen.getByRole('listitem')).toBeInTheDocument();
-        expect(screen.getByText(/карьера/i)).toBeInTheDocument();
-        expect(screen.getByText(/актер/i)).toBeInTheDocument();
+        const list = screen.getByRole('listitem');
+        const title = screen.getByText(/карьера/i);
+        const info = screen.getByText(/актер/i);
+
+        expect(list).toBeInTheDocument();
+        expect(title).toBeInTheDocument();
+        expect(info).toBeInTheDocument();
     });
 
     it('Рендер компонента без пропса info', async () => {
         render(<DescriptionMovieItem title='Карьера:' />);
-        
-        expect(screen.getByRole('listitem')).toBeInTheDocument();
-        expect(screen.getByText(/карьера/i)).toBeInTheDocument();
+
+        const list = screen.getByRole('listitem');
+        const title = screen.getByText(/карьера/i);
+
+        expect(list).toBeInTheDocument();
+        expect(title).toBeInTheDocument();
     });
 
     // it('snapshot', () => {

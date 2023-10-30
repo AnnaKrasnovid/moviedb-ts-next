@@ -1,51 +1,40 @@
-// module.exports = {
-//     transform: {
-//         '^.+\\.(ts|tsx)$': 'ts-jest',
-//     },
-//     moduleNameMapper : {
-//         '^react-dnd$': 'react-dnd/dist/cjs',
-//         '^react-dnd-html5-backend$': 'react-dnd-html5-backend/dist/cjs',
-//         '^dnd-core$': 'dnd-core/dist/cjs',
+// const nextJest = require('next/jest')
+
+// const createJestConfig = nextJest({ 
+//   dir: './'
+// })
+
+// const customConfig = { 
+//   'clearMocks': true,
+//   'coverageDirectory': '.coverage',
+//   'moduleDirectories': ['node_modules', '<rootDir>/'],
+//   'setupFilesAfterEnv': ['<rootDir>/jest.setup.js'],
+//   'testEnvironment': 'jest-environment-jsdom',
+//   'preset': 'ts-jest',
+//   // 'transform': {
+//   //   '^.+\\.(ts|tsx|js)$': 'babel-jest', // this is probably something you already had, if using ts-jest, it's probably fine to leave as ts-jest
+//   //   '^.+\\.(css)$': '<rootDir>/config/jest/fileTransform.js', // add this to fix css import issues
+//   // },
+//   // 'transformIgnorePatterns': ["node_modules/(?!(swiper|ssr-window|dom7)/)"],
 // }
-// };
 
-// const nextJest = require("next/jest");
-// const createJestConfig = nextJest({
-//   dir: "./",
-// });
-// const customJestConfig = {
-//   moduleDirectories: ["node_modules", "<rootDir>/"],
-//   testEnvironment: "jest-environment-jsdom",
-// };
-// module.exports = createJestConfig(customJestConfig);
-
+// module.exports = createJestConfig(customConfig)
 
 const nextJest = require('next/jest')
 
 const createJestConfig = nextJest({
-  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
-  dir: './'
+    // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
+    dir: './',
 })
 
-// Jest.config.js
-const customConfig = {
-  // Automatically clear mock calls and instances between every test
-  'clearMocks': true,
-  // The directory where Jest should output its coverage files
-  'coverageDirectory': '.coverage',
-  // A list of paths to modules that run some code to configure or set up the testing framework before each test
-  // 'setupFilesAfterEnv': ['./jest.setup.js'],
-  // By default jest will use a node environment, so DOM elements (like document) will be undefined without this
-  // 'testEnvironment': 'jest-environment-jsdom',
-  'moduleDirectories': ['node_modules', '<rootDir>/'],
-  'setupFilesAfterEnv': ['<rootDir>/jest.setup.js'],
-  'testEnvironment': 'jest-environment-jsdom',
-  'preset': 'ts-jest',
+// Add any custom config to be passed to Jest
+/** @type {import('jest').Config} */
+const config = {
+    setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+    testEnvironment: 'jest-environment-jsdom',
+    preset: 'ts-jest',
+    verbose: true,
 }
-// const customJestConfig = {
-//     moduleDirectories: ['node_modules', '<rootDir>/'],
-//     testEnvironment: 'jest-environment-jsdom',
-//     setupFilesAfterEnv: ['./setupTests.js']
-//   }
 
-module.exports = createJestConfig(customConfig)
+// createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
+module.exports = createJestConfig(config)

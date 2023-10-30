@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, screen } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
-import OptionsList from './OptionsList';
+import OptionsList from '../OptionsList';
 
 import { FilterInt } from '@/settings/interfaces';
 
@@ -21,9 +21,10 @@ describe('OptionsList', () => {
                 selectedItem={''}
             />
         );
+
         mockOptionsList.forEach((item) => {
             expect(screen.getByText(`${item.title}`)).toBeInTheDocument();
-        })       
+        })
     });
 
     it('Рендер компонента с выбранной опцией', async () => {
@@ -34,12 +35,12 @@ describe('OptionsList', () => {
                 selectedItem={mockOptionsList[1].title}
             />
         );
-        
+
         mockOptionsList.forEach((item) => {
             expect(screen.getByText(`${item.title}`)).toBeInTheDocument();
         })
 
-        const li = screen.getAllByRole('listitem')[1];       
+        const li = screen.getAllByRole('listitem')[1];
         expect(li).toHaveClass('dropdown-select-list__item_active');
     });
 
@@ -51,8 +52,9 @@ describe('OptionsList', () => {
                 selectedItem={'Боевик'}
             />
         );
-
-        expect(screen.queryByRole('list')).toBeNull();
+        
+        const list = screen.queryByRole('list');
+        expect(list).toBeNull();
     });
 
     it('Выбор опции', async () => {
@@ -67,6 +69,17 @@ describe('OptionsList', () => {
         const li = screen.getAllByRole('listitem')[1];
 
         await userEvent.click(li);
-        expect(onClick).toHaveBeenCalledTimes(1);     
+        expect(onClick).toHaveBeenCalledTimes(1);
+    });
+
+    it('Snapshot', () => {
+        const options = render(
+            <OptionsList
+                options={mockOptionsList}
+                choiceOption={onClick}
+            />
+        );
+
+        expect(options).toMatchSnapshot();
     });
 })

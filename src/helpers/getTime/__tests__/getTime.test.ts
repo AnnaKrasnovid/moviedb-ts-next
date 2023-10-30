@@ -1,6 +1,6 @@
-import { getTime } from "./getTime";
+import { getTime } from "../getTime";
 
-describe('получение времени в формате 00:00', () => {
+describe('получение времени в формате 00ч. 00мин.', () => {
     test('получение ч. и мин.', () => {
         expect(getTime(128)).toBe('2ч. 08 мин.');
     });

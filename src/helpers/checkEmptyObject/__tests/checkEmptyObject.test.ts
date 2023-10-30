@@ -1,4 +1,4 @@
-import { checkEmptyObject } from "./checkEmptyObject";
+import { checkEmptyObject } from "../checkEmptyObject";
 
 const objOne = { keyOne: 1, keyTwo: '2' }
 

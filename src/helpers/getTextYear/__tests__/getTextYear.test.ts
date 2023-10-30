@@ -1,4 +1,4 @@
-import { getTextYear } from "./getTextYear";
+import { getTextYear } from "../getTextYear";
 
 describe('получение склонения: год/лет', () => {
     test('корректное значение', () => {

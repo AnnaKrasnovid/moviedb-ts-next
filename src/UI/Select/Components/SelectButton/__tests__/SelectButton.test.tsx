@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, screen } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
-import SelectButton from './SelectButton';
+import SelectButton from '../SelectButton';
 
 const onClick = jest.fn();
 
@@ -51,5 +51,17 @@ describe('SelectButton', () => {
 
         await userEvent.click(element);
         expect(onClick).toHaveBeenCalledTimes(1);
+    });
+
+    it('Snapshot', () => {
+        const buttonSelect = render(
+            <SelectButton
+                isActive={false}
+                openModal={onClick}
+                selectedItem={'Все жанры'}
+            />
+        );
+
+        expect(buttonSelect).toMatchSnapshot();
     });
 })
