@@ -15,7 +15,7 @@ import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 
 import styles from './Movies.module.scss';
 
-function Movies({ list, pages, error }: MoviesListInt) {
+function Movies({ list, pages }: MoviesListInt) {
   const router = useRouter();
   const [renderList, setRenderList] = useState<Array<MovieBaseInt>>(list);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -23,9 +23,9 @@ function Movies({ list, pages, error }: MoviesListInt) {
   const [isFetching] = useInfiniteScroll(changePage, totalPages === 1);
 
   async function getfiltersMovies(genre: string, years: string, rating: string) {
-    const queryFilters = getQueryParams(genre, years, rating)
+    const queryFilters = getQueryParams(genre, years, rating);
     const movieType = `type=${getMoviesType(router.pathname)}`;
-    const limit = currentPage * MOVIES_LIMIT
+    const limit = currentPage * MOVIES_LIMIT;
 
     try {
       const response = await api.filtersMovies(queryFilters, movieType, limit);
@@ -53,18 +53,15 @@ function Movies({ list, pages, error }: MoviesListInt) {
   return (
     <section className={`movies ${styles['movies']}`} >
       <Filters callback={getfiltersMovies} />
-      {!error
-        ? renderList.length > 0
-          ? (
-            <>
-              <MoviesList list={renderList} />
-              {(isFetching && currentPage <= totalPages) && <Loader />}
-            </>
-          )
-          : <Information text='Ничего не найдено' />
-        : (
-          <Information text={`Ошибка: ${error}`} />
-        )}
+      {renderList.length > 0
+        ? (
+          <>
+            <MoviesList list={renderList} />
+            {(isFetching && currentPage <= totalPages) && <Loader />}
+          </>
+        )
+        : <Information text='Ничего не найдено' />
+      }
     </section>
   );
 }

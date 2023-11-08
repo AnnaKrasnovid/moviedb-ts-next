@@ -1,5 +1,5 @@
-export function getTime(number: number): string {
-    if (number >= 0) {
+export function getTime(number: number | null): string {
+    if (number && number > 0 || number===0) {
         const minutes = number % 60;
         const hours = (number - minutes) / 60;
         const formatMinutes = minutes < 10 ? `0${minutes}` : minutes
@@ -13,3 +13,4 @@ export function getTime(number: number): string {
         return '';
     }
 }
+console.log(getTime(0))

@@ -2,6 +2,7 @@ import { GetServerSidePropsContext } from 'next';
 
 import Layout from '@/layout/Layout/Layout';
 import Movies from '@/components/Movies/Movies';
+import Information from '@/UI/Information/Information';
 
 import { MoviesPageInt } from '@/settings/interfaces';
 import { getQueryParams } from '@/helpers/getQueryParams/getQueryParams';
@@ -11,8 +12,11 @@ import api from '../tools/api';
 
 function SerialsPage({ movies, error }: MoviesPageInt) {
     return (
-        <Layout>
-            <Movies list={movies.docs} pages={movies.pages} error={error} />
+        <Layout heading='Сериалы'>
+            {!error
+                ? <Movies list={movies.docs} pages={movies.pages} error={error} />
+                : <Information text={error} />
+            }
         </Layout>
     );
 }

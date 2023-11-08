@@ -1,0 +1,31 @@
+@import '../../styles/variables.scss';
+
+.heading-movie {
+    &__title {
+        margin: 0;
+        font-weight: 500;
+        font-size: 40px;
+        line-height: 47px;
+    }
+
+    &__title-en {
+        margin: 0;
+        font-weight: 400;
+        font-size: 30px;
+        line-height: 35px;
+    }
+}
+
+@media screen and (max-width: $breakpoint-lg) {
+    .heading-movie {
+        &__title {
+            font-size: 18px;
+            line-height: 21px;
+        }
+
+        &__title-en {
+            font-size: 16px;
+            line-height: 19px;
+        }
+    }
+}

@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 
-interface ShowMoreInt {
-    renderList: Array<any>,
-    numberItem: number,
-    showMoreItems: () => void
-}
+import { ShowMoreInt } from "@/settings/interfaces";
 
 export function useShowMore(list:Array<any>, number:number):ShowMoreInt {
     const [numberItem, setNumberItem] = useState<number>(number);

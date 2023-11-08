@@ -10,8 +10,17 @@ function SocialButtons({ type = 'footer' }: SocialButtonsInt) {
   return (
     <div className={`${styles['social-buttons']} ${styles[`social-buttons_type_${type}`]}`}>
       {socialNetworks.map((item) => (
-        <Link className={styles['social-buttons__link']} href={item.href} target='_blank' key={item.title}>
-          <Image className={styles['social-buttons__icon']} src={item.image} alt={item.title} quality={100} />
+        <Link
+          className={styles['social-buttons__link']}
+          href={item.href}
+          target='_blank'
+          key={item.title}>
+          <Image
+            className={styles['social-buttons__icon']}
+            src={item.image}
+            alt={item.title}
+            quality={100}
+          />
         </Link>
       ))}
     </div>

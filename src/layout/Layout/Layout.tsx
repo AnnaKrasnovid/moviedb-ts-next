@@ -14,7 +14,7 @@ import { LayoutInt } from '@/settings/interfaces';
 
 import styles from './Layout.module.scss';
 
-function Layout({ children }: LayoutInt) {
+function Layout({ children, heading }: LayoutInt) {
   const { openMenu, closePopup, isOpenPopupMenu, isOpenPopupSearch } = useContext(ModalsContext);
   const { isOpenTooltip, textError } = useContext(TooltipContext);
 
@@ -23,7 +23,7 @@ function Layout({ children }: LayoutInt) {
       <Head>
         <meta lang='ru' />
         <meta charSet="UTF-8" />
-        <title>MovieDB</title>
+        <title>{heading}</title>
         <meta name="description" content="Сайт для поиска фильмов" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -47,7 +47,8 @@ function Layout({ children }: LayoutInt) {
         <Overlay isOpenPopup={isOpenPopupSearch} >
           <SearchForm />
         </Overlay>
-        <Tooltip isOpenTooltip={isOpenTooltip} text={textError}/>
+
+        <Tooltip isOpenTooltip={isOpenTooltip} text={textError} />
       </div>
     </>
   );

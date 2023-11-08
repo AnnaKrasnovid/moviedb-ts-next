@@ -1,6 +1,8 @@
+import { ErrorInt } from '@/settings/interfaces';
+
 import styles from './Error.module.scss';
 
-function Error({text=''}) {    
+function Error({text}:ErrorInt) {    
     return (
         <span className={styles['error']}>{text}</span>
     )

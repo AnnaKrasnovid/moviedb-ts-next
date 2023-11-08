@@ -15,7 +15,10 @@ function Submenu({ item, isActiveSubmenu }: SubmenuInt) {
           <li className={styles['menu__genre']} key={i.id}>
             <Link
               href={`${item.path}/${i.value}`}
-              className={`${styles['menu__link']} ${query.genre === `${i.value}` ? styles['menu__link_active'] : ''}`}
+              className={`
+                ${styles['menu__link']} 
+                ${query.genre === `${i.value}` ? styles['menu__link_active'] : ''}
+              `}
             >
               {i.title}
             </Link>

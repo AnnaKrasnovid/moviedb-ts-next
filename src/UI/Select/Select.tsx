@@ -1,15 +1,16 @@
 import { useEffect, useState, memo } from 'react';
 
 import ScrollBar from '@/UI/ScrollBar/ScrollBar';
-import ArrowIcon from '@/UI/ArrowIcon/ArrowIcon';
+import OptionsList from './Components/OptionsList/OptionsList';
+import SelectButton from './Components/SelectButton/SelectButton';
 
-import { SelectInt } from '@/settings/interfaces';
 import { useToggleVisibility } from '../../hooks/useToggleVisibillity';
+import { SelectInt } from '@/settings/interfaces';
 
 import styles from './Select.module.scss';
 
-function Select({ options, label, callback, defaultValue }: SelectInt) {
-    const {ref, isActive, openModal, closeModal}=useToggleVisibility(false);
+function Select({ options, label = '', callback, defaultValue }: SelectInt) {
+    const { ref, isActive, openModal, closeModal } = useToggleVisibility(false);
     const [selectedItem, setSelectedItem] = useState<string>(options[0].title);
 
     const choiceOption = (id: string | number) => {
@@ -18,7 +19,7 @@ function Select({ options, label, callback, defaultValue }: SelectInt) {
 
         if (item) {
             setSelectedItem(item.title);
-            callback(item.value);           
+            callback(item.value);
         }
     }
 
@@ -31,29 +32,24 @@ function Select({ options, label, callback, defaultValue }: SelectInt) {
     useEffect(() => {
         getTitle();
     }, [defaultValue])
-    
+
     return (
-        <div>
-            <p className={styles['label-input']}>{label}</p>
-            <div className={`${styles['dropdown-select']} ${isActive ? styles['dropdown-select_active'] : ''}`} >
-                <div className={`select-button ${styles['dropdown-select__button']}`} onClick={openModal}>
-                    <span className={`${styles['dropdown-select__title']} ${styles['dropdown-select__title-button']}`}>{selectedItem}</span>
-                    <span className={`${styles['arrow']} ${isActive ? styles['arrow_up'] : ''}`}>
-                        <ArrowIcon isActive={isActive} />
-                    </span>
-                </div>
-                <div className={`${styles['dropdown-select__levels']} ${isActive ? styles['dropdown-select__levels_active'] : ''}`} ref={ref}>
+        <div className={styles['dropdown']}>
+            {label &&
+                <p className={styles['dropdown__label']} data-testid='select-label'>
+                    {label}
+                </p>
+            }
+            <div className={`${styles['dropdown__select']} ${isActive ? styles['dropdown__select_active'] : ''}`} >
+                <SelectButton isActive={isActive} openModal={openModal} selectedItem={selectedItem} />
+                <div className={`
+                    ${styles['dropdown__options']} 
+                    ${isActive ? styles['dropdown__options_active'] : ''}`}
+                    ref={ref}
+                    data-testid='dropdown-options'
+                >
                     <ScrollBar>
-                        <ul className={styles['dropdown-select__list']}>
-                            {options.map((item) => (
-                                <li
-                                    className={`${styles['dropdown-select__item']} ${item.title === selectedItem ? styles['dropdown-select__item_active'] : ''}`}
-                                    key={item.id}
-                                    onClick={() => choiceOption(item.id)}>
-                                    <span className={styles['dropdown-select__title']}>{item.title}</span>
-                                </li>
-                            ))}
-                        </ul>
+                        <OptionsList options={options} choiceOption={choiceOption} selectedItem={selectedItem} />
                     </ScrollBar>
                 </div>
             </div>

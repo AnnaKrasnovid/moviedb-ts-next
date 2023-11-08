@@ -15,7 +15,7 @@ export interface ButtonCloseInt extends ButtonInt {
 }
 
 export interface ButtonTextInt extends ButtonInt {
-    text?: string,
+    text: string,
 }
 
 export interface SubmenuItemInt {
@@ -131,7 +131,7 @@ export interface ActorItemInt {
     name: string,
     photo: string | null,
     profession: Array<ValueInt>,
-    sex: number,
+    sex: string,
     spouses: Array<SpousesInt> | null,
     updatedAt: string,
 }
@@ -150,6 +150,9 @@ export interface ActorsListInt {
 }
 export interface ActorInt {
     actor: ActorItemInt,
+}
+
+export interface ActorPageInt extends ActorInt {
     error?: string
 }
 
@@ -410,9 +413,6 @@ export interface SelectInt {
     defaultValue?: any,
 }
 
-export interface LayoutInt {
-    children: ReactNode,
-}
 
 export interface DescriptionMovieCardInt {
     movie: MovieItemInt
@@ -430,9 +430,8 @@ export interface OptionInt {
     timeZoneName?: "long" | "short" | "shortOffset" | "longOffset" | "shortGeneric" | "longGeneric" | undefined,
 }
 
-export interface TooltipInt {
-    isOpenTooltip: boolean,
-    text?: string| ReactNode,
+export interface InformationInt {
+    text: string | ReactNode
 }
 
 export interface NotFoundInt {
@@ -440,6 +439,70 @@ export interface NotFoundInt {
     message?: string
 }
 
-export interface InformationInt {
-    text: string | ReactNode
+export interface TooltipInt {
+    isOpenTooltip: boolean,
+    text?: string | ReactNode,
+}
+
+export interface LayoutInt {
+    children: ReactNode,
+    heading: string
+  }
+
+  export interface HeadingMovieInt {
+    title: string,
+    year:number,
+    alternativeName: string |null
+}
+
+export interface FiltersInt {
+    callback: (genre: string, years: string, rating: string) => void
+}
+
+export interface BannerInt{
+    image:string, logo:string
+}
+
+export interface ShowMoreInt {
+    renderList: Array<any>,
+    numberItem: number,
+    showMoreItems: () => void
+}
+
+export interface ToggleVisibilityInt {
+    ref: any,
+    isActive: boolean,
+    openModal: () => void,
+    closeModal: () => void,
+}
+
+
+export interface ErrorInt{
+    text: string
+}
+
+
+export interface OptionItemInt {
+    id: string,
+    title: string,
+    value: string,
+}
+export interface SelectInt {
+    options: Array<OptionItemInt>,
+    label?: string,
+    placeholder?: string,
+    callback: (value: string) => void,
+    defaultValue?: any,
+}
+
+export interface OptionsListInt {
+    options: Array<OptionItemInt>,
+    choiceOption: (id: string | number) => void,
+    selectedItem?: string,
+}
+
+export interface SelectButtonInt {
+    isActive: boolean,
+    openModal: () => void,
+    selectedItem: string
 }

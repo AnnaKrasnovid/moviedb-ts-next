@@ -14,8 +14,8 @@ function Movie({ movie }: any) {
     <div className={styles['page-movie']}>
       <DescriptionMovieCard movie={movie} />
       <ActorsList list={actors} />
-      {movie.similarMovies.length > 0 && <SimilarMovies list={movie.similarMovies} />}
-      {movie.facts?.length > 0 && <Facts list={movie.facts} />}
+      <SimilarMovies list={movie.similarMovies} />
+      <Facts list={movie.facts} />
     </div>
   );
 }

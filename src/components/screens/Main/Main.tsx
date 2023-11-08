@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Lead from '@/components/Lead/Lead';
 import Compilation from '@/components/Сompilation/Compilation';
 import DescriptionMovieCard from '@/components/DescriptionMovieCard/DescriptionMovieCard';
+import Loader from '@/UI/Loader/Loader';
 
 import { routes } from '@/settings/routes';
 import { MainPageInt } from '@/settings/interfaces';
@@ -18,9 +19,14 @@ function Main({ movieRating, cartoons, series, movieRandom }: MainPageInt) {
         <Compilation title='Сериалы' moviesList={series.docs} link={routes.SERIALS} />
         <Compilation title='Мультфильмы' moviesList={cartoons.docs} link={routes.CARTOONS} />
       </div>
-      <Link href={`${routes.MOVIE}/${movieRandom.id}`}>
-        <DescriptionMovieCard movie={movieRandom} />
-      </Link>
+      {typeof movieRandom !== 'string'
+        ? (
+          <Link href={`${routes.MOVIE}/${movieRandom.id}`}>
+            <DescriptionMovieCard movie={movieRandom} />
+          </Link>
+        )
+        : <Loader />
+      }
     </>
   )
 }

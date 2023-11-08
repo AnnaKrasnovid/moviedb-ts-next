@@ -10,8 +10,6 @@ import { TooltipContext } from '@/context/TooltipContext';
 import api from '../tools/api';
 
 function Home({ movieRating, cartoons, series, movieRandom, error = [] }: MainPageInt) {
-  console.log(movieRating, cartoons, series, movieRandom, error);
-
   const arrayError = Array.from(new Set(error));
   const message = arrayError.join(' / ');
 
@@ -26,7 +24,7 @@ function Home({ movieRating, cartoons, series, movieRandom, error = [] }: MainPa
   }, [message])
 
   return (
-    <Layout>
+    <Layout heading='MovieDB'>
       <Main movieRating={movieRating} cartoons={cartoons} series={series} movieRandom={movieRandom} />
     </Layout>
   )
